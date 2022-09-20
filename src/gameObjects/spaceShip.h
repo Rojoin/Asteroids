@@ -19,5 +19,5 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 
 void drawShip();
 void changeShipPosition();
-
+ 
 

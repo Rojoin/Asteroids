@@ -8,5 +8,6 @@ void moveSpaceShip(SpaceShip& ship)
 
 	float rotation = tanf(direction.y / direction.x);
 	float grades = rotation * (180 / PI);
+
 	
 }
