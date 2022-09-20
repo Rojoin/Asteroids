@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="header">
-      <UniqueIdentifier>{c5bac785-8496-4589-a4ea-01e8670c5661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cpp">
-      <UniqueIdentifier>{a727f822-0b31-40c0-887e-518c3088b3bc}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="src\system\draw.cpp" />
+    <ClCompile Include="src\gameObjects\spaceShip.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="src\system\draw.h" />
+    <ClInclude Include="src\gameObjects\spaceShip.h" />
   </ItemGroup>
 </Project>

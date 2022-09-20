@@ -157,6 +157,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="src\gameObjects\spaceShip.cpp" />
+    <ClCompile Include="src\system\draw.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\gameObjects\spaceShip.h" />
+    <ClInclude Include="src\system\draw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
