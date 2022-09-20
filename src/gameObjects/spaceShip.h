@@ -1,9 +1,23 @@
 #pragma once
 #include <raylib.h>
-#include <string>
 
 
-void drawTexture(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
-void drawText(std::string text, float posX, float posY, float fontSize, Color color);
+struct SpaceShip
+{
+	Vector2 position;
+	Vector2 aceleration;
+	Texture2D texture;
+	float rotation;
+	float scale;
+	float speed;
+
+
+};
+
+
+SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale);
+
+void drawShip();
+void changeShipPosition();
 
 
