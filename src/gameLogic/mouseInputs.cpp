@@ -5,3 +5,4 @@ Vector2 getMouseInput()
 {
 	return GetMousePosition();
 }
+

@@ -10,6 +10,8 @@ struct SpaceShip
 	float rotation;
 	float scale;
 	float speed;
+	Rectangle source;
+	Rectangle dest;
 
 
 };
@@ -17,6 +19,7 @@ struct SpaceShip
 
 SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale);
 
+void updateShip();
 void drawShip();
 void changeShipPosition();
  

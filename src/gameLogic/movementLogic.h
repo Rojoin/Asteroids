@@ -5,4 +5,4 @@
 #include "../gameLogic/mouseInputs.h"
 
 
-void moveSpaceShip();
+void moveSpaceShip(SpaceShip& spaceShip);

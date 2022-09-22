@@ -1,6 +1,7 @@
 
 #include "raylib.h"
 #include "src/gameObjects/spaceShip.h"
+#include "src/gameLogic/movementLogic.h"
 
 extern SpaceShip spaceShip;
 
@@ -12,9 +13,25 @@ int main(void)
     spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 10);
     while (!WindowShouldClose())
     {
-        spaceShip.rotation += 0.1f;
+        moveSpaceShip(spaceShip);
+        if (IsKeyDown(KEY_W))
+        {
+            spaceShip.position.y -= 1.0f;
+        }if (IsKeyDown(KEY_A))
+        {
+            spaceShip.position.x -= 1.0f;
+        }if (IsKeyDown(KEY_S))
+        {
+            spaceShip.position.y += 1.0f;
+        }if (IsKeyDown(KEY_D))
+        {
+            spaceShip.position.x += 1.0f;
+        }
+        updateShip();
+        changeShipPosition();
         BeginDrawing();
         drawShip();
+    
         ClearBackground(BLACK);
         EndDrawing();
 

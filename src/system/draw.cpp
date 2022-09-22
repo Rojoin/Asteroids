@@ -8,9 +8,9 @@ void drawTexture(Texture2D texture,Vector2 position,float rotation,float scale,C
 	DrawTextureEx(texture, position, rotation, scale, tint);
 
 }
-void drawTexture(Texture2D texture,Rectangle source,Rectangle dest, Vector2 position, float rotation, float scale, Color tint)
+void drawTexture(Texture2D texture,Rectangle source,Rectangle dest, Vector2 position, float rotation, Color tint)
 {
-	
+	DrawTexturePro(texture, source, dest, position, rotation, tint);
 
 }
 
