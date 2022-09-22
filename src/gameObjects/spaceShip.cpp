@@ -19,7 +19,7 @@ SpaceShip initSpaceShip(Texture2D texture,Vector2 position,  float rotation, flo
 
 void drawShip()
 {
-	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, {spaceShip.texture.width / 2.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation, WHITE);
+	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, {spaceShip.texture.width / 2.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation,spaceShip.scale, WHITE);
 }
 void updateShip()
 {

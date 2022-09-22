@@ -15,7 +15,7 @@ void moveSpaceShip(SpaceShip& ship)
 	ship.rotation = grades;
 
 	direction = Vector2Normalize(direction);
-	if (IsKeyDown(KEY_SPACE))
+	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
 		ship.aceleration.x += direction.x;
 		ship.aceleration.y += direction.y;
