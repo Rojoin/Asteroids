@@ -3,7 +3,7 @@
 void moveSpaceShip(SpaceShip& ship)
 {
 	Vector2 mouse = getMouseInput();
-	Vector2 shipPos = ship.position;
+	Vector2 shipPos = {ship.dest.x, ship.dest.y};
 	Vector2 direction = { mouse.x - shipPos.x, mouse.y - shipPos.y };
 
 
@@ -19,7 +19,7 @@ void moveSpaceShip(SpaceShip& ship)
 	{
 		ship.aceleration.x += direction.x;
 		ship.aceleration.y += direction.y;
-	
+		
 	}
 
 }
