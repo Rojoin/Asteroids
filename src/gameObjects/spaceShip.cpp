@@ -12,8 +12,8 @@ SpaceShip initSpaceShip(Texture2D texture,Vector2 position,  float rotation, flo
 	ship.scale = scale;
 	ship.rotation = rotation;
 	ship.speed = 400.0f;
-	ship.source = { 0,0,32,32 };
-	ship.dest = { 0,0,32,32 };
+	ship.source = { 0,0,(float)ship.texture.width,(float)ship.texture.height };
+	ship.dest = { 0,0,(float)ship.texture.width * scale,(float)ship.texture.height * scale };
 	return ship;
 }
 
@@ -23,7 +23,7 @@ void drawShip()
 }
 void updateShip()
 {
-	spaceShip.dest = { spaceShip.position.x + spaceShip.texture.width ,spaceShip.position.y + spaceShip.texture.height / 2.0f ,spaceShip.dest.width,spaceShip.dest.height };
+	spaceShip.dest = { spaceShip.position.x + spaceShip.texture.width ,spaceShip.position.y + spaceShip.texture.height / 2.0f ,spaceShip.dest.width,spaceShip.dest.height};
 }
 void changeShipPosition()
 {
