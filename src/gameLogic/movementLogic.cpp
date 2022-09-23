@@ -1,4 +1,5 @@
 #include "movementLogic.h"
+#include  <iostream>
 
 void moveSpaceShip(SpaceShip& ship)
 {
@@ -15,22 +16,35 @@ void moveSpaceShip(SpaceShip& ship)
 	ship.rotation = grades;
 
 	direction = Vector2Normalize(direction);
-	
-		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+
+
+	float maxSpeed = 200.0f;
+
+	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
 		
-		ship.aceleration.x += direction.x;
-		ship.aceleration.y += direction.y;
-
+			ship.aceleration.x += direction.x * GetFrameTime() * maxSpeed;
+			ship.aceleration.y += direction.y * GetFrameTime() * maxSpeed;
+		
 	}
-	
-	
+	if (ship.aceleration.x > maxSpeed && ship.aceleration.y > maxSpeed)
+			{
+					ship.aceleration.x		 = maxSpeed;
+					ship.aceleration.y	 = maxSpeed;
+			}
+			else if(ship.aceleration.x < -maxSpeed && ship.aceleration.y < -maxSpeed)
+			{
+				ship.aceleration.x = -maxSpeed;
+				ship.aceleration.y = -maxSpeed;
+			}
+	std::cout << ship.aceleration.y << std::endl;
+	std::cout << ship.aceleration.x << std::endl;
 	warpSpaceShip(ship);
 }
 
 void warpSpaceShip(SpaceShip& spaceShip)
 {
-	if (spaceShip.position.x < 0- spaceShip.texture.width)
+	if (spaceShip.position.x < 0 - spaceShip.texture.width)
 	{
 		spaceShip.position.x = GetScreenWidth() - spaceShip.texture.width;
 	}
@@ -38,7 +52,7 @@ void warpSpaceShip(SpaceShip& spaceShip)
 	{
 		spaceShip.position.x = 0 + spaceShip.texture.width;
 	}
-	if (spaceShip.position.y < 0- spaceShip.texture.width)
+	if (spaceShip.position.y < 0 - spaceShip.texture.width)
 	{
 		spaceShip.position.y = GetScreenHeight() - spaceShip.texture.height;
 	}
