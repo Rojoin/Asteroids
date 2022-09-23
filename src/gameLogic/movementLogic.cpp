@@ -22,23 +22,21 @@ void moveSpaceShip(SpaceShip& ship)
 
 	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
-		
-			ship.aceleration.x += direction.x * GetFrameTime() * maxSpeed;
-			ship.aceleration.y += direction.y * GetFrameTime() * maxSpeed;
-		
+
+		ship.aceleration.x += direction.x * GetFrameTime() * maxSpeed;
+		ship.aceleration.y += direction.y * GetFrameTime() * maxSpeed;
+
 	}
-	if (ship.aceleration.x > maxSpeed && ship.aceleration.y > maxSpeed)
-			{
-					ship.aceleration.x		 = maxSpeed;
-					ship.aceleration.y	 = maxSpeed;
-			}
-			else if(ship.aceleration.x < -maxSpeed && ship.aceleration.y < -maxSpeed)
-			{
-				ship.aceleration.x = -maxSpeed;
-				ship.aceleration.y = -maxSpeed;
-			}
+	if (ship.aceleration.x > maxSpeed) 	ship.aceleration.x = maxSpeed;
+	else if (ship.aceleration.x < -maxSpeed)ship.aceleration.x = -maxSpeed;
+	if (ship.aceleration.y > maxSpeed)		ship.aceleration.y = maxSpeed;
+	else if (ship.aceleration.y < -maxSpeed)ship.aceleration.y = -maxSpeed;
+
+#if _DEBUG
 	std::cout << ship.aceleration.y << std::endl;
 	std::cout << ship.aceleration.x << std::endl;
+#endif
+
 	warpSpaceShip(ship);
 }
 
