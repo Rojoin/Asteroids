@@ -4,6 +4,9 @@
 #include "GameObjectsEnums.h"
 #include "spaceShip.h"
 
+namespace Asteroids
+{
+	
 struct Bullet
 {
 	Asteroids::BulletType type;
@@ -17,8 +20,9 @@ struct Bullet
 void moveBullet(Bullet& bullet);
 
 void deactivateBullet(Bullet& bullet);
-void activateBullet(Bullet& bullet);
+void activateBullet(Bullet& bullet,SpaceShip ship);
 void resetBulletPosition(Bullet& bullet, SpaceShip ship);
 
+}
 
 

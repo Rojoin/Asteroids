@@ -9,16 +9,23 @@ Vector2 getSpaceShipDirection(SpaceShip ship)
 	Vector2 direction = { mouse.x - shipPos.x, mouse.y - shipPos.y };
 	return direction;
 }
-void moveSpaceShip(SpaceShip& ship)
+float getSpaceShipRotation(Vector2 direction)
 {
-	Vector2 direction = getSpaceShipDirection(ship);
+	
 
 	float grades = (atan(direction.y / direction.x)) * (180 / PI);
 	if (direction.x < 0)
 	{
 		grades += 180;
 	}
-	ship.rotation = grades;
+	return grades;
+}
+void moveSpaceShip(SpaceShip& ship)
+{
+	Vector2 direction = getSpaceShipDirection(ship);
+
+	
+	ship.rotation = getSpaceShipRotation(direction);
 
 	Vector2 normalizedDirection = Vector2Normalize(direction);
 
