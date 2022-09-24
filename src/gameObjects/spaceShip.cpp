@@ -11,7 +11,7 @@ SpaceShip initSpaceShip(Texture2D texture,Vector2 position,  float rotation, flo
 	ship.aceleration = { 0,0 };
 	ship.scale = scale;
 	ship.rotation = rotation;
-	ship.speed = 400.0f;
+	ship.maxSpeed = 200.0f;
 	ship.source = { 0,0,(float)ship.texture.width,(float)ship.texture.height };
 	ship.dest = { 0,0,(float)ship.texture.width * scale,(float)ship.texture.height * scale };
 	return ship;

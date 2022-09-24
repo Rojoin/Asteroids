@@ -6,4 +6,4 @@
 
 
 void moveSpaceShip(SpaceShip& spaceShip);
-void warpSpaceShip(SpaceShip& spaceShip);
+void warpSpaceShipOutOfBounds(SpaceShip& spaceShip);

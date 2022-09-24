@@ -23,19 +23,19 @@ void moveSpaceShip(SpaceShip& ship)
 	Vector2 normalizedDirection = Vector2Normalize(direction);
 
 
-	float maxSpeed = 200.0f;//tiene que ir en o
+	
 
 	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
 
-		ship.aceleration.x += normalizedDirection.x * GetFrameTime() * maxSpeed;
-		ship.aceleration.y += normalizedDirection.y * GetFrameTime() * maxSpeed;
+		ship.aceleration.x += normalizedDirection.x * GetFrameTime() * ship.maxSpeed;
+		ship.aceleration.y += normalizedDirection.y * GetFrameTime() * ship.maxSpeed;
 
 	}
-	if (ship.aceleration.x > maxSpeed) 	ship.aceleration.x = maxSpeed;
-	else if (ship.aceleration.x < -maxSpeed)ship.aceleration.x = -maxSpeed;
-	if (ship.aceleration.y > maxSpeed)		ship.aceleration.y = maxSpeed;
-	else if (ship.aceleration.y < -maxSpeed)ship.aceleration.y = -maxSpeed;
+	if (ship.aceleration.x > ship.maxSpeed) 	ship.aceleration.x = ship.maxSpeed;
+	else if (ship.aceleration.x < -ship.maxSpeed)ship.aceleration.x = -ship.maxSpeed;
+	if (ship.aceleration.y > ship.maxSpeed)		ship.aceleration.y = ship.maxSpeed;
+	else if (ship.aceleration.y < -ship.maxSpeed)ship.aceleration.y = -ship.maxSpeed;
 
 
 //Check ShipAceletarion
@@ -44,10 +44,10 @@ void moveSpaceShip(SpaceShip& ship)
 	std::cout << ship.aceleration.x << std::endl;
 #endif
 
-	warpSpaceShip(ship);
+	warpSpaceShipOutOfBounds(ship);
 }
 
-void warpSpaceShip(SpaceShip& spaceShip)
+void warpSpaceShipOutOfBounds(SpaceShip& spaceShip)
 {
 	if (spaceShip.position.x < 0 - spaceShip.texture.width)
 	{

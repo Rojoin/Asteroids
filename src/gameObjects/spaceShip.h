@@ -9,7 +9,7 @@ struct SpaceShip
 	Texture2D texture;
 	float rotation;
 	float scale;
-	float speed;
+	float maxSpeed;
 	Rectangle source;
 	Rectangle dest;
 
