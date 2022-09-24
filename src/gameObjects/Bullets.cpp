@@ -2,12 +2,12 @@
 #include "../gameLogic/movementLogic.h"
 #include "../system/draw.h"
 
-namespace Asteroids
+namespace GameObjects
 {
 	Bullet createBullet()
 	{
-		Asteroids::Bullet bullet;
-		bullet.type = Asteroids::BulletType::Default;
+		GameObjects::Bullet bullet;
+		bullet.type = GameObjects::BulletType::Default;
 		bullet.isActive = false;
 		bullet.aceleration = { 0,0 };
 		bullet.circle.position = { 0,0 };
@@ -16,13 +16,13 @@ namespace Asteroids
 		return bullet;
 	}
 
-	void moveBullet(Asteroids::Bullet& bullet)
+	void moveBullet(GameObjects::Bullet& bullet)
 	{
 		bullet.circle.position.x += bullet.aceleration.x *bulletMaxSpeed* GetFrameTime();
 		bullet.circle.position.y += bullet.aceleration.y *bulletMaxSpeed* GetFrameTime();
 	}
 
-	void updateBullet(Asteroids::Bullet& bullet, SpaceShip ship)
+	void updateBullet(GameObjects::Bullet& bullet, SpaceShip ship)
 	{
 	
 		if (!bullet.isActive)
@@ -32,11 +32,11 @@ namespace Asteroids
 			bullet.circle.position = { ship.dest.x, ship.dest.y };
 		}
 	}
-	void deactivateBullet(Asteroids::Bullet& bullet)
+	void deactivateBullet(GameObjects::Bullet& bullet)
 	{
 		bullet.isActive = false;
 	}
-	void activateBullet(Asteroids::Bullet& bullet, SpaceShip ship)
+	void activateBullet(GameObjects::Bullet& bullet, SpaceShip ship)
 	{
 		if (!bullet.isActive)
 		{
@@ -49,13 +49,13 @@ namespace Asteroids
 		
 
 	}
-	void resetBulletPosition(Asteroids::Bullet& bullet, SpaceShip ship)
+	void resetBulletPosition(GameObjects::Bullet& bullet, SpaceShip ship)
 	{
 		deactivateBullet(bullet);
 		bullet.aceleration = { 0,0 };
 		bullet.circle.position = { ship.dest.x, ship.dest.y };
 	}
-	void drawBullet(Asteroids::Bullet& bullet)
+	void drawBullet(GameObjects::Bullet& bullet)
 	{
 		Rectangle source{0,0,(float)bullet.texture.width,(float)bullet.texture.height};
 		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width,(float)bullet.texture.height };

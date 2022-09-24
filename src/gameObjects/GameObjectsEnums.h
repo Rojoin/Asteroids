@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Asteroids
+namespace GameObjects
 {
 	enum class AsteroidType { Default, Small, Special };
 	enum class BulletType{Default,Special};

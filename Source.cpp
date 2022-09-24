@@ -5,12 +5,12 @@
 #include "src/gameObjects/Bullets.h"
 
 extern SpaceShip spaceShip;
-Asteroids::Bullet bullet;
+GameObjects::Bullet bullet;
 
 int main(void)
 {
     InitWindow(800, 800, "Ship Example");
-    bullet = Asteroids::createBullet();
+    bullet = GameObjects::createBullet();
    
     Texture2D shipTexture = LoadTexture("resources/pizza.png");
     bullet.texture = shipTexture;
@@ -19,21 +19,21 @@ int main(void)
     while (!WindowShouldClose())
     {
         moveSpaceShip(spaceShip);
-        Asteroids::moveBullet(bullet);
+        GameObjects::moveBullet(bullet);
         updateShip();
-        Asteroids::updateBullet(bullet,spaceShip);
+        GameObjects::updateBullet(bullet,spaceShip);
         if (IsKeyDown(KEY_SPACE))
         {
-	        Asteroids::activateBullet(bullet,spaceShip);
+	        GameObjects::activateBullet(bullet,spaceShip);
         } if (IsKeyDown(KEY_V))
         {
-	        Asteroids::resetBulletPosition(bullet,spaceShip);
+	        GameObjects::resetBulletPosition(bullet,spaceShip);
         }
         changeShipPosition();
-        Asteroids::moveBullet(bullet);
+        GameObjects::moveBullet(bullet);
         BeginDrawing();
         drawShip();
-      Asteroids::drawBullet(bullet);
+      GameObjects::drawBullet(bullet);
      //
         ClearBackground(BLACK);
         EndDrawing();
