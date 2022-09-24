@@ -1,12 +1,17 @@
 #include "movementLogic.h"
 #include  <iostream>
 
-void moveSpaceShip(SpaceShip& ship)
+
+Vector2 getSpaceShipDirection(SpaceShip ship)
 {
 	Vector2 mouse = getMouseInput();
 	Vector2 shipPos = { ship.dest.x, ship.dest.y };
 	Vector2 direction = { mouse.x - shipPos.x, mouse.y - shipPos.y };
-
+	return direction;
+}
+void moveSpaceShip(SpaceShip& ship)
+{
+	Vector2 direction = getSpaceShipDirection(ship);
 
 	float grades = (atan(direction.y / direction.x)) * (180 / PI);
 	if (direction.x < 0)
@@ -15,16 +20,16 @@ void moveSpaceShip(SpaceShip& ship)
 	}
 	ship.rotation = grades;
 
-	direction = Vector2Normalize(direction);
+	Vector2 normalizedDirection = Vector2Normalize(direction);
 
 
-	float maxSpeed = 200.0f;
+	float maxSpeed = 200.0f;//tiene que ir en o
 
 	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
 
-		ship.aceleration.x += direction.x * GetFrameTime() * maxSpeed;
-		ship.aceleration.y += direction.y * GetFrameTime() * maxSpeed;
+		ship.aceleration.x += normalizedDirection.x * GetFrameTime() * maxSpeed;
+		ship.aceleration.y += normalizedDirection.y * GetFrameTime() * maxSpeed;
 
 	}
 	if (ship.aceleration.x > maxSpeed) 	ship.aceleration.x = maxSpeed;
@@ -32,7 +37,9 @@ void moveSpaceShip(SpaceShip& ship)
 	if (ship.aceleration.y > maxSpeed)		ship.aceleration.y = maxSpeed;
 	else if (ship.aceleration.y < -maxSpeed)ship.aceleration.y = -maxSpeed;
 
-#if _DEBUG
+
+//Check ShipAceletarion
+#if _DEBUG 
 	std::cout << ship.aceleration.y << std::endl;
 	std::cout << ship.aceleration.x << std::endl;
 #endif

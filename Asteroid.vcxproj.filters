@@ -3,14 +3,38 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="src\system\draw.cpp" />
-    <ClCompile Include="src\gameObjects\spaceShip.cpp" />
     <ClCompile Include="src\gameLogic\mouseInputs.cpp" />
     <ClCompile Include="src\gameLogic\movementLogic.cpp" />
+    <ClCompile Include="src\gameObjects\spaceShip.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameObjects\Bullets.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameObjects\Asteroid.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\system\draw.h" />
-    <ClInclude Include="src\gameObjects\spaceShip.h" />
     <ClInclude Include="src\gameLogic\mouseInputs.h" />
     <ClInclude Include="src\gameLogic\movementLogic.h" />
+    <ClInclude Include="src\gameObjects\spaceShip.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameObjects\Bullets.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameObjects\Asteroid.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameObjects\GameObjectsEnums.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{884ba826-3eb3-46c1-8953-535b38c08e0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
