@@ -14,6 +14,8 @@
     <ClCompile Include="src\gameObjects\Asteroid.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="src\gameLogic\shootLogic.cpp" />
+    <ClCompile Include="src\system\collisionLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\system\draw.h" />
@@ -29,6 +31,11 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="src\gameObjects\GameObjectsEnums.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameLogic\shootLogic.h" />
+    <ClInclude Include="src\system\collisionLogic.h" />
+    <ClInclude Include="src\system\circle.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
