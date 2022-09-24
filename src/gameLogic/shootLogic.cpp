@@ -3,9 +3,11 @@
 
 
 
-void shootBullets(SpaceShip& ship)
+void shootBullets(SpaceShip& ship,Asteroids::Bullet& bullet)
 {
-	Asteroids::Bullet bullet;
-	Asteroids::moveBullet(bullet);
+	Asteroids::activateBullet(bullet, ship);
+	
+
+
 
 }

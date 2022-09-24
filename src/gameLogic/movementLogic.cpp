@@ -11,8 +11,6 @@ Vector2 getSpaceShipDirection(SpaceShip ship)
 }
 float getSpaceShipRotation(Vector2 direction)
 {
-	
-
 	float grades = (atan(direction.y / direction.x)) * (180 / PI);
 	if (direction.x < 0)
 	{

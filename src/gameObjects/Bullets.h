@@ -6,23 +6,25 @@
 
 namespace Asteroids
 {
-	
-struct Bullet
-{
-	Asteroids::BulletType type;
-	Texture2D texture;
-	Circle circle;
-	Vector2 aceleration;
-	bool isActive;
 
-};
+	struct Bullet
+	{
+		Asteroids::BulletType type;
+		Texture2D texture;
+		Circle circle;
+		Vector2 aceleration;
+		float rotation;
+		bool isActive;
 
-void moveBullet(Bullet& bullet);
-
-void deactivateBullet(Bullet& bullet);
-void activateBullet(Bullet& bullet,SpaceShip ship);
-void resetBulletPosition(Bullet& bullet, SpaceShip ship);
-
+	};
+	Bullet createBullet();
+	void moveBullet(Bullet& bullet);
+	void updateBullet(Asteroids::Bullet& bullet, SpaceShip ship);
+	void deactivateBullet(Bullet& bullet);
+	void activateBullet(Bullet& bullet, SpaceShip ship);
+	void resetBulletPosition(Bullet& bullet, SpaceShip ship);
+	void drawBullet(Bullet& bullet);
+	const float bulletMaxSpeed = 500.0f;
 }
 
 

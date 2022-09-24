@@ -6,7 +6,7 @@ bool isCircleCircleColliding(Circle circle1, Circle circle2)
 	
 	float distanceY = circle1.position.y -circle2.position.y;
 	float distanceX = circle1.position.x -circle2.position.x;
-	float distance = sqrt(abs(distanceX) + abs(distanceY));
+	float distance = sqrt(fabs(distanceX) + fabs(distanceY));
 
 	if (distance <= circle1.radius + circle2.radius)
 	{
