@@ -2,7 +2,7 @@
 #include <raylib.h>
 #include "../system/circle.h"
 #include "GameObjectsEnums.h"
-#include "spaceShip.h"
+
 
 namespace GameObjects
 {
@@ -17,12 +17,12 @@ namespace GameObjects
 		bool isActive;
 
 	};
-	Bullet createBullet();
+	Bullet createBullet(float x, float y);
 	void moveBullet(Bullet& bullet);
-	void updateBullet(Bullet& bullet, SpaceShip ship);
-	void deactivateBullet(Bullet& bullet);
-	void activateBullet(Bullet& bullet, SpaceShip ship);
-	void resetBulletPosition(Bullet& bullet, SpaceShip ship);
+	//void updateBullet(Bullet& bullet,SpaceShip ship);
+	//void deactivateBullet(Bullet& bullet);
+	//void activateBullet(Bullet& bullet, SpaceShip ship);
+	//void resetBulletPosition(Bullet& bullet, SpaceShip ship);
 	void drawBullet(Bullet& bullet);
 	const float BULLET_MAX_SPEED = 500.0f;
 }
