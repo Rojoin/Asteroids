@@ -5,8 +5,14 @@
 #include "../gameObjects/Asteroid.h"
 #include "../gameLogic/mouseInputs.h"
 
-float getSpaceShipRotation(Vector2 direction);
-Vector2 getSpaceShipDirection(SpaceShip ship);
-void moveSpaceShip(SpaceShip& spaceShip);
-void warpOutOfBounds(SpaceShip& spaceShip);
-void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid);
+using namespace GameObjects;
+namespace GameLogic
+{
+
+	float getSpaceShipRotation(Vector2 direction);
+	Vector2 getSpaceShipDirection(SpaceShip ship);
+	void moveSpaceShip(SpaceShip& spaceShip);
+	void warpOutOfBounds(SpaceShip& spaceShip);
+
+	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid);
+}

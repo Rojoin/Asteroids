@@ -1,6 +1,6 @@
 #include "collisionLogic.h"
 #include "../system/collisionFunctions.h"
-
+#include "../gameObjects/spaceShip.h"
 
 
 void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
