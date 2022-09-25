@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="src\system\draw.cpp" />
-    <ClCompile Include="src\gameLogic\mouseInputs.cpp" />
-    <ClCompile Include="src\gameLogic\movementLogic.cpp" />
     <ClCompile Include="src\gameObjects\spaceShip.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
@@ -14,13 +11,26 @@
     <ClCompile Include="src\gameObjects\Asteroid.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameLogic\shootLogic.cpp" />
-    <ClCompile Include="src\system\collisionLogic.cpp" />
+    <ClCompile Include="src\gameLogic\movementLogic.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameLogic\shootLogic.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\draw.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameLogic\mouseInputs.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\collisionFunctions.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameLogic\collisionLogic.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\system\draw.h" />
-    <ClInclude Include="src\gameLogic\mouseInputs.h" />
-    <ClInclude Include="src\gameLogic\movementLogic.h" />
     <ClInclude Include="src\gameObjects\spaceShip.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -33,15 +43,37 @@
     <ClInclude Include="src\gameObjects\GameObjectsEnums.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameLogic\shootLogic.h" />
-    <ClInclude Include="src\system\collisionLogic.h" />
     <ClInclude Include="src\system\circle.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameLogic\movementLogic.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameLogic\shootLogic.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\draw.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameLogic\mouseInputs.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\collisionFunctions.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameLogic\collisionLogic.h">
+      <Filter>GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{884ba826-3eb3-46c1-8953-535b38c08e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{ce51c0f5-1cb5-46ef-8710-82e404557d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{a9d3038d-f2a6-444d-95c3-13b25e746acf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
