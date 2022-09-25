@@ -1,19 +1,23 @@
-#include "collisionLogic.h"
-#include  "raymath.h"
+#include "collisionFunctions.h"
+
+#include <iostream>
+
+#include  "cmath"
 
 bool isCircleCircleColliding(Circle circle1, Circle circle2)
 {
 	
 	float distanceY = circle1.position.y -circle2.position.y;
 	float distanceX = circle1.position.x -circle2.position.x;
-	float distance = sqrt(fabs(distanceX) + fabs(distanceY));
+	float distance = sqrt((distanceX* distanceX) + (distanceY*distanceY));
 
-	if (distance <= circle1.radius + circle2.radius)
+ 	if (distance < circle1.radius + circle2.radius)
 	{
+		std::cout << "COLLIDE" << std::endl;
 		return true;
 	}
-
-		return false;
+	return false;
+	
 }
 
 bool isPointRecColliding(Vector2 mouse, Rectangle rec) //Check if works

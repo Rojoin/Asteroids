@@ -19,12 +19,12 @@ namespace GameObjects
 	};
 	Bullet createBullet();
 	void moveBullet(Bullet& bullet);
-	void updateBullet(GameObjects::Bullet& bullet, SpaceShip ship);
+	void updateBullet(Bullet& bullet, SpaceShip ship);
 	void deactivateBullet(Bullet& bullet);
 	void activateBullet(Bullet& bullet, SpaceShip ship);
 	void resetBulletPosition(Bullet& bullet, SpaceShip ship);
 	void drawBullet(Bullet& bullet);
-	const float bulletMaxSpeed = 500.0f;
+	const float BULLET_MAX_SPEED = 500.0f;
 }
 
 

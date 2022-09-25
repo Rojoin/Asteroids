@@ -18,8 +18,8 @@ namespace GameObjects
 
 	void moveBullet(GameObjects::Bullet& bullet)
 	{
-		bullet.circle.position.x += bullet.aceleration.x *bulletMaxSpeed* GetFrameTime();
-		bullet.circle.position.y += bullet.aceleration.y *bulletMaxSpeed* GetFrameTime();
+		bullet.circle.position.x += bullet.aceleration.x *BULLET_MAX_SPEED* GetFrameTime();
+		bullet.circle.position.y += bullet.aceleration.y *BULLET_MAX_SPEED* GetFrameTime();
 	}
 
 	void updateBullet(GameObjects::Bullet& bullet, SpaceShip ship)
@@ -61,7 +61,7 @@ namespace GameObjects
 		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width,(float)bullet.texture.height };
 		
 		drawTexture(bullet.texture,source,dest	, { bullet.texture.width /2.0f,bullet.texture.height / 2.0f },bullet.rotation,1,RED);
-	
+	DrawCircle(bullet.circle.position.x,bullet.circle.position.y,bullet.circle.radius, BLUE);
 	}
 
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "Bullets.h"
 #include "GameObjectsEnums.h"
 #include "../system/circle.h"
 
@@ -12,6 +13,13 @@ namespace GameObjects
 		Circle circle;
 		Vector2 aceleration;
 		float rotation;
+		float scale;
 		bool isActive;
 	};
+	Asteroid createAsteroid();
+	void moveAsteroid(Asteroid& asteroid);
+	void updateAsteroid(Asteroid& asteroid);
+	void deactivateAsteroid(Asteroid& asteroid);
+	void activateAsteroid(Asteroid& asteroid);
+	void drawAsteroid(Asteroid& asteroid);
 }

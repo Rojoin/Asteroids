@@ -1,10 +1,17 @@
 #include "movementLogic.h"
 #include  <iostream>
 
+#include "../gameObjects/Asteroid.h"
+
+
+namespace GameObjects
+{
+	struct Asteroid;
+}
 
 Vector2 getSpaceShipDirection(SpaceShip ship)
 {
-	Vector2 mouse = getMouseInput();
+	Vector2 mouse = Inputs::getMouseInput();
 	Vector2 shipPos = { ship.dest.x, ship.dest.y };
 	Vector2 direction = { mouse.x - shipPos.x, mouse.y - shipPos.y };
 	return direction;
@@ -30,7 +37,7 @@ void moveSpaceShip(SpaceShip& ship)
 
 	
 
-	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+	if (Inputs::isMouseKeyDown(MOUSE_BUTTON_LEFT))
 	{
 
 		ship.aceleration.x += normalizedDirection.x * GetFrameTime() * ship.maxSpeed;
@@ -43,16 +50,12 @@ void moveSpaceShip(SpaceShip& ship)
 	else if (ship.aceleration.y < -ship.maxSpeed)ship.aceleration.y = -ship.maxSpeed;
 
 
-//Check ShipAceletarion
-#if _DEBUG 
-	std::cout << ship.aceleration.y << std::endl;
-	std::cout << ship.aceleration.x << std::endl;
-#endif
 
-	warpSpaceShipOutOfBounds(ship);
+
+	warpOutOfBounds(ship);
 }
 
-void warpSpaceShipOutOfBounds(SpaceShip& spaceShip)
+void warpOutOfBounds(SpaceShip& spaceShip)
 {
 	if (spaceShip.position.x < 0 - spaceShip.texture.width)
 	{
@@ -70,4 +73,29 @@ void warpSpaceShipOutOfBounds(SpaceShip& spaceShip)
 	{
 		spaceShip.position.y = 0 + spaceShip.texture.height;
 	}
+}
+void warpOutOfBounds(GameObjects::Asteroid& asteroid)
+{
+	if (asteroid.circle.position.x < 0 - asteroid.texture.width)
+	{
+		asteroid.circle.position.x = GetScreenWidth() - asteroid.texture.width;
+	}
+	else if (asteroid.circle.position.x > GetScreenWidth())
+	{
+		asteroid.circle.position.x = 0 + asteroid.texture.width;
+	}
+	if (asteroid.circle.position.y < 0 - asteroid.texture.width)
+	{
+		asteroid.circle.position.y = GetScreenHeight() - asteroid.texture.height;
+	}
+	else if (asteroid.circle.position.y > GetScreenHeight())
+	{
+		asteroid.circle.position.y = 0 + asteroid.texture.height;
+	}
+}
+
+void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid)
+{
+
+	warpOutOfBounds(asteroid);
 }

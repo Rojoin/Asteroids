@@ -1,8 +1,20 @@
 #include "mouseInputs.h"
 #include "raylib.h"
 
-Vector2 getMouseInput()
+namespace Inputs
+{
+	Vector2 getMouseInput()
 {
 	return GetMousePosition();
 }
+bool isMouseKeyDown(int mouse)
+{
+	if (IsMouseButtonDown(mouse))
+	{
+		return true;
+	}
+	else return false;
+}
+}
+
 
