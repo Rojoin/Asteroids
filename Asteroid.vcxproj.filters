@@ -41,6 +41,9 @@
     <ClCompile Include="src\gameScreens\button.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
+    <ClCompile Include="src\gameScreens\GameStates.cpp">
+      <Filter>GameScreens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gameObjects\spaceShip.h">
@@ -78,9 +81,6 @@
     </ClInclude>
     <ClInclude Include="src\gameLogic\gameLogic.h">
       <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="src\system\GameStates.h">
-      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="src\gameScreens\statesManager.h">
       <Filter>GameScreens</Filter>

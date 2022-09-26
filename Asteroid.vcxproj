@@ -166,6 +166,7 @@
     <ClCompile Include="src\gameObjects\Bullets.cpp" />
     <ClCompile Include="src\gameObjects\spaceShip.cpp" />
     <ClCompile Include="src\gameScreens\button.cpp" />
+    <ClCompile Include="src\gameScreens\GameStates.cpp" />
     <ClCompile Include="src\gameScreens\MenuState.cpp" />
     <ClCompile Include="src\gameScreens\StatesManager.cpp" />
     <ClCompile Include="src\system\collisionFunctions.cpp" />
@@ -188,7 +189,6 @@
     <ClInclude Include="src\system\circle.h" />
     <ClInclude Include="src\system\collisionFunctions.h" />
     <ClInclude Include="src\system\draw.h" />
-    <ClInclude Include="src\system\GameStates.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
