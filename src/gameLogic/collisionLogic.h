@@ -9,7 +9,7 @@ namespace GameLogic
 {
 	void asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet);
 
-	void asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship);
+	bool asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship);
 
 
 
