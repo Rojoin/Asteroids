@@ -29,6 +29,9 @@
     <ClCompile Include="src\gameLogic\collisionLogic.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
+    <ClCompile Include="src\gameLogic\gameLogic.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gameObjects\spaceShip.h">
@@ -62,6 +65,9 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="src\gameLogic\collisionLogic.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameLogic\gameLogic.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
