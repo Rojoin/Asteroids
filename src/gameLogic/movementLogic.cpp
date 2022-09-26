@@ -26,19 +26,19 @@ namespace GameLogic
 	}
 	void warpOutOfBounds(SpaceShip& spaceShip)
 	{
-		if (spaceShip.position.x < 0 - spaceShip.texture.width)
+		if (spaceShip.position.x < 0 - spaceShip.texture.width/4)
 		{
-			spaceShip.position.x = GetScreenWidth() - spaceShip.texture.width;
+			spaceShip.position.x = GetScreenWidth()+ spaceShip.texture.width / 4;
 		}
-		else if (spaceShip.position.x > GetScreenWidth())
+		else if (spaceShip.position.x > GetScreenWidth()+ spaceShip.texture.width / 4)
 		{
-			spaceShip.position.x = 0 - spaceShip.texture.width;
+			spaceShip.position.x = 0;
 		}
-		if (spaceShip.position.y < 0 - spaceShip.texture.width)
+		if (spaceShip.position.y < 0 - spaceShip.texture.height)
 		{
 			spaceShip.position.y = GetScreenHeight() ;
 		}
-		else if (spaceShip.position.y > GetScreenHeight())
+		else if (spaceShip.position.y > GetScreenHeight()+ spaceShip.texture.height/2)
 		{
 			spaceShip.position.y = 0 - spaceShip.texture.height;
 		}
@@ -87,8 +87,18 @@ namespace GameLogic
 
 			ship.aceleration.x += normalizedDirection.x * GetFrameTime() * ship.maxSpeed;
 			ship.aceleration.y += normalizedDirection.y * GetFrameTime() * ship.maxSpeed;
+			ship.textureIndex += ship.texture.width/4;
+			if (ship.textureIndex > ship.texture.width)
+			{
+				ship.textureIndex = 64;
+			}
 
 		}
+		else if (!Inputs::isMouseKeyDown(MOUSE_BUTTON_LEFT))
+		{
+			ship.textureIndex = 0;
+		}
+	
 		if (ship.aceleration.x > ship.maxSpeed) 	ship.aceleration.x = ship.maxSpeed;
 		else if (ship.aceleration.x < -ship.maxSpeed)ship.aceleration.x = -ship.maxSpeed;
 		if (ship.aceleration.y > ship.maxSpeed)		ship.aceleration.y = ship.maxSpeed;

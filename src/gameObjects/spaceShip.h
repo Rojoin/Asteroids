@@ -11,6 +11,7 @@
 		int bulletIndex = 0;
 		Vector2 aceleration;
 		Texture2D texture;
+		int textureIndex;
 		float rotation;
 		float scale;
 		float maxSpeed;
@@ -30,5 +31,5 @@
 	void updateBullet();
 	void deactivateBullet(GameObjects::Bullet& bullet);
 	void activateBullet();
-	void initBullets();
+	void initBullets(Texture2D bulletTexture);
 

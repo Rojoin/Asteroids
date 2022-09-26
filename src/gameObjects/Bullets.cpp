@@ -57,11 +57,12 @@ namespace GameObjects
 	//}
 	void drawBullet(GameObjects::Bullet& bullet)
 	{
+
 		Rectangle source{0,0,(float)bullet.texture.width,(float)bullet.texture.height};
-		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width,(float)bullet.texture.height };
+		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width*2,(float)bullet.texture.height * 2 };
 		
-		drawTexture(bullet.texture,source,dest	, { bullet.texture.width /2.0f,bullet.texture.height / 2.0f },bullet.rotation,1,RED);
-		DrawCircle(bullet.circle.position.x,bullet.circle.position.y,bullet.circle.radius, BLUE);
+		drawTexture(bullet.texture,source,dest	, { bullet.texture.width /2.0f,bullet.texture.height / 2.0f },bullet.rotation,2,WHITE);
+		//DrawCircle(bullet.circle.position.x,bullet.circle.position.y,bullet.circle.radius, BLUE);
 	}
 
 

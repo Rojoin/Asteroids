@@ -12,12 +12,13 @@ int main(void)
 {
     InitWindow(1280, 720, "Ship Example");
     asteroid = GameObjects::createAsteroid();
-    Texture2D shipTexture = LoadTexture("resources/pizza.png");
+    Texture2D shipTexture = LoadTexture("resources/pizzaTiledMap.png");
+    Texture2D bulletTexture = LoadTexture("resources/olive.png");
   
     asteroid.texture = shipTexture;
     Vector2 spacePosition = { (float)GetScreenWidth()/2,(float)GetScreenHeight()/2 };
     spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 2);
-    initBullets();
+    initBullets(bulletTexture);
     while (!WindowShouldClose())
     {
         GameLogic::moveSpaceShip(spaceShip);
@@ -49,13 +50,13 @@ int main(void)
         }
        
         BeginDrawing();
-        drawShip();
         GameObjects::drawAsteroid(asteroid);
         for (int i = 0; i < 10; ++i)
         {
 
             GameObjects::drawBullet(spaceShip.bullet[i]);
         }
+        drawShip();
     //
         ClearBackground(BLACK);
         EndDrawing();
