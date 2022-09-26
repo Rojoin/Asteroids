@@ -10,12 +10,22 @@ int main()
 {
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(1920, 1000, "Ship Example");
+	InitAudioDevice();
 	SetWindowMinSize(1024, 768);
 	Font customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, 0, 0);
+	 Texture2D wallpaper;
 	extern Texture2D shipTexture;
 	extern Texture2D bulletTexture;
 	extern Texture2D asteroidTexture;
 	extern Texture2D asteroidMediumTexture;
+	extern Sound deathSound	;
+	extern Sound collisionSound;
+	collisionSound =LoadSound("resources/collision.wav");
+	extern Sound bulletSound;
+	bulletSound	 =LoadSound("resources/bullet2.wav");
+	deathSound = LoadSound("resources/explosion.wav");
+	   
+	wallpaper = LoadTexture("resources/pizzaWallpaper2.png");
     shipTexture = LoadTexture("resources/pizzaTiledMap.png");
     bulletTexture = LoadTexture("resources/olive.png");
     asteroidTexture = LoadTexture("resources/bigHand.png");
@@ -32,12 +42,14 @@ int main()
 	{
 		playGame();
 		BeginDrawing();
+		DrawTexture(wallpaper, 0, 0, WHITE);
 		drawGame();
-		drawText(TextFormat("SCORE: %1i", spaceShip.score), 0, 100, 50, WHITE, customFont);
+		drawText(TextFormat("SCORE: %1i", spaceShip.score), 0, 0, 50, BLACK, customFont);
 		ClearBackground(BLACK);
 		EndDrawing();
 
 	}
 	CloseWindow();
+	CloseAudioDevice();
 	return 0;
 }

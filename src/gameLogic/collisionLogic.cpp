@@ -10,6 +10,7 @@ extern Asteroid mediumAsteroid[40];
 extern Asteroid smallAsteroid[80];
 extern int mediumAsteroidCount ;
 extern int smallAsteroidCount ;
+ Sound collisionSound;
 void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 {
 
@@ -18,6 +19,7 @@ void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 		deactivateAsteroid(asteroid);
 		deactivateBullet(bullet);
 		spaceShip.score += asteroid.points;
+		PlaySound(collisionSound);
 		if (asteroid.type==AsteroidType::Default)
 		{
 			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount],-1);

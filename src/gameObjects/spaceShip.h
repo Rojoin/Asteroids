@@ -17,6 +17,7 @@
 		float maxSpeed;
 		int score;
 		int lives;
+		Sound deathSound;
 		Rectangle source;
 		Rectangle dest;
 		Circle circle;
@@ -25,8 +26,7 @@
 
 	};
 
-
-	SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale);
+	SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale, Sound sound);
 
 	void updateShip();
 	void drawShip();
@@ -35,5 +35,5 @@
 	void deactivateBullet(GameObjects::Bullet& bullet);
 	void activateBullet();
 	void resetSpaceShip(SpaceShip& ship, Vector2 position);
-	void initBullets(Texture2D bulletTexture);
+	void initBullets(Texture2D bulletTexture, Sound sound);
 

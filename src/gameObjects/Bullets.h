@@ -13,6 +13,7 @@ namespace GameObjects
 		Texture2D texture;
 		Circle circle;
 		Vector2 aceleration;
+		Sound sound;
 		float rotation;
 		bool isActive;
 

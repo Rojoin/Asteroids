@@ -14,6 +14,7 @@ namespace GameObjects
 		bullet.circle.position = { x,y };
 		bullet.circle.radius = { 10 };
 		bullet.rotation = 0;
+		
 		return bullet;
 	}
 

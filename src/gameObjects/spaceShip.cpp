@@ -8,7 +8,7 @@
 SpaceShip spaceShip;
 
 
-SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale)
+SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale,Sound sound)
 {
 	SpaceShip ship;
 	ship.score = 0;
@@ -16,6 +16,7 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 	ship.position = position;
 	ship.aceleration = { 0,0 };
 	ship.scale = scale;
+	ship.deathSound = sound;
 	ship.rotation = rotation;
 	ship.lives = 3;
 	ship.maxSpeed = 200.0f;
@@ -27,6 +28,7 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 }
 void resetSpaceShip(SpaceShip& ship,Vector2 position)
 {
+	PlaySound(ship.deathSound);
 	ship.position = position;
 	ship.lives--;
 	ship.circle = { ship.position.x,ship.position.y,ship.scale * ship.texture.width / 8 };
@@ -35,12 +37,13 @@ void resetSpaceShip(SpaceShip& ship,Vector2 position)
 
 }
 
-void initBullets(Texture2D bulletTexture)
+void initBullets(Texture2D bulletTexture,Sound sound)
 {
 	for (int i = 0; i < 10; i++)
 	{
 		spaceShip.bullet[i] = GameObjects::createBullet(spaceShip.dest.x, spaceShip.dest.y);
 		spaceShip.bullet[i].texture = bulletTexture;
+		spaceShip.bullet[i].sound = sound;
 		deactivateBullet(spaceShip.bullet[i]);
 	}
 
@@ -95,6 +98,7 @@ void activateBullet()
 	if (!spaceShip.bullet[spaceShip.bulletIndex].isActive)
 	{
 		updateBullet();
+		PlaySound(spaceShip.bullet[spaceShip.bulletIndex].sound);
 		spaceShip.bullet[spaceShip.bulletIndex].isActive = true;
 		Vector2 normalizedVector = Vector2Normalize(spaceShip.direction);
 		spaceShip.bullet[spaceShip.bulletIndex].aceleration.x += normalizedVector.x;
