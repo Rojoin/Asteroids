@@ -165,6 +165,8 @@
     <ClCompile Include="src\gameObjects\Asteroid.cpp" />
     <ClCompile Include="src\gameObjects\Bullets.cpp" />
     <ClCompile Include="src\gameObjects\spaceShip.cpp" />
+    <ClCompile Include="src\gameScreens\button.cpp" />
+    <ClCompile Include="src\gameScreens\MenuState.cpp" />
     <ClCompile Include="src\gameScreens\StatesManager.cpp" />
     <ClCompile Include="src\system\collisionFunctions.cpp" />
     <ClCompile Include="src\system\draw.cpp" />
@@ -179,7 +181,9 @@
     <ClInclude Include="src\gameObjects\Bullets.h" />
     <ClInclude Include="src\gameObjects\GameObjectsEnums.h" />
     <ClInclude Include="src\gameObjects\spaceShip.h" />
+    <ClInclude Include="src\gameScreens\button.h" />
     <ClInclude Include="src\gameScreens\GameStates.h" />
+    <ClInclude Include="src\gameScreens\menuState.h" />
     <ClInclude Include="src\gameScreens\statesManager.h" />
     <ClInclude Include="src\system\circle.h" />
     <ClInclude Include="src\system\collisionFunctions.h" />
