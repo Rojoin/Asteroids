@@ -14,12 +14,17 @@ namespace GameObjects
 		Vector2 aceleration;
 		float rotation;
 		float scale;
+		float points;
 		bool isActive;
 	};
 	Asteroid createAsteroid();
+	Asteroid createsMediumAsteroid();
+	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid);
+	Asteroid createSmallAsteroid();
 	void moveAsteroid(Asteroid& asteroid);
 	void updateAsteroid(Asteroid& asteroid);
 	void deactivateAsteroid(Asteroid& asteroid);
 	void activateAsteroid(Asteroid& asteroid);
+	void resetAsteroid(Asteroid& asteroid);
 	void drawAsteroid(Asteroid& asteroid);
 }

@@ -47,7 +47,7 @@ namespace GameLogic
 	{
 		if (asteroid.circle.position.x < 0 - asteroid.texture.width)
 		{
-			asteroid.circle.position.x = GetScreenWidth() - asteroid.texture.width;
+			asteroid.circle.position.x = GetScreenWidth();
 		}
 		else if (asteroid.circle.position.x > GetScreenWidth())
 		{
@@ -55,7 +55,7 @@ namespace GameLogic
 		}
 		if (asteroid.circle.position.y < 0 - asteroid.texture.width)
 		{
-			asteroid.circle.position.y = GetScreenHeight() - asteroid.texture.height;
+			asteroid.circle.position.y = GetScreenHeight();
 		}
 		else if (asteroid.circle.position.y > GetScreenHeight())
 		{

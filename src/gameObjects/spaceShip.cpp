@@ -11,7 +11,7 @@ SpaceShip spaceShip;
 SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale)
 {
 	SpaceShip ship;
-
+	ship.score = 0;
 	ship.texture = texture;
 	ship.position = position;
 	ship.aceleration = { 0,0 };
@@ -27,7 +27,7 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 
 void initBullets(Texture2D bulletTexture)
 {
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 10; i++)
 	{
 		spaceShip.bullet[i] = GameObjects::createBullet(spaceShip.dest.x, spaceShip.dest.y);
 		spaceShip.bullet[i].texture = bulletTexture;
@@ -37,9 +37,9 @@ void initBullets(Texture2D bulletTexture)
 }
 void drawShip()
 {
+	DrawCircle(spaceShip.circle.position.x, spaceShip.circle.position.y, spaceShip.circle.radius,RED);
 	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { spaceShip.texture.width / 8.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
 	DrawRectangle(spaceShip.position.x, spaceShip.position.y, 2, 2, RED);
-	DrawCircle(spaceShip.circle.position.x, spaceShip.circle.position.y, spaceShip.circle.radius,RED);
 }
 void updateShip()
 {
@@ -49,7 +49,7 @@ void updateShip()
 	}
 	spaceShip.circle = { spaceShip.position.x,spaceShip.position.y,spaceShip.circle.radius };
 	spaceShip.source = { spaceShip.source.x + spaceShip.textureIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
-	spaceShip.dest = { spaceShip.position.x  ,spaceShip.position.y + spaceShip.texture.height / 8.0f ,spaceShip.dest.width,spaceShip.dest.height };
+	spaceShip.dest = { spaceShip.position.x  ,spaceShip.position.y + spaceShip.texture.height / 16.0f ,spaceShip.dest.width,spaceShip.dest.height };
 }
 void changeShipPosition()
 {
@@ -59,7 +59,7 @@ void changeShipPosition()
 
 void updateBullet()
 {
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 10; i++)
 	{
 		if (!spaceShip.bullet[i].isActive)
 		{

@@ -15,6 +15,7 @@
 		float rotation;
 		float scale;
 		float maxSpeed;
+		int score;
 		Rectangle source;
 		Rectangle dest;
 		Circle circle;

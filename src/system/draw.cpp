@@ -16,8 +16,8 @@ void drawTexture(Texture2D texture,Rectangle source,Rectangle dest, Vector2 posi
 
 }
 
-void drawText(std::string text,float posX,float posY, float fontSize,Color color)
+void drawText(std::string text,float posX,float posY, float fontSize,Color color,Font font)
 {
 
-	DrawText(text.c_str(), posX, posY, fontSize, color);
+	DrawTextEx(font, text.c_str(), { posX, posY }, fontSize,10, color);
 }

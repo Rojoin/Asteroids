@@ -59,9 +59,9 @@ namespace GameObjects
 	{
 
 		Rectangle source{0,0,(float)bullet.texture.width,(float)bullet.texture.height};
-		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width*2,(float)bullet.texture.height * 2 };
+		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width,(float)bullet.texture.height  };
 		
-		drawTexture(bullet.texture,source,dest	, { bullet.texture.width /2.0f,bullet.texture.height / 2.0f },bullet.rotation,2,WHITE);
+		drawTexture(bullet.texture,source,dest	, { bullet.texture.width /2.0f,bullet.texture.height / 2.0f },bullet.rotation, 1,WHITE);
 		//DrawCircle(bullet.circle.position.x,bullet.circle.position.y,bullet.circle.radius, BLUE);
 	}
 
