@@ -3,3 +3,4 @@
 
 
 enum class GameStates{Menu,Game,HowTo,Credits,Exit};
+static GameStates gameStates;
