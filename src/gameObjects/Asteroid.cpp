@@ -21,7 +21,7 @@ namespace GameObjects
 		return asteroid;
 	}
 
-	Asteroid createsMediumAsteroid()
+	Asteroid createMediumAsteroid()
 	{
 		Asteroid asteroid;
 		asteroid.type = AsteroidType::Medium;

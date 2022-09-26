@@ -18,7 +18,7 @@ namespace GameObjects
 		bool isActive;
 	};
 	Asteroid createAsteroid();
-	Asteroid createsMediumAsteroid();
+	Asteroid createMediumAsteroid();
 	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid);
 	Asteroid createSmallAsteroid();
 	void moveAsteroid(Asteroid& asteroid);

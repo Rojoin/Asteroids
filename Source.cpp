@@ -17,15 +17,25 @@ int smallAsteroidCount = 0;
 int main()
 {
 	InitWindow(1024, 768, "Ship Example");
-	Font customFont =LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf",96,0,0);
+	Font customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, 0, 0);
 	Texture2D shipTexture = LoadTexture("resources/pizzaTiledMap.png");
 	Texture2D bulletTexture = LoadTexture("resources/olive.png");
 	Texture2D asteroidTexture = LoadTexture("resources/bigHand.png");
-	
+
 	for (int i = 0; i < 10; ++i)
 	{
 		bigAsteroid[i] = GameObjects::createAsteroid();
 		bigAsteroid[i].texture = asteroidTexture;
+	}
+	for (int i = 0; i < 20; ++i)
+	{
+		mediumAsteroid[i] = GameObjects::createMediumAsteroid();
+		mediumAsteroid[i].texture = asteroidTexture;
+	}
+	for (int i = 0; i < 20; ++i)
+	{
+		smallAsteroid[i] = GameObjects::createSmallAsteroid();
+		smallAsteroid[i].texture = asteroidTexture;
 	}
 	GenTextureMipmaps(&customFont.texture);
 	SetTextureFilter(customFont.texture, TEXTURE_FILTER_TRILINEAR);
@@ -40,7 +50,13 @@ int main()
 			GameObjects::moveAsteroid(bigAsteroid[i]);
 			GameObjects::moveBullet(spaceShip.bullet[i]);
 		}
-	
+		for (int i = 0; i < 20; ++i)
+		{
+			GameObjects::moveAsteroid(mediumAsteroid[i]);
+		}for (int i = 0; i < 40; ++i)
+		{
+			GameObjects::moveAsteroid(smallAsteroid[i]);
+		}
 
 		updateShip();
 		updateBullet();
@@ -57,22 +73,34 @@ int main()
 			{
 
 				GameObjects::activateAsteroid(bigAsteroid[i]);
+			
 			}
 		}
 		changeShipPosition();
 		for (int i = 0; i < 10; i++)
 		{
 			GameLogic::moveAsteroidAcrossScreen(bigAsteroid[i]);
-			for(int j = 0; j < 10; j++)
+			GameLogic::asteroidSpaceShipCollision(bigAsteroid[i], spaceShip);
+			for (int j = 0; j < 10; j++)
 			{
-				
-			GameLogic::asteroidBulletCollision(bigAsteroid[j], spaceShip.bullet[i]);
+
+				GameLogic::asteroidBulletCollision(bigAsteroid[j], spaceShip.bullet[i]);
 			}
-		GameLogic::asteroidSpaceShipCollision(bigAsteroid[i], spaceShip);
-			if (!bigAsteroid[i].isActive)
+			for (int j = 0; j < 20; j++)
 			{
-				resetAsteroid(bigAsteroid[i]);
+			GameLogic::moveAsteroidAcrossScreen(mediumAsteroid[j]);
+				GameLogic::asteroidSpaceShipCollision(mediumAsteroid[i], spaceShip);
+				GameLogic::asteroidBulletCollision(mediumAsteroid[j], spaceShip.bullet[i]);
+			}for (int j = 0; j < 40; j++)
+			{
+			GameLogic::moveAsteroidAcrossScreen(smallAsteroid[j]);
+				GameLogic::asteroidSpaceShipCollision(smallAsteroid[j], spaceShip);
+				GameLogic::asteroidBulletCollision(smallAsteroid[j], spaceShip.bullet[i]);
 			}
+			//if (!bigAsteroid[i].isActive)
+			//{
+			//	resetAsteroid(bigAsteroid[i]);
+			//}
 		}
 		BeginDrawing();
 		for (int i = 0; i < 10; i++)
@@ -81,8 +109,17 @@ int main()
 
 			GameObjects::drawBullet(spaceShip.bullet[i]);
 		}
+		for (int i = 0; i < 20; ++i)
+		{
+			GameObjects::drawAsteroid(mediumAsteroid[i]);
+		}
+		for (int i = 0; i < 40; ++i)
+		{
+			
+			GameObjects::drawAsteroid(smallAsteroid[i]);
+		}
 		drawShip();
-		drawText(TextFormat("SCORE: %1i", spaceShip.score), 0, 100, 50, WHITE,customFont);
+		drawText(TextFormat("SCORE: %1i", spaceShip.score), 0, 100, 50, WHITE, customFont);
 		ClearBackground(BLACK);
 		EndDrawing();
 
