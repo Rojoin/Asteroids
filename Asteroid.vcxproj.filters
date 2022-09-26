@@ -32,6 +32,9 @@
     <ClCompile Include="src\gameLogic\gameLogic.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
+    <ClCompile Include="src\gameScreens\StatesManager.cpp">
+      <Filter>GameScreens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gameObjects\spaceShip.h">
@@ -70,6 +73,15 @@
     <ClInclude Include="src\gameLogic\gameLogic.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
+    <ClInclude Include="src\system\GameStates.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\statesManager.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\GameStates.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
@@ -80,6 +92,9 @@
     </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{a9d3038d-f2a6-444d-95c3-13b25e746acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScreens">
+      <UniqueIdentifier>{b8d66aec-4e62-4170-966c-13dd857c036c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
