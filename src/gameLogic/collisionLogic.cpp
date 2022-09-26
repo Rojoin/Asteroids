@@ -6,8 +6,8 @@
 #include "../gameObjects/spaceShip.h"
 
 extern SpaceShip spaceShip;
-extern Asteroid mediumAsteroid[20];
-extern Asteroid smallAsteroid[40];
+extern Asteroid mediumAsteroid[40];
+extern Asteroid smallAsteroid[80];
 extern int mediumAsteroidCount ;
 extern int smallAsteroidCount ;
 void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
@@ -20,26 +20,43 @@ void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 		spaceShip.score += asteroid.points;
 		if (asteroid.type==AsteroidType::Default)
 		{
-			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount]);
+			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount],-1);
 			mediumAsteroidCount++;
-			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount]);
+			if (mediumAsteroidCount >= 40)
+			{
+				mediumAsteroidCount=0;
+			}
+			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount],1);
 			mediumAsteroidCount++;
+			if (mediumAsteroidCount >=40)
+			{
+				mediumAsteroidCount = 0;
+			}
 		}
 		else if (asteroid.type == AsteroidType::Medium)
 		{
-			activateNewAsteroids(asteroid, smallAsteroid[smallAsteroidCount]);
-			smallAsteroidCount++;						 
-			activateNewAsteroids(asteroid, smallAsteroid[smallAsteroidCount]);
+			activateNewAsteroids(asteroid, smallAsteroid[smallAsteroidCount],-1);
+			smallAsteroidCount++;
+			if (smallAsteroidCount >= 80)
+			{	
+				smallAsteroidCount = 0;
+			}
+			activateNewAsteroids(asteroid, smallAsteroid[smallAsteroidCount],1);
 		smallAsteroidCount++;
+		if (smallAsteroidCount >= 80)
+		{
+			smallAsteroidCount = 0;
+		}
 		}
 	}
 
 }
 
-void GameLogic::asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship)
+bool GameLogic::asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship)
 {
 	if (isCircleCircleColliding(asteroid.circle,ship.circle) && asteroid.isActive)
 	{
-		std::cout << "Perdiste";
+		return true;
 	}
+	return false;
 }

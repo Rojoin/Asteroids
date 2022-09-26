@@ -15,6 +15,7 @@ namespace GameObjects
 		asteroid.scale = 2;
 		asteroid.rotation = 0;
 		asteroid.points = 50;
+		asteroid.speed = 25;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 
@@ -30,6 +31,7 @@ namespace GameObjects
 		asteroid.scale = 1.5f;
 		asteroid.rotation = 0;
 		asteroid.points = 100;
+		asteroid.speed = 50;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 
@@ -44,6 +46,7 @@ namespace GameObjects
 		asteroid.scale = 1.0f;
 		asteroid.rotation = 0;
 		asteroid.points = 200;
+		asteroid.speed = 100;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 
@@ -54,8 +57,8 @@ namespace GameObjects
 	{
 		if (asteroid.isActive)
 		{
-			asteroid.circle.position.y += asteroid.aceleration.y * GetFrameTime() * 200;
-			asteroid.circle.position.x += asteroid.aceleration.x * GetFrameTime() * 200;
+			asteroid.circle.position.y += asteroid.aceleration.y * GetFrameTime() * asteroid.speed;
+			asteroid.circle.position.x += asteroid.aceleration.x * GetFrameTime() * asteroid.speed;
 		}
 
 	}
@@ -89,9 +92,9 @@ namespace GameObjects
 	{
 		asteroid.isActive = false;
 	}
-	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid)
+	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid,int multiplier)
 	{
-		newAsteroid.circle.position = { baseAsteroid.circle.position.x - baseAsteroid.texture.width / 2,baseAsteroid.circle.position.y - baseAsteroid.texture.height / 2 };
+		newAsteroid.circle.position = { baseAsteroid.circle.position.x - baseAsteroid.texture.width / 2 * multiplier,baseAsteroid.circle.position.y - baseAsteroid.texture.height / 2 *multiplier};
 		activateAsteroid(newAsteroid);
 	}
 	void activateAsteroid(Asteroid& asteroid)
