@@ -15,6 +15,14 @@ bool isMouseKeyDown(int mouse)
 	}
 	else return false;
 }
+	bool isMouseKeyPressed(int mouse)
+{
+	if (IsMouseButtonPressed(mouse))
+	{
+		return true;
+	}
+	else return false;
+}
 }
 
 

@@ -82,7 +82,7 @@ namespace GameLogic
 
 
 
-		if (Inputs::isMouseKeyDown(MOUSE_BUTTON_LEFT))
+		if (Inputs::isMouseKeyDown(MOUSE_BUTTON_RIGHT))
 		{
 
 			ship.aceleration.x += normalizedDirection.x * GetFrameTime() * ship.maxSpeed;
