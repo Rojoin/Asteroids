@@ -3,17 +3,20 @@
 #include "button.h"
 #include "GameStates.h"
 #include "raylib.h"
+#include  "../gameLogic/gameLogic.h"
+#include  "../system/collisionFunctions.h"
 
 bool test = false;
 std::string creator = "                      Game made by Ignacio 'Rojoin' Arrastua";
-Button playVsButton = createButton("VS MODE", WHITE);
-Button playVsCpuButton = createButton("  VS CPU", WHITE);
-Button screenButton = createButton(" SCREENRES ", WHITE);
+Button playVsButton = createButton("  PLAY", WHITE);
+Button playVsCpuButton = createButton("  PLAY", WHITE);
+Button screenButton = createButton(" HOW ", WHITE);
 Button rulesButton = createButton(" RULES ", WHITE);
 Button exitButton = createButton("  EXIT", WHITE);
+
 void stateMenu(GameStates& gamestate)
 {
-	playVsButton = createButton("  VS MODE", WHITE);
+	playVsButton = createButton("     HOWTO", WHITE);
 	playVsCpuButton = createButton(playVsButton.rec.x, (float)GetScreenHeight() / 4, playVsCpuButton.buttonTittle, playVsCpuButton.color);
 	screenButton = createButton(playVsButton.rec.x, (float)GetScreenHeight() / 2 - GetScreenHeight() / 11, screenButton.buttonTittle, screenButton.color);
 	rulesButton = createButton(playVsButton.rec.x, (float)GetScreenHeight() / 2, rulesButton.buttonTittle, rulesButton.color);
@@ -27,8 +30,9 @@ void stateMenu(GameStates& gamestate)
 
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 		{
-			
-		
+			gamestate = GameStates::Game;
+			initGame();
+
 		}
 
 	}
@@ -48,7 +52,7 @@ void stateMenu(GameStates& gamestate)
 	{
 		playVsCpuButton.isOverThisButton = false;
 	}
-	if (CheckCollisionPointRec(mousePoint, screenButton.rec))
+	if (isPointRecColliding(mousePoint, screenButton.rec))
 	{
 		screenButton.isOverThisButton = true;
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
