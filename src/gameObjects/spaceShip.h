@@ -16,6 +16,7 @@
 		float scale;
 		float maxSpeed;
 		int score;
+		int lives;
 		Rectangle source;
 		Rectangle dest;
 		Circle circle;
@@ -33,5 +34,6 @@
 	void updateBullet();
 	void deactivateBullet(GameObjects::Bullet& bullet);
 	void activateBullet();
+	void resetSpaceShip(SpaceShip& ship, Vector2 position);
 	void initBullets(Texture2D bulletTexture);
 

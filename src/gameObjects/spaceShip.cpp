@@ -17,12 +17,22 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 	ship.aceleration = { 0,0 };
 	ship.scale = scale;
 	ship.rotation = rotation;
+	ship.lives = 3;
 	ship.maxSpeed = 200.0f;
 	ship.bulletIndex = 0;
 	ship.circle={ ship.position.x,ship.position.y,ship.scale * ship.texture.width/8 };
 	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height };
 	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * scale,(float)ship.texture.height * scale };
 	return ship;
+}
+void resetSpaceShip(SpaceShip& ship,Vector2 position)
+{
+	ship.position = position;
+	ship.lives--;
+	ship.circle = { ship.position.x,ship.position.y,ship.scale * ship.texture.width / 8 };
+	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height };
+	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * ship.scale,(float)ship.texture.height *ship. scale };
+
 }
 
 void initBullets(Texture2D bulletTexture)
