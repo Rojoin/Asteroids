@@ -31,6 +31,7 @@ void resetSpaceShip(SpaceShip& ship,Vector2 position)
 	PlaySound(ship.deathSound);
 	ship.position = position;
 	ship.lives--;
+	ship.aceleration = { 0,0 };
 	ship.circle = { ship.position.x,ship.position.y,ship.scale * ship.texture.width / 8 };
 	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height };
 	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * ship.scale,(float)ship.texture.height *ship. scale };
