@@ -24,23 +24,23 @@ namespace GameLogic
 		}
 		return grades;
 	}
-	void warpOutOfBounds(SpaceShip& spaceShip)
+	void warpOutOfBounds(SpaceShip& ship)
 	{
-		if (spaceShip.position.x < 0 - spaceShip.texture.width/4)
+		if (ship.position.x < 0 - ship.texture.width/4)
 		{
-			spaceShip.position.x = GetScreenWidth()+ spaceShip.texture.width / 4;
+			ship.position.x = GetScreenWidth()+ ship.texture.width / 4;
 		}
-		else if (spaceShip.position.x > GetScreenWidth()+ spaceShip.texture.width / 4)
+		else if (ship.position.x > GetScreenWidth()+ ship.texture.width / 4)
 		{
-			spaceShip.position.x = 0;
+			ship.position.x = 0;
 		}
-		if (spaceShip.position.y < 0 - spaceShip.texture.height)
+		if (ship.position.y < 0 - ship.texture.height)
 		{
-			spaceShip.position.y = GetScreenHeight()+ spaceShip.texture.height/2;
+			ship.position.y = GetScreenHeight()+ ship.texture.height/2;
 		}
-		else if (spaceShip.position.y > GetScreenHeight()+ spaceShip.texture.height/2)
+		else if (ship.position.y > GetScreenHeight()+ ship.texture.height/2)
 		{
-			spaceShip.position.y = 0 - spaceShip.texture.height/2;
+			ship.position.y = 0 - ship.texture.height/2;
 		}
 	}
 	void warpOutOfBounds(GameObjects::Asteroid& asteroid)

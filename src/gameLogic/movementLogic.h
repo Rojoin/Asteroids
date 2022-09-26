@@ -11,8 +11,8 @@ namespace GameLogic
 
 	float getSpaceShipRotation(Vector2 direction);
 	Vector2 getSpaceShipDirection(SpaceShip ship);
-	void moveSpaceShip(SpaceShip& spaceShip);
-	void warpOutOfBounds(SpaceShip& spaceShip);
+	void moveSpaceShip(SpaceShip& ship);
+	void warpOutOfBounds(SpaceShip& ship);
 
 	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid);
 }
