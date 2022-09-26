@@ -1,13 +1,14 @@
 #include "shootLogic.h"
 
+#include "mouseInputs.h"
 
 
+using namespace GameObjects;
 
-void shootBullets(SpaceShip& ship,GameObjects::Bullet& bullet)
+void shootBullets(SpaceShip& ship)
 {
-	GameObjects::activateBullet(bullet, ship);
-	
-
-
-
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		activateBullet();
+	}
 }
