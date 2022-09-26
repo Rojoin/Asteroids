@@ -13,6 +13,7 @@ const int maxSmallAsteroids = 80;
 GameObjects::Asteroid bigAsteroid[maxBigAsteroids];
 GameObjects::Asteroid mediumAsteroid[maxMediumAsteroids];
 GameObjects::Asteroid smallAsteroid[maxSmallAsteroids];
+
 int mediumAsteroidCount = 0;
 int smallAsteroidCount = 0;
 
@@ -23,6 +24,8 @@ int smallAsteroidsOnScreen = 80 / 2;
  Texture2D bulletTexture;
  Texture2D asteroidTexture;
  Texture2D asteroidMediumTexture;
+Sound deathSound;
+Sound bulletSound;
 void initGame()
 {
 
@@ -44,8 +47,8 @@ void initGame()
 	}
 
 	Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
-	spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 1);
-	initBullets(bulletTexture);
+	spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 1,deathSound);
+	initBullets(bulletTexture,bulletSound);
 }
 void resetGame()
 {
@@ -69,7 +72,7 @@ void resetGame()
 
 	Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
 	resetSpaceShip(spaceShip, spacePosition);
-	initBullets(bulletTexture);
+	initBullets(bulletTexture,bulletSound);
 }
 
 void playGame()
