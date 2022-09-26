@@ -3,4 +3,4 @@
 
 
 enum class GameStates{Menu,Game,HowTo,Credits,Exit};
-static GameStates gameStates;
+void setGameState(GameStates newState);
