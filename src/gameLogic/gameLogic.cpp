@@ -1,8 +1,14 @@
 #include "gameLogic.h"
 
+#include <iostream>
+
 #include "collisionLogic.h"
 #include "movementLogic.h"
 #include "shootLogic.h"
+#include "../system/collisionFunctions.h"
+#include "mouseInputs.h"
+#include "../gameScreens/button.h"
+#include "../gameScreens/GameStates.h"
 
 
 extern SpaceShip spaceShip;
@@ -20,23 +26,25 @@ int smallAsteroidCount = 0;
 int bigAsteroidsOnScreen = 10 / 2;
 int mediumAsteroidsOnScreen = 40 / 2;
 int smallAsteroidsOnScreen = 80 / 2;
- Texture2D shipTexture;
- Texture2D bulletTexture;
- Texture2D asteroidTexture;
- Texture2D asteroidMediumTexture;
+Texture2D shipTexture;
+Texture2D bulletTexture;
+Texture2D asteroidTexture;
+Texture2D asteroidMediumTexture;
 Sound deathSound;
 Sound bulletSound;
+extern GameStates gameStates;
+Button pauseMenuButton = createButton(500, 500, 100, 50, "Pause", WHITE);
 void initGame()
 {
 
 	for (int i = 0; i < maxSmallAsteroids; ++i)
 	{
-		if (i < 10 )
+		if (i < 10)
 		{
 			bigAsteroid[i] = GameObjects::createAsteroid();
 			bigAsteroid[i].texture = asteroidTexture;
 		}
-		if (i < maxMediumAsteroids )
+		if (i < maxMediumAsteroids)
 		{
 			mediumAsteroid[i] = GameObjects::createMediumAsteroid();
 			mediumAsteroid[i].texture = asteroidMediumTexture;
@@ -47,8 +55,8 @@ void initGame()
 	}
 
 	Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
-	spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 1,deathSound);
-	initBullets(bulletTexture,bulletSound);
+	spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 1, deathSound);
+	initBullets(bulletTexture, bulletSound);
 }
 void resetGame()
 {
@@ -72,11 +80,32 @@ void resetGame()
 
 	Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
 	resetSpaceShip(spaceShip, spacePosition);
-	initBullets(bulletTexture,bulletSound);
+	initBullets(bulletTexture, bulletSound);
+	if (spaceShip.lives <= 0)
+	{
+		setGameState(GameStates::Menu);
+	}
 }
 
 void playGame()
 {
+	if (isPointRecColliding(Inputs::getMouseInput(), pauseMenuButton.rec))
+	{
+		pauseMenuButton.isOverThisButton = true;
+
+
+		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+		{
+
+			setGameState(GameStates::Menu);
+
+		}
+
+	}
+	else
+	{
+		pauseMenuButton.isOverThisButton = false;
+	}
 
 	GameLogic::moveSpaceShip(spaceShip);
 	for (int i = 0; i < maxBullets; i++)
@@ -99,20 +128,20 @@ void playGame()
 	updateShip();
 	updateBullet();
 	shootBullets(spaceShip);
-	
+
 	changeShipPosition();
 	for (int i = 0; i < maxBullets; i++)
 	{
 		for (int j = 0; j < maxBigAsteroids; j++)
 		{
-		GameLogic::moveAsteroidAcrossScreen(bigAsteroid[i]);
-		if (GameLogic::asteroidSpaceShipCollision(bigAsteroid[i], spaceShip))
-		{
-			resetGame();
-		}
-	
+			GameLogic::moveAsteroidAcrossScreen(bigAsteroid[i]);
+			if (GameLogic::asteroidSpaceShipCollision(bigAsteroid[i], spaceShip))
+			{
+				resetGame();
+			}
+
 			GameLogic::asteroidBulletCollision(bigAsteroid[j], spaceShip.bullet[i]);
-			
+
 		}
 
 		for (int j = 0; j < maxMediumAsteroids; j++)
@@ -133,16 +162,16 @@ void playGame()
 			GameLogic::asteroidBulletCollision(smallAsteroid[j], spaceShip.bullet[i]);
 		}
 		if (!bigAsteroid[i].isActive)
-			{
-				resetAsteroid(bigAsteroid[i]);
-			}
+		{
+			resetAsteroid(bigAsteroid[i]);
+		}
 	}
 }
 void drawGame()
 {
 	for (int i = 0; i < maxBullets; ++i)
 	{
-		
+
 		GameObjects::drawBullet(spaceShip.bullet[i]);
 	}
 	for (int i = 0; i < maxBigAsteroids; i++)
@@ -160,6 +189,6 @@ void drawGame()
 		GameObjects::drawAsteroid(smallAsteroid[i]);
 	}
 	drawShip();
-
+	drawButton(pauseMenuButton);
 }
 
