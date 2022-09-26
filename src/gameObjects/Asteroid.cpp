@@ -53,7 +53,7 @@ namespace GameObjects
 		return asteroid;
 	}
 
-	void moveAsteroid(Asteroid& asteroid)
+	void changeAsteroidPosition(Asteroid& asteroid)
 	{
 		if (asteroid.isActive)
 		{
@@ -114,8 +114,11 @@ namespace GameObjects
 
 			Rectangle source{ 0,0,(float)asteroid.texture.width,(float)asteroid.texture.height };
 			Rectangle dest{ asteroid.circle.position.x  ,asteroid.circle.position.y,(float)asteroid.texture.width * asteroid.scale / 2,(float)asteroid.texture.height * asteroid.scale / 2 };
+#if _DEBUG
 
 			DrawCircle(asteroid.circle.position.x, asteroid.circle.position.y, asteroid.circle.radius, WHITE);
+#endif
+
 			drawTexture(asteroid.texture, source, dest, { asteroid.texture.width / 2.0f,asteroid.texture.height / 2.0f }, asteroid.rotation, asteroid.scale / 2, WHITE);
 		}
 	}

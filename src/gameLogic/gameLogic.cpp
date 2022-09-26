@@ -2,6 +2,7 @@
 
 #include "collisionLogic.h"
 #include "movementLogic.h"
+#include "shootLogic.h"
 
 
 extern SpaceShip spaceShip;
@@ -77,38 +78,25 @@ void playGame()
 	GameLogic::moveSpaceShip(spaceShip);
 	for (int i = 0; i < maxBullets; i++)
 	{
-		GameObjects::moveBullet(spaceShip.bullet[i]);
+		GameObjects::changeBulletPosition(spaceShip.bullet[i]);
 	}
 	for (int i = 0; i < maxBigAsteroids; i++)
 	{
-		GameObjects::moveAsteroid(bigAsteroid[i]);
+		GameObjects::changeAsteroidPosition(bigAsteroid[i]);
 	}
 	for (int i = 0; i < maxMediumAsteroids; ++i)
 	{
-		GameObjects::moveAsteroid(mediumAsteroid[i]);
+		GameObjects::changeAsteroidPosition(mediumAsteroid[i]);
 	}for (int i = 0; i < maxSmallAsteroids; ++i)
 	{
-		GameObjects::moveAsteroid(smallAsteroid[i]);
+		GameObjects::changeAsteroidPosition(smallAsteroid[i]);
 	}
+
 
 	updateShip();
 	updateBullet();
-	if (IsKeyPressed(KEY_SPACE))
-	{
-		activateBullet();
-	} if (IsKeyDown(KEY_V))
-	{
-		//resetBulletPosition();
-	}
-	if (Inputs::isMouseKeyDown(MOUSE_BUTTON_RIGHT))
-	{
-		for (int i = 0; i < maxBigAsteroids; ++i)
-		{
-
-			GameObjects::activateAsteroid(bigAsteroid[i]);
-
-		}
-	}
+	shootBullets(spaceShip);
+	
 	changeShipPosition();
 	for (int i = 0; i < maxBullets; i++)
 	{
@@ -123,6 +111,7 @@ void playGame()
 			GameLogic::asteroidBulletCollision(bigAsteroid[j], spaceShip.bullet[i]);
 			
 		}
+
 		for (int j = 0; j < maxMediumAsteroids; j++)
 		{
 			GameLogic::moveAsteroidAcrossScreen(mediumAsteroid[j]);

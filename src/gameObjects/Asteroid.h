@@ -22,7 +22,7 @@ namespace GameObjects
 	Asteroid createMediumAsteroid();
 	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid, int multiplier);
 	Asteroid createSmallAsteroid();
-	void moveAsteroid(Asteroid& asteroid);
+	void changeAsteroidPosition(Asteroid& asteroid);
 	void updateAsteroid(Asteroid& asteroid);
 	void deactivateAsteroid(Asteroid& asteroid);
 	void activateAsteroid(Asteroid& asteroid);

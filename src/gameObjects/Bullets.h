@@ -18,7 +18,7 @@ namespace GameObjects
 
 	};
 	Bullet createBullet(float x, float y);
-	void moveBullet(Bullet& bullet);
+	void changeBulletPosition(Bullet& bullet);
 	//void updateBullet(Bullet& bullet,SpaceShip ship);
 	//void deactivateBullet(Bullet& bullet);
 	//void activateBullet(Bullet& bullet, SpaceShip ship);
