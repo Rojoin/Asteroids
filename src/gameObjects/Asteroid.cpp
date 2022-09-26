@@ -15,7 +15,7 @@ namespace GameObjects
 		asteroid.scale = 2;
 		asteroid.rotation = 0;
 		asteroid.points = 50;
-		asteroid.speed = 25;
+		asteroid.speed = 75;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 
@@ -31,7 +31,7 @@ namespace GameObjects
 		asteroid.scale = 1.5f;
 		asteroid.rotation = 0;
 		asteroid.points = 100;
-		asteroid.speed = 50;
+		asteroid.speed = 100;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 
@@ -46,7 +46,7 @@ namespace GameObjects
 		asteroid.scale = 1.0f;
 		asteroid.rotation = 0;
 		asteroid.points = 200;
-		asteroid.speed = 100;
+		asteroid.speed = 125;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 
