@@ -16,10 +16,10 @@ int main()
 	extern Texture2D bulletTexture;
 	extern Texture2D asteroidTexture;
 	extern Texture2D asteroidMediumTexture;
- shipTexture = LoadTexture("resources/pizzaTiledMap.png");
- bulletTexture = LoadTexture("resources/olive.png");
- asteroidTexture = LoadTexture("resources/bigHand.png");
- asteroidMediumTexture = LoadTexture("resources/mediumHand.png");
+    shipTexture = LoadTexture("resources/pizzaTiledMap.png");
+    bulletTexture = LoadTexture("resources/olive.png");
+    asteroidTexture = LoadTexture("resources/bigHand.png");
+    asteroidMediumTexture = LoadTexture("resources/mediumHand.png");
 
 	extern SpaceShip spaceShip;
 	

@@ -134,7 +134,7 @@ void playGame()
 		}for (int j = 0; j < maxSmallAsteroids; j++)
 		{
 			GameLogic::moveAsteroidAcrossScreen(smallAsteroid[j]);
-			if (GameLogic::asteroidSpaceShipCollision(smallAsteroid[i], spaceShip))
+			if (GameLogic::asteroidSpaceShipCollision(smallAsteroid[j], spaceShip))
 			{
 				resetGame();
 			}
