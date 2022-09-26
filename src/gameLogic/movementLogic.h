@@ -13,6 +13,6 @@ namespace GameLogic
 	Vector2 getSpaceShipDirection(SpaceShip ship);
 	void moveSpaceShip(SpaceShip& ship);
 	void warpOutOfBounds(SpaceShip& ship);
-
+	void updateCurrentSpaceShipPos(SpaceShip ship);
 	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid);
 }

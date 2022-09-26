@@ -7,7 +7,7 @@
 namespace GameLogic
 {
 
-
+	Vector2 currentShipPos;
 	Vector2 getSpaceShipDirection(SpaceShip ship)
 	{
 		Vector2 mouse = Inputs::getMouseInput();
@@ -114,10 +114,24 @@ namespace GameLogic
 
 		}
 	}
-
-
+	void updateCurrentSpaceShipPos(SpaceShip ship)
+	{
+		currentShipPos = { ship.dest.x, ship.dest.y };
+	}
+	void rotateAsteroidTowardSpaceShip(GameObjects::Asteroid& asteroid)
+	{
+		Vector2 direction = { asteroid.circle.position.x - currentShipPos.x, asteroid.circle.position.y - currentShipPos.y };
+		float grades = (atan(direction.y / direction.x)) * (180 / PI);
+		if (direction.x < 0)
+		{
+			grades += 180;
+		}
+		asteroid.rotation = grades;
+	}
 	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid)
 	{
+		rotateAsteroidTowardSpaceShip(asteroid);
+		
 
 		warpOutOfBounds(asteroid);
 	}

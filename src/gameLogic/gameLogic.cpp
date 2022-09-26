@@ -95,7 +95,7 @@ void playGame()
 		GameObjects::changeAsteroidPosition(smallAsteroid[i]);
 	}
 
-
+	GameLogic::updateCurrentSpaceShipPos(spaceShip);
 	updateShip();
 	updateBullet();
 	shootBullets(spaceShip);
