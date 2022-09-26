@@ -36,11 +36,11 @@ namespace GameLogic
 		}
 		if (spaceShip.position.y < 0 - spaceShip.texture.height)
 		{
-			spaceShip.position.y = GetScreenHeight() ;
+			spaceShip.position.y = GetScreenHeight()+ spaceShip.texture.height/2;
 		}
 		else if (spaceShip.position.y > GetScreenHeight()+ spaceShip.texture.height/2)
 		{
-			spaceShip.position.y = 0 - spaceShip.texture.height;
+			spaceShip.position.y = 0 - spaceShip.texture.height/2;
 		}
 	}
 	void warpOutOfBounds(GameObjects::Asteroid& asteroid)

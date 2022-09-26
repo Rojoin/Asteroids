@@ -54,7 +54,7 @@ namespace GameObjects
 		Rectangle dest{ asteroid.circle.position.x  ,asteroid.circle.position.y,(float)asteroid.texture.width*asteroid.scale / 2,(float)asteroid.texture.height* asteroid.scale / 2 };
 
 		DrawCircle(asteroid.circle.position.x, asteroid.circle.position.y, asteroid.circle.radius, WHITE);
-		drawTexture(asteroid.texture, source, dest, { asteroid.texture.width / 2.0f,asteroid.texture.height / 2.0f }, asteroid.rotation, asteroid.scale/2, BLUE);
+		drawTexture(asteroid.texture, source, dest, { asteroid.texture.width / 2.0f,asteroid.texture.height / 2.0f }, asteroid.rotation, asteroid.scale/2, WHITE);
 		}
 	}
 

@@ -19,6 +19,7 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 	ship.rotation = rotation;
 	ship.maxSpeed = 200.0f;
 	ship.bulletIndex = 0;
+	ship.circle={ ship.position.x,ship.position.y,ship.scale * ship.texture.width/8 };
 	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height };
 	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * scale,(float)ship.texture.height * scale };
 	return ship;
@@ -37,6 +38,7 @@ void drawShip()
 {
 	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { spaceShip.texture.width / 8.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
 	DrawRectangle(spaceShip.position.x, spaceShip.position.y, 2, 2, RED);
+	DrawCircle(spaceShip.circle.position.x, spaceShip.circle.position.y, spaceShip.circle.radius,RED);
 }
 void updateShip()
 {
@@ -44,6 +46,7 @@ void updateShip()
 	{
 		spaceShip.source.x = 0;
 	}
+	spaceShip.circle = { spaceShip.position.x,spaceShip.position.y,spaceShip.circle.radius };
 	spaceShip.source = { spaceShip.source.x + spaceShip.textureIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
 	spaceShip.dest = { spaceShip.position.x  ,spaceShip.position.y + spaceShip.texture.height / 8.0f ,spaceShip.dest.width,spaceShip.dest.height };
 }

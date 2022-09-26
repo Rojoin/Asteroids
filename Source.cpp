@@ -14,10 +14,11 @@ int main(void)
     asteroid = GameObjects::createAsteroid();
     Texture2D shipTexture = LoadTexture("resources/pizzaTiledMap.png");
     Texture2D bulletTexture = LoadTexture("resources/olive.png");
+    Texture2D asteroidTexture = LoadTexture("resources/Lips.png");
   
-    asteroid.texture = shipTexture;
+    asteroid.texture = asteroidTexture;
     Vector2 spacePosition = { (float)GetScreenWidth()/2,(float)GetScreenHeight()/2 };
-    spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 2);
+    spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 1);
     initBullets(bulletTexture);
     while (!WindowShouldClose())
     {
@@ -48,7 +49,7 @@ int main(void)
         {
             GameLogic::asteroidBulletCollision(asteroid, spaceShip.bullet[i]);
         }
-       
+        GameLogic::asteroidSpaceShipCollision(asteroid, spaceShip);
         BeginDrawing();
         GameObjects::drawAsteroid(asteroid);
         for (int i = 0; i < 10; ++i)

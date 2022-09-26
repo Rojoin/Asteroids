@@ -17,6 +17,7 @@
 		float maxSpeed;
 		Rectangle source;
 		Rectangle dest;
+		Circle circle;
 		Vector2 direction;
 
 
