@@ -31,6 +31,7 @@ void initBullets(Texture2D bulletTexture)
 	{
 		spaceShip.bullet[i] = GameObjects::createBullet(spaceShip.dest.x, spaceShip.dest.y);
 		spaceShip.bullet[i].texture = bulletTexture;
+		deactivateBullet(spaceShip.bullet[i]);
 	}
 
 }

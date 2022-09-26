@@ -13,7 +13,6 @@ bool isCircleCircleColliding(Circle circle1, Circle circle2)
 
  	if (distance < circle1.radius + circle2.radius)
 	{
-		std::cout << "COLLIDE" << std::endl;
 		return true;
 	}
 	return false;

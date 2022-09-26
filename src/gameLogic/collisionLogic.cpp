@@ -9,7 +9,7 @@
 void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 {
 
-	if (isCircleCircleColliding(asteroid.circle,bullet.circle)&& bullet.isActive)
+	if (isCircleCircleColliding(asteroid.circle,bullet.circle)&& bullet.isActive&&asteroid.isActive)
 	{
 		deactivateAsteroid(asteroid);
 		deactivateBullet(bullet);
@@ -20,7 +20,7 @@ void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 
 void GameLogic::asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship)
 {
-	if (isCircleCircleColliding(asteroid.circle,ship.circle))
+	if (isCircleCircleColliding(asteroid.circle,ship.circle) && asteroid.isActive)
 	{
 		std::cout << "Perdiste";
 	}

@@ -22,10 +22,13 @@ namespace GameObjects
 
 	void moveAsteroid(Asteroid& asteroid)
 	{
-	
-								   
-		asteroid.circle.position.y +=  asteroid.aceleration.y*GetFrameTime()*200;
+		if (asteroid.isActive)
+		{
+					asteroid.circle.position.y +=  asteroid.aceleration.y*GetFrameTime()*200;
 		asteroid.circle.position.x +=  asteroid.aceleration.x*GetFrameTime()*200;
+		}
+								   
+
 			
 		
 	}

@@ -23,7 +23,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         GameLogic::moveSpaceShip(spaceShip);
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; i++)
         {
         
             GameObjects::moveBullet(spaceShip.bullet[i]);
@@ -45,14 +45,14 @@ int main(void)
         }
         changeShipPosition();
         GameLogic::moveAsteroidAcrossScreen(asteroid);
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; i++)
         {
             GameLogic::asteroidBulletCollision(asteroid, spaceShip.bullet[i]);
         }
         GameLogic::asteroidSpaceShipCollision(asteroid, spaceShip);
         BeginDrawing();
         GameObjects::drawAsteroid(asteroid);
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; i++)
         {
 
             GameObjects::drawBullet(spaceShip.bullet[i]);
