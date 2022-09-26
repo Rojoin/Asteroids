@@ -22,6 +22,10 @@ int main()
 	extern Sound collisionSound;
 	collisionSound =LoadSound("resources/collision.wav");
 	extern Sound bulletSound;
+	Music mainTheme = LoadMusicStream("resources/theLastSlice.mp3");
+	float timePlayed = 0.0f;
+
+
 	bulletSound	 =LoadSound("resources/bullet2.wav");
 	deathSound = LoadSound("resources/explosion.wav");
 	   
@@ -37,9 +41,14 @@ int main()
 
 	GenTextureMipmaps(&customFont.texture);
 	SetTextureFilter(customFont.texture, TEXTURE_FILTER_TRILINEAR);
-
+	SetMusicVolume(mainTheme, 0.5);
+	PlayMusicStream(mainTheme);
 	while (!WindowShouldClose())
 	{
+		UpdateMusicStream(mainTheme);
+		timePlayed = GetMusicTimePlayed(mainTheme) / GetMusicTimeLength(mainTheme);
+		if (timePlayed > 1.0f)timePlayed = 1.0f;
+	
 		playGame();
 		BeginDrawing();
 		DrawTexture(wallpaper, 0, 0, WHITE);
