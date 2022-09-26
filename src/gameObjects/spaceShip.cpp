@@ -47,9 +47,13 @@ void initBullets(Texture2D bulletTexture)
 }
 void drawShip()
 {
+#if _DEBUG
+
+	DrawRectangle(spaceShip.position.x, spaceShip.position.y, 2, 2, BLUE);
 	DrawCircle(spaceShip.circle.position.x, spaceShip.circle.position.y, spaceShip.circle.radius,RED);
+#endif
+
 	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { spaceShip.texture.width / 8.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
-	DrawRectangle(spaceShip.position.x, spaceShip.position.y, 2, 2, RED);
 }
 void updateShip()
 {
@@ -59,7 +63,7 @@ void updateShip()
 	}
 	spaceShip.circle = { spaceShip.position.x,spaceShip.position.y,spaceShip.circle.radius };
 	spaceShip.source = { spaceShip.source.x + spaceShip.textureIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
-	spaceShip.dest = { spaceShip.position.x  ,spaceShip.position.y + spaceShip.texture.height / 16.0f ,spaceShip.dest.width,spaceShip.dest.height };
+	spaceShip.dest = { spaceShip.position.x  ,spaceShip.position.y + spaceShip.texture.height / 32.0f ,spaceShip.dest.width,spaceShip.dest.height };
 }
 void changeShipPosition()
 {
