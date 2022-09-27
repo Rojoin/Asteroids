@@ -23,7 +23,8 @@ void initProgram()
 	extern Texture2D bulletTexture;
 	extern Texture2D asteroidTexture;
 	extern Texture2D asteroidMediumTexture;
-	 Texture2D livesTexture;
+	extern Texture2D livesTexture;
+
 	extern Sound deathSound;
 	extern Sound collisionSound;
 	extern Font customFont;
@@ -95,11 +96,7 @@ void initProgram()
 			break;
 		case GameStates::Game:
 			drawGame();
-			for (int i = 0; i < spaceShip.lives;i++)
-			{
-				drawTexture(livesTexture, {GetScreenWidth() - livesTexture.width * (i + 1.0f),0}, 0, 1, WHITE);
-			}
-			drawText(TextFormat("SCORE: %1i", spaceShip.score), 0, 0, 50, BLACK, customFont);
+			
 			break;
 		case GameStates::HowTo:
 			break;
