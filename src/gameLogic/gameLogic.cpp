@@ -46,8 +46,8 @@ void initGame()
 {
 	isGamePaused = false;
 	continueMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth/2, GetScreenHeight() / 2- GetScreenHeight()/8, buttonWidth, buttonHeight, " CONTINUE", DARKGREEN);
-	restartMenuButton = createButton(GetScreenWidth() / 3 + GetScreenWidth() / 4 - buttonWidth/2, GetScreenHeight() / 2.0f - buttonHeight, buttonWidth, buttonHeight, " RESTART", RED);
-	exitMenuButton = createButton((GetScreenWidth() / 3)  + GetScreenWidth() / 4 - buttonWidth*1.5f, GetScreenHeight() / 2.0f - buttonHeight, "   EXIT", DARKPURPLE);
+	restartMenuButton = createButton(GetScreenWidth() / 3 + GetScreenWidth() / 4 - buttonWidth/2, GetScreenHeight() / 2.0f - buttonHeight, buttonWidth, buttonHeight, " RESTART", DARKPURPLE);
+	exitMenuButton = createButton((GetScreenWidth() / 3)  + GetScreenWidth() / 4 - buttonWidth*1.5f, GetScreenHeight() / 2.0f - buttonHeight, "   EXIT", RED);
 	pauseMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
 	for (int i = 0; i < maxSmallAsteroids; ++i)
 	{
