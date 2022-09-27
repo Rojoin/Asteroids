@@ -41,6 +41,7 @@ Button continueMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth, Get
 Button restartMenuButton = createButton(GetScreenWidth() / 3 + GetScreenWidth() / 4 - buttonWidth, GetScreenHeight() / 2.0f + buttonHeight, buttonWidth, buttonHeight, "RESTART", GREEN);
 Button exitMenuButton = createButton((GetScreenWidth() / 3) * 2 - GetScreenWidth() / 4 - buttonWidth, GetScreenHeight() / 2.0f + buttonHeight, " EXIT", GREEN);
 bool isGamePaused = false;
+bool isGameOver = false;
 void initGame()
 {
 	isGamePaused = false;
@@ -124,7 +125,6 @@ void playGame()
 			{
 
 				isGamePaused = true;
-
 			}
 
 		}
@@ -253,16 +253,16 @@ void playGame()
 void drawPauseMenu()
 {
 
+
 	DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
 	std::string pauseTitle = "PAUSE MENU";
-	std::string pauseSubtitle = TextFormat("Press the ESC to play");
-	std::string pauseSubtitle2 = TextFormat("Press SPACE to go back to menu");
-	DrawText(pauseTitle.c_str(), (GetScreenWidth() / 3) + pauseTitle.length() * 16 / 3, GetScreenHeight() / 3, 16, BLACK);
-	DrawText(pauseSubtitle.c_str(), (GetScreenWidth() / 4) + pauseSubtitle.length() * 16 / (pauseSubtitle.length() / 2), GetScreenHeight() / 2.5f, 16, BLACK);
-	DrawText(pauseSubtitle2.c_str(), (GetScreenWidth() / 4) + pauseSubtitle2.length() * 16 / (pauseSubtitle2.length() / 2), GetScreenHeight() / 2.2f, 16, BLACK);
+	drawButton(continueMenuButton);
+	drawButton(restartMenuButton);
+	drawButton(exitMenuButton);
 }
 void drawUI()
 {
+	
 	for (int i = 0; i < spaceShip.lives; i++)
 	{
 		drawTexture(livesTexture, { GetScreenWidth() - livesTexture.width * (i + 1.0f),0 }, 0, 1, WHITE);
@@ -296,18 +296,7 @@ void drawGame()
 
 	if (isGamePaused)
 	{
-		
-		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
-		std::string pauseTitle = "PAUSE MENU";
-		drawButton(continueMenuButton);
-		drawButton(restartMenuButton);
-		drawButton(exitMenuButton);
-
-
-
-
-
-
+		drawPauseMenu();
 	}
 }
 

@@ -39,7 +39,7 @@ void initProgram()
 	deathSound = LoadSound("resources/explosion.wav");
 
 	customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, 0, 0);
-	wallpaper = LoadTexture("resources/pizzaWallpaper.png");
+	wallpaper = LoadTexture("resources/pizzaWallpaper2.png");
 	shipTexture = LoadTexture("resources/pizzaTiledMap.png");
 	bulletTexture = LoadTexture("resources/olive.png");
 	asteroidTexture = LoadTexture("resources/bigHand.png");
