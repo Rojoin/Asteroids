@@ -6,7 +6,7 @@
 
 namespace GameObjects
 {
-	Asteroid createAsteroid()
+	Asteroid createBigAsteroid()
 	{
 		Asteroid asteroid;
 		asteroid.type = AsteroidType::Default;

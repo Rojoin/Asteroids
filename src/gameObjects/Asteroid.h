@@ -18,7 +18,7 @@ namespace GameObjects
 		float points;
 		bool isActive;
 	};
-	Asteroid createAsteroid();
+	Asteroid createBigAsteroid();
 	Asteroid createMediumAsteroid();
 	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid, int multiplier);
 	Asteroid createSmallAsteroid();

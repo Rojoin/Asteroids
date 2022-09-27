@@ -47,13 +47,13 @@ void initGame()
 	isGamePaused = false;
 	continueMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth/2, GetScreenHeight() / 2- GetScreenHeight()/8, buttonWidth, buttonHeight, " CONTINUE", DARKGREEN);
 	restartMenuButton = createButton(GetScreenWidth() / 3 + GetScreenWidth() / 4 - buttonWidth/2, GetScreenHeight() / 2.0f - buttonHeight, buttonWidth, buttonHeight, " RESTART", DARKPURPLE);
-	exitMenuButton = createButton((GetScreenWidth() / 3)  + GetScreenWidth() / 4 - buttonWidth*1.5f, GetScreenHeight() / 2.0f - buttonHeight, "   EXIT", RED);
+	exitMenuButton =    createButton(GetScreenWidth() / 3 + GetScreenWidth() / 8 - buttonWidth, GetScreenHeight() / 2.0f - buttonHeight, buttonWidth, buttonHeight, "   EXIT", RED);
 	pauseMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
 	for (int i = 0; i < maxSmallAsteroids; ++i)
 	{
 		if (i < 10)
 		{
-			bigAsteroid[i] = GameObjects::createAsteroid();
+			bigAsteroid[i] = GameObjects::createBigAsteroid();
 			bigAsteroid[i].texture = asteroidTexture;
 		}
 		if (i < maxMediumAsteroids)
@@ -77,7 +77,7 @@ void resetGame()
 	{
 		if (i < 10)
 		{
-			bigAsteroid[i] = GameObjects::createAsteroid();
+			bigAsteroid[i] = GameObjects::createBigAsteroid();
 			bigAsteroid[i].texture = asteroidTexture;
 		}
 		if (i < maxMediumAsteroids)
@@ -263,11 +263,17 @@ void drawPauseMenu()
 void drawUI()
 {
 	
+	std::string playerScore = TextFormat("Score:%1i", spaceShip.score);
+	std::string maxScore = TextFormat("Max:%1i", spaceShip.score);
+	Vector2 scoreMeasure = MeasureTextEx(customFont, playerScore.c_str(), 50, 0);
+	Vector2 maxScoreMeasure = MeasureTextEx(customFont, maxScore.c_str(), 50, 0);
+	drawText(playerScore , 0, 0, 50, BLACK, customFont);
 	for (int i = 0; i < spaceShip.lives; i++)
 	{
-		drawTexture(livesTexture, { GetScreenWidth() - livesTexture.width * (i + 1.0f),0 }, 0, 1, WHITE);
+		drawTexture(livesTexture, { livesTexture.width * (i + 1.0f),scoreMeasure.y }, 0, 1, WHITE);
 	}
-	drawText(TextFormat("SCORE: %1i", spaceShip.score), 0, 0, 50, BLACK, customFont);
+
+	drawText(maxScore.c_str(), GetScreenWidth()-maxScoreMeasure.x*1.5f, 0, 50, BLACK, customFont);
 }
 void drawGame()
 {
