@@ -13,10 +13,10 @@ extern Font customFont;
 Vector2 Screen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
 std::string creator = "                      Game made by Ignacio 'Rojoin' Arrastua";
 Button playButton = createButton("     PLAY", DARKGREEN);
-Button howToPlayButton = createButton("   RULES", DARKGREEN);
-Button optionsButton = createButton("  OPTIONS ", DARKGREEN);
-Button creditsButton = createButton("  CREDITS ", DARKGREEN);
-Button exitButton = createButton("   EXIT", DARKGREEN);
+Button howToPlayButton = createButton("   RULES", YELLOW);
+Button optionsButton = createButton("  OPTIONS ", YELLOW);
+Button creditsButton = createButton("  CREDITS ", YELLOW);
+Button exitButton = createButton("   EXIT", RED);
 
 void stateMenu(GameStates& gamestate)
 {
@@ -51,7 +51,7 @@ void stateMenu(GameStates& gamestate)
 		howToPlayButton.isOverThisButton = true;
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 		{
-	
+			setGameState(GameStates::HowTo);
 		}
 	}
 	else

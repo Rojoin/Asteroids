@@ -4,6 +4,7 @@
 #include "statesManager.h"
 #include "GameStates.h"
 #include "menuState.h"
+#include "howToStates.h"
 #include "../gameObjects/spaceShip.h"
 #include "../gameLogic/gameLogic.h"
 #include "../system/draw.h"
@@ -39,7 +40,7 @@ void initProgram()
 	deathSound = LoadSound("resources/explosion.wav");
 
 	customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, 0, 0);
-	wallpaper = LoadTexture("resources/pizzaWallpaper2.png");
+	wallpaper = LoadTexture("resources/pizzaWallpaper.png");
 	shipTexture = LoadTexture("resources/pizzaTiledMap.png");
 	bulletTexture = LoadTexture("resources/olive.png");
 	asteroidTexture = LoadTexture("resources/bigHand.png");
@@ -72,6 +73,7 @@ void initProgram()
 			playGame();
 			break;
 		case GameStates::HowTo:
+			statesRules();
 			break;
 		case GameStates::Credits:
 			break;
@@ -86,19 +88,13 @@ void initProgram()
 		switch (gameStates)
 		{
 		case GameStates::Menu:
-
-
-
 			drawMenu();
-
-
-
 			break;
 		case GameStates::Game:
 			drawGame();
-			
 			break;
 		case GameStates::HowTo:
+			drawRules();
 			break;
 		case GameStates::Credits:
 			break;
