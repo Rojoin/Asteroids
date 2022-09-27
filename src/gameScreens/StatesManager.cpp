@@ -4,7 +4,7 @@
 #include "statesManager.h"
 #include "GameStates.h"
 #include "menuState.h"
-#include "howToStates.h"
+#include "rulesState.h"
 #include "../gameObjects/spaceShip.h"
 #include "../gameLogic/gameLogic.h"
 #include "../system/draw.h"

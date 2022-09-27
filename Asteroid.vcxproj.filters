@@ -44,10 +44,13 @@
     <ClCompile Include="src\gameScreens\GameStates.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameScreens\howToStates.cpp">
+    <ClCompile Include="src\gameScreens\rulesState.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameScreens\creditsStates.cpp">
+    <ClCompile Include="src\gameScreens\creditsState.cpp">
+      <Filter>GameScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameScreens\optionState.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,10 +103,13 @@
     <ClInclude Include="src\gameScreens\menuState.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameScreens\howToStates.h">
+    <ClInclude Include="src\gameScreens\rulesState.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameScreens\creditsStates.h">
+    <ClInclude Include="src\gameScreens\creditsState.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\optionsState.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
   </ItemGroup>

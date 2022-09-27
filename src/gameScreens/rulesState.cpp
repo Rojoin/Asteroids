@@ -1,4 +1,4 @@
-#include  "howToStates.h"
+#include  "rulesState.h"
 #include  "GameStates.h"
 #include <raylib.h>
 
