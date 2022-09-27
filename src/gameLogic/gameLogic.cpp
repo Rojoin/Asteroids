@@ -33,10 +33,10 @@ Texture2D asteroidMediumTexture;
 Sound deathSound;
 Sound bulletSound;
 extern GameStates gameStates;
-Button pauseMenuButton = createButton(500, 500, 100, 50, "Pause", WHITE);
+Button pauseMenuButton = createButton(GetScreenWidth()/2-buttonWidth, 0, buttonWidth, buttonHeight, "PAUSE", GREEN);
 void initGame()
 {
-
+	pauseMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth/2, 0+buttonHeight/2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
 	for (int i = 0; i < maxSmallAsteroids; ++i)
 	{
 		if (i < 10)
@@ -189,6 +189,6 @@ void drawGame()
 		GameObjects::drawAsteroid(smallAsteroid[i]);
 	}
 	drawShip();
-	drawButton(pauseMenuButton);
+	drawButtonTranslucent(pauseMenuButton);
 }
 
