@@ -51,7 +51,7 @@ void stateMenu(GameStates& gamestate)
 		howToPlayButton.isOverThisButton = true;
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 		{
-			setGameState(GameStates::HowTo);
+			setGameState(GameStates::Rules);
 		}
 	}
 	else

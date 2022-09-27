@@ -17,6 +17,7 @@ void initProgram()
 	SetRandomSeed(time(NULL));
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(1024, 768, "Ship Example");
+	SetExitKey(NULL);
 	InitAudioDevice();
 	SetWindowMinSize(1024, 768);
 	Texture2D wallpaper;
@@ -72,7 +73,7 @@ void initProgram()
 		case GameStates::Game:
 			playGame();
 			break;
-		case GameStates::HowTo:
+		case GameStates::Rules:
 			statesRules();
 			break;
 		case GameStates::Credits:
@@ -93,7 +94,7 @@ void initProgram()
 		case GameStates::Game:
 			drawGame();
 			break;
-		case GameStates::HowTo:
+		case GameStates::Rules:
 			drawRules();
 			break;
 		case GameStates::Credits:
