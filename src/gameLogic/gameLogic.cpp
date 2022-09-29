@@ -15,8 +15,8 @@
 extern SpaceShip spaceShip;
 extern Font customFont;
 extern GameStates gameStates;
-const int maxBigAsteroids = 10;
 const int maxBullets = 10;
+const int maxBigAsteroids = 10;
 const int maxMediumAsteroids = 40;
 const int maxSmallAsteroids = 80;
 GameObjects::Asteroid bigAsteroid[maxBigAsteroids];

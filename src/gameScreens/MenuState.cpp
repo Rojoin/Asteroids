@@ -18,6 +18,8 @@ Button optionsButton = createButton("  OPTIONS ", YELLOW);
 Button creditsButton = createButton("  CREDITS ", YELLOW);
 Button exitButton = createButton("   EXIT", RED);
 
+
+
 void stateMenu(GameStates& gamestate)
 {
 
@@ -106,7 +108,7 @@ void stateMenu(GameStates& gamestate)
 	{
 		exitButton.isOverThisButton = false;
 	}
-
+	
 }
 void drawMenu()
 {

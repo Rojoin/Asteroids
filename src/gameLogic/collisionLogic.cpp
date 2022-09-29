@@ -5,6 +5,7 @@
 #include "../system/collisionFunctions.h"
 #include "../gameObjects/spaceShip.h"
 
+//Podria hacer que suba con el tiempo el spawn de los grandes
 extern SpaceShip spaceShip;
 extern Asteroid mediumAsteroid[40];
 extern Asteroid smallAsteroid[80];
