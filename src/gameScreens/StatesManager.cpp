@@ -25,6 +25,7 @@ void initProgram()
 	extern Texture2D bulletTexture;
 	extern Texture2D asteroidTexture;
 	extern Texture2D asteroidMediumTexture;
+	extern Texture2D asteroidSmallTexture;
 	extern Texture2D livesTexture;
 
 	extern Sound deathSound;
@@ -46,6 +47,7 @@ void initProgram()
 	bulletTexture = LoadTexture("resources/olive.png");
 	asteroidTexture = LoadTexture("resources/bigHand.png");
 	asteroidMediumTexture = LoadTexture("resources/mediumHand.png");
+	asteroidSmallTexture = LoadTexture("resources/smallHand.png");
 
 	extern SpaceShip spaceShip;
 
