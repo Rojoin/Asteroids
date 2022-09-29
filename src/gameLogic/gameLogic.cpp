@@ -34,6 +34,7 @@ Texture2D shipTexture;
 Texture2D bulletTexture;
 Texture2D asteroidTexture;
 Texture2D asteroidMediumTexture;
+Texture2D asteroidSmallTexture;
 Sound deathSound;
 Sound bulletSound;
 Button pauseMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth, 0, buttonWidth, buttonHeight, "PAUSE", GREEN);
@@ -63,7 +64,7 @@ void initGame()
 		}
 
 		smallAsteroid[i] = GameObjects::createSmallAsteroid();
-		smallAsteroid[i].texture = asteroidTexture;
+		smallAsteroid[i].texture = asteroidSmallTexture;
 	}
 
 	Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
