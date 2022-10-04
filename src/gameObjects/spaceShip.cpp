@@ -53,8 +53,8 @@ void drawShip()
 {
 #if _DEBUG
 
-	DrawRectangle(spaceShip.position.x, spaceShip.position.y, 2, 2, BLUE);
-	DrawCircle(spaceShip.circle.position.x, spaceShip.circle.position.y, spaceShip.circle.radius,RED);
+	DrawRectangle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), 2, 2, BLUE);
+	DrawCircle(static_cast<int>(spaceShip.circle.position.x), static_cast<int>(spaceShip.circle.position.y), spaceShip.circle.radius,RED);
 #endif
 
 	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { spaceShip.texture.width / 8.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);

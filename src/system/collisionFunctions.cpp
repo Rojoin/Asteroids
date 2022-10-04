@@ -21,10 +21,10 @@ bool isCircleCircleColliding(Circle circle1, Circle circle2)
 
 bool isPointRecColliding(Vector2 mouse, Rectangle rec) //Check if works
 {
-	int rightEdge = rec.x + rec.width ;
-	int leftEdge = rec.x;
-	int upEdge = rec.y;
-	int downEdge = rec.y + rec.height;
+	float rightEdge = rec.x + rec.width ;
+	float leftEdge = rec.x;
+	float upEdge = rec.y;
+	float downEdge = rec.y + rec.height;
 
 	if (mouse.x <= rightEdge && mouse.x >= leftEdge && mouse.y >= upEdge && mouse.y <= downEdge)
 	{

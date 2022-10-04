@@ -112,18 +112,19 @@ void stateMenu(GameStates& gamestate)
 }
 void drawMenu()
 {
-
+	float width = static_cast<float>(GetScreenWidth());
+	float height = static_cast<float>(GetScreenHeight());
 	drawButton(playButton);
 	drawButton(howToPlayButton);
 	drawButton(optionsButton);
 	drawButton(creditsButton);
 	drawButton(exitButton);
-	int fontSize = 3 * GetScreenWidth() / 190;
+	float fontSize = 3.0f * width / 190.0f;
 	fontSize = 16;
-	DrawText(creator.c_str(), GetScreenWidth() / 2 + creator.length(), GetScreenHeight() - fontSize, fontSize, RED);
+	drawText(creator.c_str(), width / 2.0f + static_cast<float>(creator.length()), height - fontSize, fontSize, RED,customFont);
 	std::string titleScreen = "The Last Slice";
 	
-	drawText(titleScreen, ((GetScreenWidth() / 2) - titleScreen.length() * fontSize*1.5), GetScreenHeight() / 8, fontSize * 8, BLACK,customFont);
+	drawText(titleScreen, width / 2.0f - static_cast<float>(titleScreen.length()) * fontSize *1.5f, (height / 8.0f), fontSize * 8.0f, BLACK,customFont);
 	//DrawText(titleScreen.c_str(), ((GetScreenWidth() / 2) - titleScreen.length() * fontSize), GetScreenHeight() / 8, fontSize * 4, RED);
 
 }

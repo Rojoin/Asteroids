@@ -37,19 +37,21 @@ Texture2D asteroidMediumTexture;
 Texture2D asteroidSmallTexture;
 Sound deathSound;
 Sound bulletSound;
-Button pauseMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth, 0, buttonWidth, buttonHeight, "PAUSE", GREEN);
-Button continueMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth, GetScreenHeight() / 2, buttonWidth, buttonHeight, "CONTINUE", BROWN);
-Button restartMenuButton = createButton(GetScreenWidth() / 3 + GetScreenWidth() / 4 - buttonWidth, GetScreenHeight() / 2.0f + buttonHeight, buttonWidth, buttonHeight, "RESTART", GREEN);
-Button exitMenuButton = createButton((GetScreenWidth() / 3) * 2 - GetScreenWidth() / 4 - buttonWidth, GetScreenHeight() / 2.0f + buttonHeight, " EXIT", GREEN);
+Button pauseMenuButton =    createButton(0, 0, buttonWidth, buttonHeight, "PAUSE", GREEN);
+Button continueMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "CONTINUE", BROWN);
+Button restartMenuButton =  createButton(0, 0, buttonWidth, buttonHeight, "RESTART", GREEN);
+Button exitMenuButton =     createButton(0, 0, " EXIT", GREEN);
 bool isGamePaused = false;
 bool isGameOver = false;
 void initGame()
 {
+	float width = static_cast<float>(GetScreenWidth());
+	float height = static_cast<float>(GetScreenHeight());
 	isGamePaused = false;
-	continueMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth/2, GetScreenHeight() / 2- GetScreenHeight()/8, buttonWidth, buttonHeight, " CONTINUE", DARKGREEN);
-	restartMenuButton = createButton(GetScreenWidth() / 3 + GetScreenWidth() / 4 - buttonWidth/2, GetScreenHeight() / 2.0f - buttonHeight, buttonWidth, buttonHeight, " RESTART", DARKPURPLE);
-	exitMenuButton =    createButton(GetScreenWidth() / 3 + GetScreenWidth() / 8 - buttonWidth, GetScreenHeight() / 2.0f - buttonHeight, buttonWidth, buttonHeight, "   EXIT", RED);
-	pauseMenuButton = createButton(GetScreenWidth() / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
+	continueMenuButton = createButton(width / 2 - buttonWidth/2, height / 2- height /8, buttonWidth, buttonHeight, " CONTINUE", DARKGREEN);
+	restartMenuButton = createButton(width / 3 + width / 4 - buttonWidth/2, height / 2.0f - buttonHeight, buttonWidth, buttonHeight, " RESTART", DARKPURPLE);
+	exitMenuButton =    createButton(width / 3 + width / 8 - buttonWidth, height / 2.0f - buttonHeight, buttonWidth, buttonHeight, "   EXIT", RED);
+	pauseMenuButton =  createButton(width / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
 	for (int i = 0; i < maxSmallAsteroids; ++i)
 	{
 		if (i < 10)

@@ -14,7 +14,7 @@ GameStates gameStates;
 void initProgram()
 {
 	setGameState(GameStates::Menu);
-	SetRandomSeed(time(NULL));
+	SetRandomSeed(static_cast<unsigned int>(time(NULL)));
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(1024, 768, "Ship Example");
 	SetExitKey(NULL);

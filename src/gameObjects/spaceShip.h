@@ -15,7 +15,7 @@
 		float rotation;
 		float scale;
 		float maxSpeed;
-		int score;
+		float score;
 		int lives;
 		Sound deathSound;
 		Rectangle source;

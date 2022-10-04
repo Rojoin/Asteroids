@@ -28,8 +28,8 @@ namespace GameObjects
 	void drawBullet(GameObjects::Bullet& bullet)
 	{
 
-		Rectangle source{0,0,(float)bullet.texture.width,(float)bullet.texture.height};
-		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,(float)bullet.texture.width,(float)bullet.texture.height  };
+		Rectangle source{0,0,static_cast<float>(bullet.texture.width),static_cast<float>(bullet.texture.height)};
+		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,static_cast<float>(bullet.texture.width),static_cast<float>(bullet.texture.height)  };
 		
 #if _DEBUG
 		DrawCircle(bullet.circle.position.x,bullet.circle.position.y,bullet.circle.radius, BLUE);

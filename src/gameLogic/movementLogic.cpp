@@ -24,47 +24,54 @@ namespace GameLogic
 		}
 		return grades;
 	}
+	}
 	void warpOutOfBounds(SpaceShip& ship)
 	{
-		if (ship.position.x < 0 - ship.texture.width/4)
+		float width = static_cast<float>(GetScreenWidth());
+		float height = static_cast<float>(GetScreenHeight());
+		float textureWidth = static_cast<float>(ship.texture.width);
+		float textureHeight = static_cast<float>(ship.texture.height);
+		if (ship.position.x < 0.0f - textureWidth/ 4.0f)
 		{
-			ship.position.x = GetScreenWidth()+ ship.texture.width / 4;
+			ship.position.x = width + textureWidth / 4.0f;
 		}
-		else if (ship.position.x > GetScreenWidth()+ ship.texture.width / 4)
+		else if (ship.position.x > width + textureWidth / 4.0f)
 		{
-			ship.position.x = 0;
+			ship.position.x = 0.0f;
 		}
-		if (ship.position.y < 0 - ship.texture.height)
+		if (ship.position.y < 0.0f - textureHeight)
 		{
-			ship.position.y = GetScreenHeight()+ ship.texture.height/2;
+			ship.position.y = height + textureHeight /2;
 		}
-		else if (ship.position.y > GetScreenHeight()+ ship.texture.height/2)
+		else if (ship.position.y > height + textureHeight /2)
 		{
-			ship.position.y = 0 - ship.texture.height/2;
+			ship.position.y = 0.0f - textureHeight /2;
 		}
 	}
 	void warpOutOfBounds(GameObjects::Asteroid& asteroid)
 	{
-		if (asteroid.circle.position.x < 0 - asteroid.texture.width)
+		float width = static_cast<float>(GetScreenWidth());
+		float height = static_cast<float>(GetScreenHeight());
+		if (asteroid.circle.position.x < 0.0f - asteroid.texture.width)
 		{
-			asteroid.circle.position.x = GetScreenWidth();
+			asteroid.circle.position.x = width;
 		}
-		else if (asteroid.circle.position.x > GetScreenWidth())
+		else if (asteroid.circle.position.x > width)
 		{
 			asteroid.circle.position.x = 0 - asteroid.texture.width;
 		}
 		if (asteroid.circle.position.y < 0 - asteroid.texture.width)
 		{
-			asteroid.circle.position.y = GetScreenHeight();
+			asteroid.circle.position.y = height;
 		}
-		else if (asteroid.circle.position.y > GetScreenHeight())
-		{
-			asteroid.circle.position.y = 0 - asteroid.texture.height;
+		else if (asteroid.circle.position.y > height)
+			asteroid.circle.position.y = 0 - height;
 		}
-	}
 	void warpOutOfBounds(GameObjects::Bullet& bullet)
 	{
-		if ((bullet.circle.position.x < 0 - bullet.texture.width) || (bullet.circle.position.x > GetScreenWidth()) || (bullet.circle.position.y < 0 - bullet.texture.width) || (bullet.circle.position.y > GetScreenHeight()))
+		float width = static_cast<float>(GetScreenWidth());
+		float height = static_cast<float>(GetScreenHeight());
+		if ((bullet.circle.position.x < 0 - bullet.texture.width) || (bullet.circle.position.x > width) || (bullet.circle.position.y < 0 - bullet.texture.width) || (bullet.circle.position.y > height))
 		{
 			deactivateBullet(bullet);
 		}
@@ -72,10 +79,10 @@ namespace GameLogic
 	}
 	void moveSpaceShip(SpaceShip& ship)
 	{
-		ship.direction = getSpaceShipDirection(ship);
+		ship.direction = GameLogic::getSpaceShipDirection(ship);
 
 
-		ship.rotation = getSpaceShipRotation(ship.direction);
+		ship.rotation = GameLogic::getSpaceShipRotation(ship.direction);
 
 		Vector2 normalizedDirection = Vector2Normalize(ship.direction);
 
@@ -116,11 +123,11 @@ namespace GameLogic
 	}
 	void updateCurrentSpaceShipPos(SpaceShip ship)
 	{
-		currentShipPos = { ship.dest.x, ship.dest.y };
+		GameLogic::currentShipPos = { ship.dest.x, ship.dest.y };
 	}
 	void rotateAsteroidTowardSpaceShip(GameObjects::Asteroid& asteroid)
 	{
-		Vector2 direction = { asteroid.circle.position.x - currentShipPos.x, asteroid.circle.position.y - currentShipPos.y };
+		Vector2 direction = { asteroid.circle.position.x - GameLogic::currentShipPos.x, asteroid.circle.position.y - GameLogic::currentShipPos.y };
 		float grades = (atan(direction.y / direction.x)) * (180 / PI);
 		if (direction.x < 0)
 		{
@@ -136,4 +143,3 @@ namespace GameLogic
 		warpOutOfBounds(asteroid);
 	}
 
-}
