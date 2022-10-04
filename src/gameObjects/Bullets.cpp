@@ -32,9 +32,10 @@ namespace GameObjects
 		Rectangle dest{ bullet.circle.position.x  ,bullet.circle.position.y,static_cast<float>(bullet.texture.width),static_cast<float>(bullet.texture.height)  };
 		
 #if _DEBUG
-		DrawCircle(bullet.circle.position.x,bullet.circle.position.y,bullet.circle.radius, BLUE);
+		
+		DrawCircle(static_cast<int>(bullet.circle.position.x), static_cast<int>(bullet.circle.position.y),bullet.circle.radius, BLUE);
 #endif
-		drawTexture(bullet.texture,source,dest	, { bullet.texture.width /2.0f,bullet.texture.height / 2.0f },bullet.rotation, 1,WHITE);
+		drawTexture(bullet.texture,source,dest	, { static_cast<float>(bullet.texture.width) /2.0f,static_cast<float>(bullet.texture.height) / 2.0f },bullet.rotation, 1,WHITE);
 
 	}
 

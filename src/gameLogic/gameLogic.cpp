@@ -156,7 +156,7 @@ void playGame()
 		GameLogic::updateCurrentSpaceShipPos(spaceShip);
 		updateShip();
 		updateBullet();
-		shootBullets(spaceShip);
+		shootBullets();
 
 		changeShipPosition();
 		for (int i = 0; i < maxBullets; i++)

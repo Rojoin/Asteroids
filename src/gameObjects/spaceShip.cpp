@@ -57,7 +57,7 @@ void drawShip()
 	DrawCircle(static_cast<int>(spaceShip.circle.position.x), static_cast<int>(spaceShip.circle.position.y), spaceShip.circle.radius,RED);
 #endif
 
-	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { spaceShip.texture.width / 8.0f, spaceShip.texture.height / 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
+	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { static_cast<float>(spaceShip.texture.width) / 8.0f, static_cast<float>(spaceShip.texture.height )/ 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
 }
 void updateShip()
 {

@@ -1,9 +1,9 @@
 #pragma once
 #include "raylib.h"
-#include "raymath.h"
+
 #include "../gameObjects/spaceShip.h"
 #include "../gameObjects/Asteroid.h"
-#include "../gameLogic/mouseInputs.h"
+
 
 using namespace GameObjects;
 namespace GameLogic

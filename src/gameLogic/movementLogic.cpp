@@ -1,6 +1,8 @@
 #include "movementLogic.h"
 #include  <iostream>
+#include <raymath.h>
 
+#include "mouseInputs.h"
 #include "../gameObjects/Asteroid.h"
 
 
@@ -24,14 +26,14 @@ namespace GameLogic
 		}
 		return grades;
 	}
-	}
+
 	void warpOutOfBounds(SpaceShip& ship)
 	{
 		float width = static_cast<float>(GetScreenWidth());
 		float height = static_cast<float>(GetScreenHeight());
 		float textureWidth = static_cast<float>(ship.texture.width);
 		float textureHeight = static_cast<float>(ship.texture.height);
-		if (ship.position.x < 0.0f - textureWidth/ 4.0f)
+		if (ship.position.x < 0.0f - textureWidth / 4.0f)
 		{
 			ship.position.x = width + textureWidth / 4.0f;
 		}
@@ -41,32 +43,34 @@ namespace GameLogic
 		}
 		if (ship.position.y < 0.0f - textureHeight)
 		{
-			ship.position.y = height + textureHeight /2;
+			ship.position.y = height + textureHeight / 2;
 		}
-		else if (ship.position.y > height + textureHeight /2)
+		else if (ship.position.y > height + textureHeight / 2)
 		{
-			ship.position.y = 0.0f - textureHeight /2;
+			ship.position.y = 0.0f - textureHeight / 2;
 		}
 	}
 	void warpOutOfBounds(GameObjects::Asteroid& asteroid)
 	{
 		float width = static_cast<float>(GetScreenWidth());
 		float height = static_cast<float>(GetScreenHeight());
-		if (asteroid.circle.position.x < 0.0f - asteroid.texture.width)
+		float textureWidth = static_cast<float>(asteroid.texture.width);
+		float textureHeight = static_cast<float>(asteroid.texture.height);
+		if (asteroid.circle.position.x < 0.0f - textureWidth)
 		{
 			asteroid.circle.position.x = width;
 		}
 		else if (asteroid.circle.position.x > width)
 		{
-			asteroid.circle.position.x = 0 - asteroid.texture.width;
+			asteroid.circle.position.x = 0 - textureWidth;
 		}
-		if (asteroid.circle.position.y < 0 - asteroid.texture.width)
+		if (asteroid.circle.position.y < 0 - textureHeight)
 		{
 			asteroid.circle.position.y = height;
 		}
 		else if (asteroid.circle.position.y > height)
 			asteroid.circle.position.y = 0 - height;
-		}
+	}
 	void warpOutOfBounds(GameObjects::Bullet& bullet)
 	{
 		float width = static_cast<float>(GetScreenWidth());
@@ -94,7 +98,7 @@ namespace GameLogic
 
 			ship.aceleration.x += normalizedDirection.x * GetFrameTime() * ship.maxSpeed;
 			ship.aceleration.y += normalizedDirection.y * GetFrameTime() * ship.maxSpeed;
-			ship.textureIndex += ship.texture.width/4;
+			ship.textureIndex += ship.texture.width / 4;
 			if (ship.textureIndex > ship.texture.width)
 			{
 				ship.textureIndex = 64;
@@ -105,7 +109,7 @@ namespace GameLogic
 		{
 			ship.textureIndex = 0;
 		}
-	
+
 		if (ship.aceleration.x > ship.maxSpeed) 	ship.aceleration.x = ship.maxSpeed;
 		else if (ship.aceleration.x < -ship.maxSpeed)ship.aceleration.x = -ship.maxSpeed;
 		if (ship.aceleration.y > ship.maxSpeed)		ship.aceleration.y = ship.maxSpeed;
@@ -138,8 +142,9 @@ namespace GameLogic
 	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid)
 	{
 		rotateAsteroidTowardSpaceShip(asteroid);
-		
+
 
 		warpOutOfBounds(asteroid);
 	}
 
+}
