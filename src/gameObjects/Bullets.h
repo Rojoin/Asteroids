@@ -1,6 +1,6 @@
 #pragma once
 #include <raylib.h>
-#include "../system/circle.h"
+#include "system/circle.h"
 #include "GameObjectsEnums.h"
 
 

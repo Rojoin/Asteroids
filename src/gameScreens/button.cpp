@@ -1,7 +1,7 @@
 #include "button.h"
 #include "raylib.h"
 #include "string"
-#include "../system/draw.h"
+#include "system/draw.h"
 
 Font customFont;
 

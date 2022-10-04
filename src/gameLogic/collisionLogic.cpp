@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "../system/collisionFunctions.h"
-#include "../gameObjects/spaceShip.h"
+#include "system/collisionFunctions.h"
+#include "gameObjects/spaceShip.h"
 
 //Podria hacer que suba con el tiempo el spawn de los grandes
 extern SpaceShip spaceShip;

@@ -1,6 +1,6 @@
 #include "Bullets.h"
-#include "../gameLogic/movementLogic.h"
-#include "../system/draw.h"
+#include "gameLogic/movementLogic.h"
+#include "system/draw.h"
 
 
 namespace GameObjects

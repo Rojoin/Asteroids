@@ -2,7 +2,7 @@
 
 #include <raymath.h>
 
-#include "../system/draw.h"
+#include "system/draw.h"
 
 namespace GameObjects
 {

@@ -5,11 +5,11 @@
 #include "collisionLogic.h"
 #include "movementLogic.h"
 #include "shootLogic.h"
-#include "../system/collisionFunctions.h"
 #include "mouseInputs.h"
-#include "../gameScreens/button.h"
-#include "../gameScreens/GameStates.h"
-#include "../system/draw.h"
+#include "gameScreens/button.h"
+#include "gameScreens/GameStates.h"
+#include "system/collisionFunctions.h"
+#include "system/draw.h"
 
 
 extern SpaceShip spaceShip;

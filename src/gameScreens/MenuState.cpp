@@ -3,9 +3,9 @@
 #include "button.h"
 #include "GameStates.h"
 #include "raylib.h"
-#include  "../gameLogic/gameLogic.h"
-#include  "../system/collisionFunctions.h"
-#include "../system/draw.h"
+#include  "gameLogic/gameLogic.h"
+#include  "system/collisionFunctions.h"
+#include "system/draw.h"
 
 Vector2 middleScreen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
 extern Font customFont;

@@ -1,8 +1,8 @@
 #pragma once
 #include "raylib.h"
 
-#include "../gameObjects/spaceShip.h"
-#include "../gameObjects/Asteroid.h"
+#include "gameObjects/spaceShip.h"
+#include "gameObjects/Asteroid.h"
 
 
 using namespace GameObjects;

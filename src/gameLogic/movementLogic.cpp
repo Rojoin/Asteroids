@@ -3,7 +3,7 @@
 #include <raymath.h>
 
 #include "mouseInputs.h"
-#include "../gameObjects/Asteroid.h"
+#include "gameObjects/Asteroid.h"
 
 
 namespace GameLogic

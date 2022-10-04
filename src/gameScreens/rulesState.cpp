@@ -1,7 +1,7 @@
 #include  "rulesState.h"
 #include  "GameStates.h"
 #include <raylib.h>
-#include "../system/draw.h"
+#include "system/draw.h"
 #include "button.h"
 
 extern Font customFont;

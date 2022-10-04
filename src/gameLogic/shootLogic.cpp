@@ -1,7 +1,7 @@
 #include "shootLogic.h"
 
 #include "mouseInputs.h"
-#include "../gameObjects/spaceShip.h"
+#include "gameObjects/spaceShip.h"
 
 
 using namespace GameObjects;

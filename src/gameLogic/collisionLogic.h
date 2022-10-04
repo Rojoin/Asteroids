@@ -1,7 +1,7 @@
 #pragma once
-#include "../gameObjects/Asteroid.h"
-#include "../gameObjects/spaceShip.h"
-#include "../gameObjects/Bullets.h"
+#include "gameObjects/Asteroid.h"
+#include "gameObjects/spaceShip.h"
+#include "gameObjects/Bullets.h"
 
 
 using namespace GameObjects;
