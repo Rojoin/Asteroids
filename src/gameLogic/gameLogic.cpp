@@ -266,7 +266,7 @@ void drawPauseMenu()
 void drawUI()
 {
 	
-	std::string playerScore = TextFormat("Score:%1i", spaceShip.score);
+	std::string playerScore = TextFormat("Score:%0.0F", spaceShip.score);
 	std::string maxScore = TextFormat("Max:%1i", spaceShip.score);
 	Vector2 scoreMeasure = MeasureTextEx(customFont, playerScore.c_str(), 50, 0);
 	Vector2 maxScoreMeasure = MeasureTextEx(customFont, maxScore.c_str(), 50, 0);
@@ -276,7 +276,7 @@ void drawUI()
 		drawTexture(livesTexture, { livesTexture.width * (i + 1.0f),scoreMeasure.y }, 0, 1, WHITE);
 	}
 	//Implementar MaxScore
-	drawText(maxScore.c_str(), GetScreenWidth()-maxScoreMeasure.x*1.5f, 0, 50, BLACK, customFont);
+	drawText(maxScore, GetScreenWidth()-maxScoreMeasure.x*1.5f, 0, 50, BLACK, customFont);
 }
 void drawGame()
 {
@@ -299,6 +299,7 @@ void drawGame()
 
 		GameObjects::drawAsteroid(smallAsteroid[i]);
 	}
+	
 	drawShip();
 	drawButtonTranslucent(pauseMenuButton);
 	drawUI();
