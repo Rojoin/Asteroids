@@ -84,14 +84,18 @@ namespace GameLogic
 	void moveSpaceShip(SpaceShip& ship)
 	{
 		ship.direction = GameLogic::getSpaceShipDirection(ship);
-
-
 		ship.rotation = GameLogic::getSpaceShipRotation(ship.direction);
 
+		if (abs(ship.direction.x) < ship.circle.radius)
+		{
+			ship.direction.x = 0.0f;
+		}
+		if (abs(ship.direction.y) < ship.circle.radius)
+		{
+			ship.direction.y = 0.0f;
+		}
+
 		Vector2 normalizedDirection = Vector2Normalize(ship.direction);
-
-
-
 
 		if (Inputs::isMouseKeyDown(MOUSE_BUTTON_RIGHT))
 		{
@@ -110,10 +114,22 @@ namespace GameLogic
 			ship.textureIndex = 0;
 		}
 
-		if (ship.aceleration.x > ship.maxSpeed) 	ship.aceleration.x = ship.maxSpeed;
-		else if (ship.aceleration.x < -ship.maxSpeed)ship.aceleration.x = -ship.maxSpeed;
-		if (ship.aceleration.y > ship.maxSpeed)		ship.aceleration.y = ship.maxSpeed;
-		else if (ship.aceleration.y < -ship.maxSpeed)ship.aceleration.y = -ship.maxSpeed;
+		if (ship.aceleration.x > ship.maxSpeed)
+		{
+			ship.aceleration.x = ship.maxSpeed;
+		}
+		else if (ship.aceleration.x < -ship.maxSpeed)
+		{
+			ship.aceleration.x = -ship.maxSpeed;
+		}
+		if (ship.aceleration.y > ship.maxSpeed)
+		{
+			ship.aceleration.y = ship.maxSpeed;
+		}
+		else if (ship.aceleration.y < -ship.maxSpeed)
+		{
+			ship.aceleration.y = -ship.maxSpeed;
+		}
 
 
 

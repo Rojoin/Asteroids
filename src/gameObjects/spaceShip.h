@@ -17,6 +17,7 @@
 		float maxSpeed;
 		float score;
 		int lives;
+		bool isDead;
 		Sound deathSound;
 		Rectangle source;
 		Rectangle dest;
@@ -36,4 +37,5 @@
 	void activateBullet();
 	void resetSpaceShip(SpaceShip& ship, Vector2 position);
 	void initBullets(Texture2D bulletTexture, Sound sound);
+	void drawShipDestruction();
 

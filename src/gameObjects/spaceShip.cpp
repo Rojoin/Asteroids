@@ -8,7 +8,7 @@
 SpaceShip spaceShip;
 
 
-SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale,Sound sound)
+SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale, Sound sound)
 {
 	SpaceShip ship;
 	ship.score = 0;
@@ -19,26 +19,26 @@ SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, flo
 	ship.deathSound = sound;
 	ship.rotation = rotation;
 	ship.lives = 3;
+	ship.isDead = false;
 	ship.maxSpeed = 200.0f;
 	ship.bulletIndex = 0;
-	ship.circle={ ship.position.x,ship.position.y,ship.scale * ship.texture.width/8 };
-	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height };
-	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * scale,(float)ship.texture.height * scale };
+	ship.circle = { ship.position.x,ship.position.y,ship.scale * ship.texture.width / 8 };
+	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height/2 };
+	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * scale,(float)ship.texture.height/2 * scale };
 	return ship;
 }
-void resetSpaceShip(SpaceShip& ship,Vector2 position)
+void resetSpaceShip(SpaceShip& ship, Vector2 position)
 {
 	PlaySound(ship.deathSound);
 	ship.position = position;
 	ship.lives--;
 	ship.aceleration = { 0,0 };
 	ship.circle = { ship.position.x,ship.position.y,ship.scale * ship.texture.width / 8 };
-	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height };
-	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * ship.scale,(float)ship.texture.height *ship. scale };
-
+	ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height/2 };
+	ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * ship.scale,(float)ship.texture.height/2 * ship.scale };
 }
 
-void initBullets(Texture2D bulletTexture,Sound sound)
+void initBullets(Texture2D bulletTexture, Sound sound)
 {
 	for (int i = 0; i < 10; i++)
 	{
@@ -49,25 +49,35 @@ void initBullets(Texture2D bulletTexture,Sound sound)
 	}
 
 }
+
+void drawShipDestruction()
+{
+	//float shipHeight = static_cast<float>(spaceShip.texture.height);
+	//float shipWidth = static_cast<float>(spaceShip.texture.width);
+	//spaceShip.source = { shipHeight,0,shipWidth / 4.0f,shipHeight / 2 };
+}
+
 void drawShip()
 {
 #if _DEBUG
 
 	DrawRectangle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), 2, 2, BLUE);
-	DrawCircle(static_cast<int>(spaceShip.circle.position.x), static_cast<int>(spaceShip.circle.position.y), spaceShip.circle.radius,RED);
+	DrawCircle(static_cast<int>(spaceShip.circle.position.x), static_cast<int>(spaceShip.circle.position.y), spaceShip.circle.radius, RED);
 #endif
 
-	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { static_cast<float>(spaceShip.texture.width) / 8.0f, static_cast<float>(spaceShip.texture.height )/ 2.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
+
+	drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { static_cast<float>(spaceShip.texture.width) / 8.0f, static_cast<float>(spaceShip.texture.height) / 4.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
 }
 void updateShip()
 {
-	if (spaceShip.source.x >spaceShip.texture.width)
+	if (spaceShip.source.x > spaceShip.texture.width)
 	{
 		spaceShip.source.x = 0;
 	}
 	spaceShip.circle = { spaceShip.position.x,spaceShip.position.y,spaceShip.circle.radius };
+	
 	spaceShip.source = { spaceShip.source.x + spaceShip.textureIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
-	spaceShip.dest = { spaceShip.position.x  ,spaceShip.position.y + spaceShip.texture.height / 32.0f ,spaceShip.dest.width,spaceShip.dest.height };
+	spaceShip.dest = { spaceShip.position.x,spaceShip.position.y + spaceShip.texture.height / 32.0f ,spaceShip.dest.width,spaceShip.dest.height };
 }
 void changeShipPosition()
 {
@@ -111,5 +121,4 @@ void activateBullet()
 
 
 }
-
 
