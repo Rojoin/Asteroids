@@ -2,6 +2,7 @@
 
 #include "button.h"
 #include "GameStates.h"
+#include "menuState.h"
 #include "raylib.h"
 #include  "gameLogic/gameLogic.h"
 #include  "system/collisionFunctions.h"
@@ -20,7 +21,7 @@ Button exitButton = createButton("   EXIT", RED);
 
 
 
-void stateMenu(GameStates& gamestate)
+void statesMenu(GameStates& gamestate)
 {
 
 	middleScreen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
@@ -89,7 +90,7 @@ void stateMenu(GameStates& gamestate)
 		creditsButton.isOverThisButton = true;
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 		{
-		
+			setGameState(GameStates::Credits);
 		}
 	}
 	else

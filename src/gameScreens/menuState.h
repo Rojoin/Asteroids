@@ -2,5 +2,5 @@
 #include "GameStates.h"
 
 
-void stateMenu(GameStates& gamestate);
+void statesMenu(GameStates& gamestate);
 void drawMenu();
