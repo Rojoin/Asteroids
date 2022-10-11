@@ -179,6 +179,7 @@ XCOPY "$(SolutionDir)resources" "$(SolutionDir)bin\$(Platform)\$(Configuration)\
     <ClCompile Include="src\gameScreens\button.cpp" />
     <ClCompile Include="src\gameScreens\creditsState.cpp" />
     <ClCompile Include="src\gameScreens\GameStates.cpp" />
+    <ClCompile Include="src\gameScreens\initialAnimationScreen.cpp" />
     <ClCompile Include="src\gameScreens\rulesState.cpp" />
     <ClCompile Include="src\gameScreens\MenuState.cpp" />
     <ClCompile Include="src\gameScreens\optionState.cpp" />
@@ -200,6 +201,7 @@ XCOPY "$(SolutionDir)resources" "$(SolutionDir)bin\$(Platform)\$(Configuration)\
     <ClInclude Include="src\gameScreens\button.h" />
     <ClInclude Include="src\gameScreens\creditsState.h" />
     <ClInclude Include="src\gameScreens\GameStates.h" />
+    <ClInclude Include="src\gameScreens\initialAnimationScreen.h" />
     <ClInclude Include="src\gameScreens\rulesState.h" />
     <ClInclude Include="src\gameScreens\menuState.h" />
     <ClInclude Include="src\gameScreens\optionsState.h" />
