@@ -4,12 +4,6 @@
     <ClCompile Include="src\gameObjects\spaceShip.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameObjects\Bullets.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gameObjects\Asteroid.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="src\gameLogic\movementLogic.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
@@ -31,45 +25,45 @@
     <ClCompile Include="src\gameLogic\gameLogic.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameScreens\StatesManager.cpp">
-      <Filter>GameScreens</Filter>
+    <ClCompile Include="src\system\main.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameScreens\MenuState.cpp">
-      <Filter>GameScreens</Filter>
+    <ClCompile Include="src\gameObjects\asteroid.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameObjects\bullets.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameObjects\powerUp.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="src\gameScreens\button.cpp">
-      <Filter>GameScreens</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gameScreens\GameStates.cpp">
-      <Filter>GameScreens</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gameScreens\rulesState.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
     <ClCompile Include="src\gameScreens\creditsState.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
+    <ClCompile Include="src\gameScreens\gameStates.cpp">
+      <Filter>GameScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameScreens\initialAnimationScreen.cpp">
+      <Filter>GameScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameScreens\menuState.cpp">
+      <Filter>GameScreens</Filter>
+    </ClCompile>
     <ClCompile Include="src\gameScreens\optionState.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
-    <ClCompile Include="src\system\main.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="src\gameScreens\rulesState.cpp">
+      <Filter>GameScreens</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameScreens\initialAnimationScreen.cpp">
+    <ClCompile Include="src\gameScreens\statesManager.cpp">
       <Filter>GameScreens</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gameObjects\spaceShip.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameObjects\Bullets.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameObjects\Asteroid.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameObjects\GameObjectsEnums.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="src\system\circle.h">
@@ -96,28 +90,40 @@
     <ClInclude Include="src\gameLogic\gameLogic.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameScreens\statesManager.h">
-      <Filter>GameScreens</Filter>
+    <ClInclude Include="src\gameObjects\asteroid.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameScreens\GameStates.h">
-      <Filter>GameScreens</Filter>
+    <ClInclude Include="src\gameObjects\bullets.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameObjects\gameObjectsEnums.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameObjects\powerUp.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="src\gameScreens\button.h">
-      <Filter>GameScreens</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameScreens\menuState.h">
-      <Filter>GameScreens</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameScreens\rulesState.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
     <ClInclude Include="src\gameScreens\creditsState.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameScreens\optionsState.h">
+    <ClInclude Include="src\gameScreens\gameStates.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
     <ClInclude Include="src\gameScreens\initialAnimationScreen.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\menuState.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\optionsState.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\rulesState.h">
+      <Filter>GameScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameScreens\statesManager.h">
       <Filter>GameScreens</Filter>
     </ClInclude>
   </ItemGroup>
