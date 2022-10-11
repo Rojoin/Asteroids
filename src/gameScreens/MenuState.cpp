@@ -24,7 +24,7 @@ Button exitButton = createButton("   EXIT", RED);
 void statesMenu(GameStates& gamestate)
 {
 
-	middleScreen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
+	middleScreen = {static_cast<float> (GetScreenWidth()) / 2.0f,static_cast<float>(GetScreenHeight()) / 2.0f };
 	playButton = createButton(middleScreen.x-playButton.rec.width/2,middleScreen.y -playButton.rec.height / 2, "   PLAY", DARKGREEN);
 	howToPlayButton = createButton(middleScreen.x-howToPlayButton.rec.width/2, playButton.rec.y+ howToPlayButton.rec.height*2, howToPlayButton.buttonTittle, howToPlayButton.color);
 	optionsButton = createButton(middleScreen.x - optionsButton.rec.width / 2, howToPlayButton.rec.y + optionsButton.rec.height * 2, optionsButton.buttonTittle, optionsButton.color);
@@ -95,7 +95,7 @@ void statesMenu(GameStates& gamestate)
 	}
 	else
 	{
-		exitButton.isOverThisButton = false;
+		creditsButton.isOverThisButton = false;
 	}
 	if (isPointRecColliding(mousePoint, exitButton.rec))
 	{
@@ -126,6 +126,5 @@ void drawMenu()
 	std::string titleScreen = "The Last Slice";
 	
 	drawText(titleScreen, width / 2.0f - static_cast<float>(titleScreen.length()) * fontSize *1.5f, (height / 8.0f), fontSize * 8.0f, BLACK,customFont);
-	//DrawText(titleScreen.c_str(), ((GetScreenWidth() / 2) - titleScreen.length() * fontSize), GetScreenHeight() / 8, fontSize * 4, RED);
 
 }
