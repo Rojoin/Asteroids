@@ -15,15 +15,19 @@ namespace GameObjects
 		float rotation;
 		float scale;
 		float speed;
+		float maxSpeed;
 		float points;
 		bool isActive;
+		Vector2 direction;
 	};
+
+	Asteroid createSpecialAsteroid();
 	Asteroid createBigAsteroid();
 	Asteroid createMediumAsteroid();
-	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid, int multiplier);
+	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid, float multiplier);
 	Asteroid createSmallAsteroid();
 	void changeAsteroidPosition(Asteroid& asteroid);
-	void updateAsteroid(Asteroid& asteroid);
+	void updateSpecialAsteroid(Asteroid& asteroid,Vector2 shipPos);
 	void deactivateAsteroid(Asteroid& asteroid);
 	void activateAsteroid(Asteroid& asteroid);
 	void resetAsteroid(Asteroid& asteroid);
