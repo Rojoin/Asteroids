@@ -4,25 +4,27 @@
 namespace Inputs
 {
 	Vector2 getMouseInput()
-{
-	return GetMousePosition();
-}
-bool isMouseKeyDown(int mouse)
-{
-	if (IsMouseButtonDown(mouse))
 	{
-		return true;
+		return GetMousePosition();
 	}
-	else return false;
-}
+
+	bool isMouseKeyDown(int mouse)
+	{
+		if (IsMouseButtonDown(mouse))
+		{
+			return true;
+		}
+		else return false;
+	}
+
 	bool isMouseKeyPressed(int mouse)
-{
-	if (IsMouseButtonPressed(mouse))
 	{
-		return true;
+		if (IsMouseButtonPressed(mouse))
+		{
+			return true;
+		}
+		else return false;
 	}
-	else return false;
-}
 }
 
 
