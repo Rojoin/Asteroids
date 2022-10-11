@@ -17,14 +17,9 @@ int maxAlpha = 255;
 Color transparency ={255,255,255,0};
 void statesInitialAnimation()
 {
-	if (Inputs::isMouseKeyDown(MOUSE_BUTTON_LEFT))
-	{
-		setGameState(GameStates::Menu);
-	}
 	normalizedTime = timePlayed / maxTime;
+	timePlayed += GetFrameTime();
 
-		timePlayed += GetFrameTime();
-	
 	if (timePlayed < maxTime/2 && normalizedTime <0.5f)
 	{
 		currentAlpha = static_cast<int>(normalizedTime *255*4);
@@ -33,8 +28,6 @@ void statesInitialAnimation()
 			setGameState(GameStates::Menu);
 		}
 	}
-	
-
 	transparency.a = static_cast<unsigned char>(currentAlpha);
 }
 
