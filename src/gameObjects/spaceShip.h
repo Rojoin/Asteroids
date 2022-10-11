@@ -9,7 +9,7 @@ namespace GameObjects
 	struct SpaceShip
 	{
 		Vector2 position;
-		GameObjects::Bullet bullet[20];
+		Bullet bullet[20];
 		int bulletIndex = 0;
 		Vector2 aceleration;
 		Texture2D texture;

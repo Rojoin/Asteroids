@@ -10,7 +10,7 @@ void drawButton(Button button)
 	float roundness = 10;
 	int segments = 8;
 	DrawRectangleRounded(button.rec, roundness, segments, button.color);
-	
+
 	drawText(button.buttonTittle, button.rec.x, button.rec.y + button.rec.height / 3, 25, BLACK, customFont);
 
 	if (button.isOverThisButton)
