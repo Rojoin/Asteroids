@@ -8,9 +8,5 @@ using namespace GameObjects;
 namespace GameLogic
 {
 	void asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet);
-
 	bool asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship);
-
-
-
 }
