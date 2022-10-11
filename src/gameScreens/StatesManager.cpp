@@ -13,7 +13,7 @@
 
 
 GameStates gameStates;
-
+Image gameIcon;
 Texture2D wallpaper;
 extern Texture2D creditsTexture;
 extern Texture2D titleTexture;
@@ -29,7 +29,7 @@ extern Sound deathSound;
 extern Sound collisionSound;
 extern Font customFont;
 extern Sound bulletSound;
-	extern SpaceShip spaceShip;
+	extern GameObjects::SpaceShip spaceShip;
 	Music mainTheme;
 void loadResources()
 {
@@ -48,6 +48,7 @@ void loadResources()
 	asteroidSmallTexture = LoadTexture("resources/smallHand.png");
 	creditsTexture = LoadTexture("resources/credits.png");
 	titleTexture = LoadTexture("resources/titleLogo.png");
+	gameIcon = LoadImage("resources/titleLogo.png");
 	GenTextureMipmaps(&titleTexture);
 	SetTextureFilter(titleTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	GenTextureMipmaps(&customFont.texture);
@@ -73,6 +74,7 @@ void unLoadResources()
 	UnloadTexture(splashScreen);
 	UnloadTexture(livesTexture);
 	UnloadTexture(titleTexture);
+	UnloadImage(gameIcon);
 
 }
 void initProgram()
@@ -80,14 +82,15 @@ void initProgram()
 	setGameState(GameStates::InitialAnimation);
 	SetRandomSeed(static_cast<unsigned int>(time(NULL)));
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-	InitWindow(1024, 768, "Ship Example");
+	InitWindow(1024, 768, "The Last Slice");
+	loadResources();
+	SetWindowIcon(gameIcon);
 	SetExitKey(NULL);
 	InitAudioDevice();
 	SetWindowMinSize(1024, 768);
 
 
 	bool isProgramRunning = true;
-	loadResources();
 	mainTheme = LoadMusicStream("resources/theLastSlice.mp3");
 	
 	SetMusicVolume(mainTheme, 0.5);
@@ -105,7 +108,7 @@ void initProgram()
 			statesMenu(gameStates);
 			break;
 		case GameStates::Game:
-			playGame();
+			GameLogic::playGame();
 			break;
 		case GameStates::Rules:
 			statesRules();
@@ -130,7 +133,7 @@ void initProgram()
 			drawMenu();
 			break;
 		case GameStates::Game:
-			drawGame();
+			GameLogic::drawGame();
 			break;
 		case GameStates::Rules:
 			drawRules();
