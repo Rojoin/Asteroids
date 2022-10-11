@@ -19,7 +19,7 @@ Button optionsButton = createButton("  OPTIONS ", YELLOW);
 Button creditsButton = createButton("  CREDITS ", YELLOW);
 Button exitButton = createButton("   EXIT", RED);
 
-
+Texture2D titleTexture;
 
 void statesMenu(GameStates& gamestate)
 {
@@ -124,7 +124,7 @@ void drawMenu()
 	fontSize = 16;
 	drawText(creator.c_str(), width / 2.0f + static_cast<float>(creator.length()), height - fontSize, fontSize, RED,customFont);
 	std::string titleScreen = "The Last Slice";
-	
 	drawText(titleScreen, width / 2.0f - static_cast<float>(titleScreen.length()) * fontSize *1.5f, (height / 8.0f), fontSize * 8.0f, BLACK,customFont);
+	drawTexture(titleTexture, { width / 3.0f- static_cast<float>(titleScreen.length()) * fontSize * 1.5f,height/16.0f }, 0, 0.17f, WHITE);
 
 }
