@@ -1,5 +1,5 @@
 
-#include "../gameScreens/statesManager.h"
+#include "gameScreens/statesManager.h"
 
 int main()
 {
