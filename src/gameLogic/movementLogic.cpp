@@ -39,15 +39,15 @@ namespace GameLogic
 		}
 		else if (ship.position.x > width + textureWidth / 4.0f)
 		{
-			ship.position.x = 0.0f;
+			ship.position.x = 0.0f- textureWidth / 4.0f;
 		}
-		if (ship.position.y < 0.0f - textureHeight)
+		if (ship.position.y < 0.0f - textureHeight/4)
 		{
-			ship.position.y = height + textureHeight / 2;
+			ship.position.y = height + textureHeight / 4;
 		}
 		else if (ship.position.y > height + textureHeight / 2)
 		{
-			ship.position.y = 0.0f - textureHeight / 2;
+			ship.position.y = 0.0f - textureHeight / 4;
 		}
 	}
 	void warpOutOfBounds(GameObjects::Asteroid& asteroid)
@@ -69,7 +69,7 @@ namespace GameLogic
 			asteroid.circle.position.y = height;
 		}
 		else if (asteroid.circle.position.y > height)
-			asteroid.circle.position.y = 0 - height;
+			asteroid.circle.position.y = 0 - textureHeight;
 	}
 	void warpOutOfBounds(GameObjects::Bullet& bullet)
 	{
@@ -130,9 +130,6 @@ namespace GameLogic
 		{
 			ship.aceleration.y = -ship.maxSpeed;
 		}
-
-
-
 
 		warpOutOfBounds(ship);
 		for (int i = 0; i < 10; ++i)
