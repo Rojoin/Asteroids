@@ -2,6 +2,8 @@
 #include <raylib.h>
 #include "Bullets.h"
 
+namespace GameObjects
+{
 
 
 	struct SpaceShip
@@ -23,8 +25,6 @@
 		Rectangle dest;
 		Circle circle;
 		Vector2 direction;
-
-
 	};
 
 	SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale, Sound sound);
@@ -39,3 +39,4 @@
 	void initBullets(Texture2D bulletTexture, Sound sound);
 	void drawShipDestruction();
 
+}

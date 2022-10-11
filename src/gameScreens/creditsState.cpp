@@ -32,10 +32,7 @@ void drawCredits()
 	ClearBackground(BLACK);
 	float scale = 0.12f;
 
-
 	drawTexture(creditsTexture, { width / 2.0f -(creditsTexture.width/2.0f)* scale, 0}, 0, scale, WHITE);
-
-
 	drawButton(escapeButton);
 
 
