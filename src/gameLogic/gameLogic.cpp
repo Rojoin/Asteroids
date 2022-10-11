@@ -118,7 +118,7 @@ namespace GameLogic
 				highScore = spaceShip.score;
 				if (SaveStorageValue(0, static_cast<int>(highScore)))
 				{
-					std::cout << "Se guardoCorrectamente";
+					std::cout << "Se guardo Correctamente";
 				}
 			}
 			setGameState(GameStates::Menu);
