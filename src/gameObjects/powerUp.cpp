@@ -2,16 +2,33 @@
 #include "PowerUp.h"
 #include "system/draw.h"
 
+
+Texture2D powerUpSniperTexture;
+Texture2D powerUpPiercingTexture;
 namespace GameObjects
 {
-
-	PowerUp createPowerUp(float timer, float timerActive, BulletType type)
+	
+	PowerUp createPowerUpPiercing(float timer, float timerActive)
 	{
 		PowerUp powerUp;
-
+		powerUp.texture = powerUpPiercingTexture;
 		powerUp.circle = { {0,0},50 };
 		powerUp.timer = timer;
-		powerUp.type = type;
+		powerUp.type = BulletType::Piercing;
+		powerUp.scale = 1;
+		powerUp.timerActive = timerActive;
+		powerUp.isActive = false;
+		powerUp.isSpawned = false;
+
+		return powerUp;
+	}
+	PowerUp createPowerUpSniper(float timer, float timerActive)
+	{
+		PowerUp powerUp;
+		powerUp.texture = powerUpSniperTexture;
+		powerUp.circle = { {0,0},50 };
+		powerUp.timer = timer;
+		powerUp.type = BulletType::Sniper;
 		powerUp.scale = 1;
 		powerUp.timerActive = timerActive;
 		powerUp.isActive = false;
@@ -33,9 +50,9 @@ namespace GameObjects
 		int spawn = GetRandomValue(1, 4);
 		float width = static_cast<float>(GetScreenWidth());
 		float height = static_cast<float>(GetScreenHeight());
-		powerUp = createPowerUp(timer, timerActive,powerUp.type);
 		powerUp.isSpawned = true;
-
+		timer = 0;
+		timerActive = 0;
 		switch (spawn)
 		{
 		case 1:
@@ -57,6 +74,7 @@ namespace GameObjects
 		}
 	}
 
+	
 	void setPowerUpTimer(PowerUp& powerUp, float timer)
 	{
 		powerUp.timer = timer;
