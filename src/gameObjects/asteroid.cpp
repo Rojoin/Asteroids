@@ -6,12 +6,17 @@
 #include "system/draw.h"
 
 static float asteroidAnimIndex = 0;
+Texture2D asteroidSpecialTexture;
+Texture2D asteroidBigTexture;
+Texture2D asteroidMediumTexture;
+Texture2D asteroidSmallTexture;
 namespace GameObjects
 {
 	Asteroid createSpecialAsteroid()
 	{
 		Asteroid asteroid;
-		asteroid.type = AsteroidType::Special;
+		asteroid.type = AsteroidType::Sniper;
+		asteroid.texture = asteroidSpecialTexture;
 		asteroid.circle = { {200,200}, 15 };
 		asteroid.aceleration = { 0,	0 };
 		asteroid.scale = 2;
@@ -30,6 +35,7 @@ namespace GameObjects
 	Asteroid createBigAsteroid()
 	{
 		Asteroid asteroid;
+		asteroid.texture = asteroidBigTexture;
 		asteroid.type = AsteroidType::Default;
 		asteroid.circle = { {200,200}, 10 };
 		asteroid.aceleration = { 0,	0 };
@@ -47,6 +53,7 @@ namespace GameObjects
 	Asteroid createMediumAsteroid()
 	{
 		Asteroid asteroid;
+		asteroid.texture = asteroidMediumTexture;
 		asteroid.type = AsteroidType::Medium;
 		asteroid.circle = { {200,200}, 10 };
 		asteroid.aceleration = { 0,	0 };
@@ -65,6 +72,7 @@ namespace GameObjects
 	{
 		Asteroid asteroid;
 		asteroid.type = AsteroidType::Small;
+		asteroid.texture = asteroidSmallTexture;
 		asteroid.circle = { {0,0}, 10 };
 		asteroid.aceleration = { 0,	0 };
 		asteroid.scale = 1.0f;
@@ -121,7 +129,7 @@ namespace GameObjects
 	}
 	void activateNewAsteroids(Asteroid& baseAsteroid, Asteroid& newAsteroid,float multiplier)
 	{
-		float width = static_cast<float>(baseAsteroid.texture.width) ;
+		float width = static_cast<float>(baseAsteroid.texture.width);
 		float height = static_cast<float>(baseAsteroid.texture.height);
 		newAsteroid.circle.position = {baseAsteroid.circle.position.x - width / 2.0f * multiplier,baseAsteroid.circle.position.y - height / 2 *multiplier};
 		activateAsteroid(newAsteroid);
@@ -140,7 +148,7 @@ namespace GameObjects
 	}
 	void drawAsteroid(Asteroid& asteroid)//AGREGAR SCALE
 	{
-		if (asteroid.isActive && asteroid.type != AsteroidType::Special)
+		if (asteroid.isActive && asteroid.type != AsteroidType::Sniper)
 		{
 
 			Rectangle source{ 0,0,(float)asteroid.texture.width,(float)asteroid.texture.height };
@@ -152,7 +160,7 @@ namespace GameObjects
 
 			drawTexture(asteroid.texture, source, dest, { static_cast<float>(asteroid.texture.width) / 2.0f,static_cast<float>(asteroid.texture.height) / 2.0f }, asteroid.rotation, asteroid.scale / 2, WHITE);
 		}
-		else if (asteroid.isActive && asteroid.type == AsteroidType::Special)
+		else if (asteroid.isActive && asteroid.type == AsteroidType::Sniper)
 		{
 			float textureWidth = static_cast<float>(asteroid.texture.width) / 2.0f;
 			Rectangle source{ 0+ textureWidth*asteroidAnimIndex,0,(float)asteroid.texture.width/2,(float)asteroid.texture.height};
