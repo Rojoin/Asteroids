@@ -9,7 +9,7 @@ namespace GameObjects
 
 	struct Bullet
 	{
-		GameObjects::BulletType type;
+		BulletType type;
 		Texture2D texture;
 		Circle circle;
 		Vector2 aceleration;

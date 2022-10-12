@@ -8,8 +8,6 @@
 namespace GameObjects
 {
 
-
-
 	SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale, Sound sound)
 	{
 		SpaceShip ship;
@@ -29,6 +27,7 @@ namespace GameObjects
 		ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * scale,(float)ship.texture.height / 2 * scale };
 		return ship;
 	}
+
 	void resetSpaceShip(SpaceShip& ship, Vector2 position)
 	{
 		PlaySound(ship.deathSound);
@@ -36,8 +35,8 @@ namespace GameObjects
 		ship.lives--;
 		ship.aceleration = { 0,0 };
 		ship.circle = { ship.position.x,ship.position.y,ship.scale * ship.texture.width / 8 };
-		ship.source = { 0,0,(float)ship.texture.width / 4,(float)ship.texture.height / 2 };
-		ship.dest = { position.x,position.y,(float)ship.texture.width / 4 * ship.scale,(float)ship.texture.height / 2 * ship.scale };
+		ship.source = { 0,0,static_cast<float>(ship.texture.width) / 4,static_cast<float>(ship.texture.height) / 2 };
+		ship.dest = { position.x,position.y,static_cast<float>(ship.texture.width) / 4 * ship.scale,static_cast<float>(ship.texture.height) / 2 * ship.scale };
 	}
 
 	void initBullets(Texture2D bulletTexture, Sound sound)

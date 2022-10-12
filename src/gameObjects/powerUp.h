@@ -1,17 +1,26 @@
 #pragma once
 #include <raylib.h>
 
-struct PowerUp
-{
-	Rectangle rec;
-	Texture2D texture;
-	float timer;
-	float timerActive;
-	bool isActive;
-	bool isSpawned;
-};
+#include "GameObjectsEnums.h"
+#include "system/circle.h"
 
-PowerUp createPowerUp(float timer, float timerActive);
-void randomSpawn(PowerUp& powerUp, float timer, float timerActive);
-void setPowerUpTimer(PowerUp& powerUp, float timer);
-void drawPowerUp(PowerUp powerUp);
+namespace GameObjects
+{
+
+	struct PowerUp
+	{
+		Circle circle;
+		Texture2D texture;
+		BulletType type;
+		float timer;
+		float timerActive;
+		float scale;
+		bool isActive;
+		bool isSpawned;
+	};
+
+	PowerUp createPowerUp(float timer, float timerActive,BulletType type);
+	void randomSpawn(PowerUp& powerUp, float timer, float timerActive);
+	void setPowerUpTimer(PowerUp& powerUp, float timer);
+	void drawPowerUp(PowerUp powerUp);
+}
