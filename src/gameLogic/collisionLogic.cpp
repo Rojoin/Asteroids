@@ -16,10 +16,13 @@ Sound collisionSound;
 void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 {
 
-	if (isCircleCircleColliding(asteroid.circle, bullet.circle) && bullet.isActive && asteroid.isActive)
+	if (isCircleCircleColliding(asteroid.circle, bullet.circle) && bullet.isActive && asteroid.isActive )
 	{
 		deactivateAsteroid(asteroid);
+		if (bullet.type != BulletType::Piercing)
+		{
 		deactivateBullet(bullet);
+		}
 		spaceShip.score += asteroid.points;
 		PlaySound(collisionSound);
 		if (asteroid.type == AsteroidType::Default)
