@@ -16,7 +16,6 @@ using namespace GameObjects;
 extern SpaceShip spaceShip;
 extern Font customFont;
 extern GameStates gameStates;
-const int maxBullets = 20;
 const int maxBigAsteroids = 4;
 const int maxMediumAsteroids = 40;
 const int maxSmallAsteroids = 80;
@@ -32,14 +31,9 @@ float highScore = 0;
 int mediumAsteroidsOnScreen = 40 / 2;
 int smallAsteroidsOnScreen = 80 / 2;
 Texture2D livesTexture;
-Texture2D shipTexture;
-Texture2D bulletTexture;
-Texture2D asteroidSpecialTexture;
-Texture2D asteroidBigTexture;
-Texture2D asteroidMediumTexture;
-Texture2D asteroidSmallTexture;
-Sound deathSound;
-Sound bulletSound;
+
+
+
 Button pauseMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "PAUSE", GREEN);
 Button continueMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "CONTINUE", BROWN);
 Button restartMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "RESTART", GREEN);
@@ -50,7 +44,7 @@ bool isPlayerDead = false;
 namespace GameLogic
 {
 
-	
+
 	void initGame()
 	{
 		isGameOver = false;
@@ -64,29 +58,29 @@ namespace GameLogic
 		pauseMenuButton = createButton(width / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
 		specialAsteroid = createSpecialAsteroid();
 		resetAsteroid(specialAsteroid);
-		specialAsteroid.texture = asteroidSpecialTexture;
+
 		specialAsteroid.isActive = true;
 		for (int i = 0; i < maxSmallAsteroids; ++i)
 		{
 			if (i < maxBigAsteroids)
 			{
 				bigAsteroids[i] = createBigAsteroid();
-				bigAsteroids[i].texture = asteroidBigTexture;
+				;
 			}
 
 			if (i < maxMediumAsteroids)
 			{
 				mediumAsteroids[i] = createMediumAsteroid();
-				mediumAsteroids[i].texture = asteroidMediumTexture;
+
 			}
 
 			smallAsteroids[i] = createSmallAsteroid();
-			smallAsteroids[i].texture = asteroidSmallTexture;
+
 		}
 
 		Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
-		spaceShip = initSpaceShip(shipTexture, spacePosition, 0, 1, deathSound);
-		initBullets(bulletTexture, bulletSound);
+		spaceShip = initSpaceShip(spacePosition, 0, 1);
+		initBullets();
 		highScore = static_cast<float>(LoadStorageValue(0));
 	}
 	void resetGame()
@@ -94,7 +88,7 @@ namespace GameLogic
 		isGamePaused = false;
 		specialAsteroid = createSpecialAsteroid();
 		resetAsteroid(specialAsteroid);
-		specialAsteroid.texture = asteroidSpecialTexture;
+
 		specialAsteroid.isActive = true;
 
 		for (int i = 0; i < maxSmallAsteroids; ++i)
@@ -102,21 +96,21 @@ namespace GameLogic
 			if (i < maxBigAsteroids)
 			{
 				bigAsteroids[i] = createBigAsteroid();
-				bigAsteroids[i].texture = asteroidBigTexture;
+
 			}
 			if (i < maxMediumAsteroids)
 			{
 				mediumAsteroids[i] = createMediumAsteroid();
-				mediumAsteroids[i].texture = asteroidMediumTexture;
+
 			}
 
 			smallAsteroids[i] = createSmallAsteroid();
-			smallAsteroids[i].texture = asteroidBigTexture;
+
 		}
-		
+
 		Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
 		resetSpaceShip(spaceShip, spacePosition);
-		initBullets(bulletTexture, bulletSound);
+		initBullets();
 		if (spaceShip.lives <= 0)
 		{
 			if (spaceShip.score > highScore)
@@ -135,11 +129,14 @@ namespace GameLogic
 #if _DEBUG
 		if (IsKeyPressed(KEY_P))
 		{
-			isGameOver = true;
+
+			activatetBulletPowerUp();
+
 		}
 		else if (IsKeyPressed(KEY_O))
 		{
-			isGameOver = false;
+
+			spaceShip.bulletType = BulletType::Sniper;
 		}
 
 #endif
@@ -180,10 +177,10 @@ namespace GameLogic
 				restartMenuButton.isOverThisButton = false;
 			}
 		}
-		
+
 		else if (!isGamePaused)
 		{
-
+			updateShootTimer();
 			if (isPointRecColliding(Inputs::getMouseInput(), pauseMenuButton.rec))
 			{
 				pauseMenuButton.isOverThisButton = true;
@@ -335,7 +332,7 @@ namespace GameLogic
 			}
 
 		}
-		
+
 	}
 	void drawPauseMenu()
 	{
@@ -351,7 +348,7 @@ namespace GameLogic
 		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
 		std::string playerScore = TextFormat("Score:%0.0F", spaceShip.score);
 		Vector2 playerScoreMeasure = MeasureTextEx(customFont, playerScore.c_str(), 50, 0);
-		drawText(playerScore, GetScreenWidth()/2 - playerScoreMeasure.x * 1.5f, GetScreenHeight() /2.5f-playerScoreMeasure.y , 50, BLACK, customFont);
+		drawText(playerScore, GetScreenWidth() / 2 - playerScoreMeasure.x * 1.5f, GetScreenHeight() / 2.5f - playerScoreMeasure.y, 50, BLACK, customFont);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
@@ -372,11 +369,15 @@ namespace GameLogic
 	}
 	void drawGame()
 	{
+
 		for (int i = 0; i < maxBullets; ++i)
 		{
+			
 
-			drawBullet(spaceShip.bullet[i]);
+				drawBullet(spaceShip.bullet[i]);
+			
 		}
+
 		for (int i = 0; i < maxBigAsteroids; i++)
 		{
 			drawAsteroid(bigAsteroids[i]);
