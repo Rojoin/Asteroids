@@ -23,6 +23,12 @@ extern Texture2D asteroidSpecialTexture;
 extern Texture2D asteroidBigTexture;
 extern Texture2D asteroidMediumTexture;
 extern Texture2D asteroidSmallTexture;
+extern Texture2D bulletSniperTexture;
+extern Texture2D bulletPiercingTexture;
+extern Texture2D powerUpSniperTexture;
+extern Texture2D powerUpPiercingTexture;
+
+
 extern Texture2D livesTexture;
 extern Texture2D splashScreen;
 extern Sound deathSound;
@@ -149,6 +155,8 @@ static void loadTextures()
 	wallpaper = LoadTexture("resources/pizzaWallpaper.png");
 	shipTexture = LoadTexture("resources/pizzaTiledMap.png");
 	bulletTexture = LoadTexture("resources/olive.png");
+	bulletSniperTexture = LoadTexture("resources/pineApple.png");
+	bulletPiercingTexture = LoadTexture("resources/broccoli.png");
 	asteroidSpecialTexture = LoadTexture("resources/specialAsteroidTiled.png");
 	asteroidBigTexture = LoadTexture("resources/bigHand.png");
 	asteroidMediumTexture = LoadTexture("resources/mediumHand.png");
@@ -157,6 +165,8 @@ static void loadTextures()
 	titleTexture = LoadTexture("resources/titleLogo.png");
 	gameIcon = LoadImage("resources/titleLogo.png");
 	mouseCursor = LoadTexture("resources/mousePointer.png");
+	powerUpPiercingTexture = LoadTexture("resources/powerUpPiercing.png");
+	powerUpSniperTexture = LoadTexture("resources/powerUpSniper.png");
 	GenTextureMipmaps(&titleTexture);
 	SetTextureFilter(titleTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	GenTextureMipmaps(&customFont.texture);
@@ -188,6 +198,8 @@ static void unLoadTextures()
 	UnloadTexture(asteroidMediumTexture);
 	UnloadTexture(asteroidSpecialTexture);
 	UnloadTexture(bulletTexture);
+	UnloadTexture(bulletSniperTexture);
+	UnloadTexture(bulletPiercingTexture);
 	UnloadTexture(shipTexture);
 	UnloadTexture(wallpaper);
 	UnloadTexture(splashScreen);
