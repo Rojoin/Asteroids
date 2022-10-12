@@ -29,10 +29,13 @@ extern Sound deathSound;
 extern Sound collisionSound;
 extern Font customFont;
 extern Sound bulletSound;
+Texture2D mouseCursor;
 extern GameObjects::SpaceShip spaceShip;
 Music mainTheme;
 bool isProgramRunning = true;
 
+int mousePosX;
+int mousePosY;
 static void logicProgram();
 static void drawProgram();
 static void loadResources();
@@ -47,6 +50,7 @@ void initProgram()
 	setGameState(GameStates::InitialAnimation);
 	SetRandomSeed(static_cast<unsigned int>(time(NULL)));
 	InitWindow(1024, 768, "The Last Slice");
+	HideCursor();
 	InitAudioDevice();
 	loadResources();
 	SetWindowIcon(gameIcon);
@@ -56,6 +60,7 @@ void initProgram()
 
 	isProgramRunning = true;
 	mainTheme = LoadMusicStream("resources/theLastSlice.mp3");
+
 
 	SetMusicVolume(mainTheme, 0.5);
 	PlayMusicStream(mainTheme);
@@ -74,6 +79,8 @@ void initProgram()
 
 static void logicProgram()
 {
+	mousePosX = GetMouseX() - mouseCursor.width / 2;
+	mousePosY = GetMouseY() - mouseCursor.height / 2;
 
 	switch (gameStates)
 	{
@@ -124,6 +131,7 @@ static void drawProgram()
 	case GameStates::Exit:
 		break;
 	}
+	DrawTexture(mouseCursor, mousePosX, mousePosY, WHITE);
 	EndDrawing();
 }
 
@@ -136,18 +144,19 @@ static void loadAudios()
 
 static void loadTextures()
 {
-		livesTexture = LoadTexture("resources/lives.png");
+	livesTexture = LoadTexture("resources/lives.png");
 	splashScreen = LoadTexture("resources/splashScreen.png");
 	wallpaper = LoadTexture("resources/pizzaWallpaper.png");
 	shipTexture = LoadTexture("resources/pizzaTiledMap.png");
 	bulletTexture = LoadTexture("resources/olive.png");
-	asteroidSpecialTexture = LoadTexture("resources/mouth.png");
+	asteroidSpecialTexture = LoadTexture("resources/specialAsteroidTiled.png");
 	asteroidBigTexture = LoadTexture("resources/bigHand.png");
 	asteroidMediumTexture = LoadTexture("resources/mediumHand.png");
 	asteroidSmallTexture = LoadTexture("resources/smallHand.png");
 	creditsTexture = LoadTexture("resources/credits.png");
 	titleTexture = LoadTexture("resources/titleLogo.png");
 	gameIcon = LoadImage("resources/titleLogo.png");
+	mouseCursor = LoadTexture("resources/mousePointer.png");
 	GenTextureMipmaps(&titleTexture);
 	SetTextureFilter(titleTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	GenTextureMipmaps(&customFont.texture);
@@ -185,6 +194,7 @@ static void unLoadTextures()
 	UnloadTexture(livesTexture);
 	UnloadTexture(titleTexture);
 	UnloadImage(gameIcon);
+	UnloadTexture(mouseCursor);
 }
 
 static void unLoadResources()
