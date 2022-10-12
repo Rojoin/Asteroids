@@ -2,7 +2,7 @@
 
 namespace GameObjects
 {
-	enum class AsteroidType { Default,Medium, Small, Special };
-	enum class BulletType{Default,Special};
+	enum class AsteroidType { Default,Medium, Small, Sniper };
+	enum class BulletType{Default,Sniper,Piercing};
 }
 
