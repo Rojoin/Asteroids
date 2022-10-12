@@ -5,13 +5,14 @@
 
 #include "system/draw.h"
 
+static float asteroidAnimIndex = 0;
 namespace GameObjects
 {
 	Asteroid createSpecialAsteroid()
 	{
 		Asteroid asteroid;
 		asteroid.type = AsteroidType::Special;
-		asteroid.circle = { {200,200}, 10 };
+		asteroid.circle = { {200,200}, 15 };
 		asteroid.aceleration = { 0,	0 };
 		asteroid.scale = 2;
 		asteroid.rotation = 0;
@@ -139,7 +140,7 @@ namespace GameObjects
 	}
 	void drawAsteroid(Asteroid& asteroid)//AGREGAR SCALE
 	{
-		if (asteroid.isActive)
+		if (asteroid.isActive && asteroid.type != AsteroidType::Special)
 		{
 
 			Rectangle source{ 0,0,(float)asteroid.texture.width,(float)asteroid.texture.height };
@@ -151,9 +152,22 @@ namespace GameObjects
 
 			drawTexture(asteroid.texture, source, dest, { static_cast<float>(asteroid.texture.width) / 2.0f,static_cast<float>(asteroid.texture.height) / 2.0f }, asteroid.rotation, asteroid.scale / 2, WHITE);
 		}
+		else if (asteroid.isActive && asteroid.type == AsteroidType::Special)
+		{
+			float textureWidth = static_cast<float>(asteroid.texture.width) / 2.0f;
+			Rectangle source{ 0+ textureWidth*asteroidAnimIndex,0,(float)asteroid.texture.width/2,(float)asteroid.texture.height};
+			Rectangle dest{ asteroid.circle.position.x  ,asteroid.circle.position.y,asteroid.texture.width / 2 * asteroid.scale / 2,asteroid.texture.height * asteroid.scale / 2 };
+#if _DEBUG
+
+			DrawCircle(static_cast<int>(asteroid.circle.position.x), static_cast<int>(asteroid.circle.position.y), asteroid.circle.radius, WHITE);
+#endif
+
+			drawTexture(asteroid.texture, source, dest, { static_cast<float>(asteroid.texture.width) / 4.0f,static_cast<float>(asteroid.texture.height) / 2.0f }, asteroid.rotation, asteroid.scale / 2, WHITE);
+		}
 	}
 	void updateSpecialAsteroid(Asteroid& asteroid,Vector2 shipPos)
 	{
+		static float animTimer = 1.0f;
 		if (asteroid.isActive)
 		{
 			
@@ -168,6 +182,16 @@ namespace GameObjects
 			asteroid.rotation = grades;
 			Vector2 normalizedDirection =Vector2Normalize(direction);
 
+			animTimer -= GetFrameTime();
+			if (animTimer <= 0)
+			{
+				asteroidAnimIndex++;
+				if (asteroidAnimIndex >1)
+				{
+					asteroidAnimIndex = 0;
+				}
+				animTimer = 1;
+			}
 			asteroid.aceleration.x += normalizedDirection.x * GetFrameTime() ;
 			asteroid.aceleration.y += normalizedDirection.y * GetFrameTime() ;
 
