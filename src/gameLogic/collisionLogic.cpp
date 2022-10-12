@@ -8,8 +8,8 @@
 
 using namespace GameObjects;
 extern SpaceShip spaceShip;
-extern Asteroid mediumAsteroid[40];
-extern Asteroid smallAsteroid[80];
+extern Asteroid mediumAsteroids[40];
+extern Asteroid smallAsteroids[80];
 extern int mediumAsteroidCount;
 extern int smallAsteroidCount;
 Sound collisionSound;
@@ -24,13 +24,13 @@ void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 		PlaySound(collisionSound);
 		if (asteroid.type == AsteroidType::Default)
 		{
-			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount], -1.0f);
+			activateNewAsteroids(asteroid, mediumAsteroids[mediumAsteroidCount], -1.0f);
 			mediumAsteroidCount++;
 			if (mediumAsteroidCount >= 40)
 			{
 				mediumAsteroidCount = 0;
 			}
-			activateNewAsteroids(asteroid, mediumAsteroid[mediumAsteroidCount], 1.0f);
+			activateNewAsteroids(asteroid, mediumAsteroids[mediumAsteroidCount], 1.0f);
 			mediumAsteroidCount++;
 			if (mediumAsteroidCount >= 40)
 			{
@@ -39,13 +39,13 @@ void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 		}
 		else if (asteroid.type == AsteroidType::Medium)
 		{
-			activateNewAsteroids(asteroid, smallAsteroid[smallAsteroidCount], -1);
+			activateNewAsteroids(asteroid, smallAsteroids[smallAsteroidCount], -1);
 			smallAsteroidCount++;
 			if (smallAsteroidCount >= 80)
 			{
 				smallAsteroidCount = 0;
 			}
-			activateNewAsteroids(asteroid, smallAsteroid[smallAsteroidCount], 1);
+			activateNewAsteroids(asteroid, smallAsteroids[smallAsteroidCount], 1);
 			smallAsteroidCount++;
 			if (smallAsteroidCount >= 80)
 			{

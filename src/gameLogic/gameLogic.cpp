@@ -21,9 +21,9 @@ const int maxBigAsteroids = 4;
 const int maxMediumAsteroids = 40;
 const int maxSmallAsteroids = 80;
 Asteroid specialAsteroid;
-Asteroid bigAsteroid[maxBigAsteroids];
-Asteroid mediumAsteroid[maxMediumAsteroids];
-Asteroid smallAsteroid[maxSmallAsteroids];
+Asteroid bigAsteroids[maxBigAsteroids];
+Asteroid mediumAsteroids[maxMediumAsteroids];
+Asteroid smallAsteroids[maxSmallAsteroids];
 
 int mediumAsteroidCount = 0;
 int smallAsteroidCount = 0;
@@ -46,12 +46,15 @@ Button restartMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "RESTAR
 Button exitMenuButton = createButton(0, 0, " EXIT", GREEN);
 bool isGamePaused = false;
 bool isGameOver = false;
+bool isPlayerDead = false;
 namespace GameLogic
 {
 
 	
 	void initGame()
 	{
+		isGameOver = false;
+		isGamePaused = false;
 		float width = static_cast<float>(GetScreenWidth());
 		float height = static_cast<float>(GetScreenHeight());
 		isGamePaused = false;
@@ -67,18 +70,18 @@ namespace GameLogic
 		{
 			if (i < maxBigAsteroids)
 			{
-				bigAsteroid[i] = createBigAsteroid();
-				bigAsteroid[i].texture = asteroidBigTexture;
+				bigAsteroids[i] = createBigAsteroid();
+				bigAsteroids[i].texture = asteroidBigTexture;
 			}
 
 			if (i < maxMediumAsteroids)
 			{
-				mediumAsteroid[i] = createMediumAsteroid();
-				mediumAsteroid[i].texture = asteroidMediumTexture;
+				mediumAsteroids[i] = createMediumAsteroid();
+				mediumAsteroids[i].texture = asteroidMediumTexture;
 			}
 
-			smallAsteroid[i] = createSmallAsteroid();
-			smallAsteroid[i].texture = asteroidSmallTexture;
+			smallAsteroids[i] = createSmallAsteroid();
+			smallAsteroids[i].texture = asteroidSmallTexture;
 		}
 
 		Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
@@ -98,19 +101,19 @@ namespace GameLogic
 		{
 			if (i < maxBigAsteroids)
 			{
-				bigAsteroid[i] = createBigAsteroid();
-				bigAsteroid[i].texture = asteroidBigTexture;
+				bigAsteroids[i] = createBigAsteroid();
+				bigAsteroids[i].texture = asteroidBigTexture;
 			}
 			if (i < maxMediumAsteroids)
 			{
-				mediumAsteroid[i] = createMediumAsteroid();
-				mediumAsteroid[i].texture = asteroidMediumTexture;
+				mediumAsteroids[i] = createMediumAsteroid();
+				mediumAsteroids[i].texture = asteroidMediumTexture;
 			}
 
-			smallAsteroid[i] = createSmallAsteroid();
-			smallAsteroid[i].texture = asteroidBigTexture;
+			smallAsteroids[i] = createSmallAsteroid();
+			smallAsteroids[i].texture = asteroidBigTexture;
 		}
-
+		
 		Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
 		resetSpaceShip(spaceShip, spacePosition);
 		initBullets(bulletTexture, bulletSound);
@@ -124,7 +127,7 @@ namespace GameLogic
 					std::cout << "Se guardo Correctamente";
 				}
 			}
-			setGameState(GameStates::Menu);
+			isGameOver = true;
 		}
 	}
 	void playGame()
@@ -132,16 +135,53 @@ namespace GameLogic
 #if _DEBUG
 		if (IsKeyPressed(KEY_P))
 		{
-			isGamePaused = true;
+			isGameOver = true;
 		}
 		else if (IsKeyPressed(KEY_O))
 		{
-			isGamePaused = false;
+			isGameOver = false;
 		}
 
 #endif
 
-		if (!isGamePaused)
+		if (isGameOver)
+		{
+			if (isPointRecColliding(Inputs::getMouseInput(), exitMenuButton.rec))
+			{
+				exitMenuButton.isOverThisButton = true;
+
+
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+
+					setGameState(GameStates::Menu);
+				}
+
+			}
+			else
+			{
+				exitMenuButton.isOverThisButton = false;
+			}
+			if (isPointRecColliding(Inputs::getMouseInput(), restartMenuButton.rec))
+			{
+				restartMenuButton.isOverThisButton = true;
+
+
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+
+					initGame();
+
+				}
+
+			}
+			else
+			{
+				restartMenuButton.isOverThisButton = false;
+			}
+		}
+		
+		else if (!isGamePaused)
 		{
 
 			if (isPointRecColliding(Inputs::getMouseInput(), pauseMenuButton.rec))
@@ -169,15 +209,15 @@ namespace GameLogic
 			}
 			for (int i = 0; i < maxBigAsteroids; i++)
 			{
-				changeAsteroidPosition(bigAsteroid[i]);
+				changeAsteroidPosition(bigAsteroids[i]);
 			}
 			for (int i = 0; i < maxMediumAsteroids; ++i)
 			{
-				changeAsteroidPosition(mediumAsteroid[i]);
+				changeAsteroidPosition(mediumAsteroids[i]);
 			}
 			for (int i = 0; i < maxSmallAsteroids; ++i)
 			{
-				changeAsteroidPosition(smallAsteroid[i]);
+				changeAsteroidPosition(smallAsteroids[i]);
 			}
 
 			GameLogic::updateCurrentSpaceShipPos(spaceShip);
@@ -197,44 +237,44 @@ namespace GameLogic
 
 				for (int j = 0; j < maxBigAsteroids; j++)
 				{
-					GameLogic::moveAsteroidAcrossScreen(bigAsteroid[i]);
-					if (GameLogic::asteroidSpaceShipCollision(bigAsteroid[i], spaceShip))
+					GameLogic::moveAsteroidAcrossScreen(bigAsteroids[i]);
+					if (GameLogic::asteroidSpaceShipCollision(bigAsteroids[i], spaceShip))
 					{
 						resetGame();
 					}
 
-					GameLogic::asteroidBulletCollision(bigAsteroid[j], spaceShip.bullet[i]);
+					GameLogic::asteroidBulletCollision(bigAsteroids[j], spaceShip.bullet[i]);
 
 				}
 
 				for (int j = 0; j < maxMediumAsteroids; j++)
 				{
-					GameLogic::moveAsteroidAcrossScreen(mediumAsteroid[j]);
-					if (GameLogic::asteroidSpaceShipCollision(mediumAsteroid[j], spaceShip))
+					GameLogic::moveAsteroidAcrossScreen(mediumAsteroids[j]);
+					if (GameLogic::asteroidSpaceShipCollision(mediumAsteroids[j], spaceShip))
 					{
 						resetGame();
 					}
-					GameLogic::asteroidBulletCollision(mediumAsteroid[j], spaceShip.bullet[i]);
+					GameLogic::asteroidBulletCollision(mediumAsteroids[j], spaceShip.bullet[i]);
 
 
 				}
 				for (int j = 0; j < maxSmallAsteroids; j++)
 				{
-					GameLogic::moveAsteroidAcrossScreen(smallAsteroid[j]);
-					if (GameLogic::asteroidSpaceShipCollision(smallAsteroid[j], spaceShip))
+					GameLogic::moveAsteroidAcrossScreen(smallAsteroids[j]);
+					if (GameLogic::asteroidSpaceShipCollision(smallAsteroids[j], spaceShip))
 					{
 						resetGame();
 					}
-					GameLogic::asteroidBulletCollision(smallAsteroid[j], spaceShip.bullet[i]);
+					GameLogic::asteroidBulletCollision(smallAsteroids[j], spaceShip.bullet[i]);
 				}
 
 			}
 			for (int j = 0; j < maxBigAsteroids; ++j)
 			{
 
-				if (!bigAsteroid[j].isActive)
+				if (!bigAsteroids[j].isActive)
 				{
-					resetAsteroid(bigAsteroid[j]);
+					resetAsteroid(bigAsteroids[j]);
 				}
 			}
 
@@ -253,7 +293,6 @@ namespace GameLogic
 				{
 
 					setGameState(GameStates::Menu);
-
 				}
 
 			}
@@ -270,7 +309,6 @@ namespace GameLogic
 				{
 
 					isGamePaused = false;
-
 				}
 
 			}
@@ -297,14 +335,23 @@ namespace GameLogic
 			}
 
 		}
+		
 	}
 	void drawPauseMenu()
 	{
 
 
 		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
-		std::string pauseTitle = "PAUSE MENU";
 		drawButton(continueMenuButton);
+		drawButton(restartMenuButton);
+		drawButton(exitMenuButton);
+	}
+	void drawEndMenu()
+	{
+		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
+		std::string playerScore = TextFormat("Score:%0.0F", spaceShip.score);
+		Vector2 playerScoreMeasure = MeasureTextEx(customFont, playerScore.c_str(), 50, 0);
+		drawText(playerScore, GetScreenWidth()/2 - playerScoreMeasure.x * 1.5f, GetScreenHeight() /2.5f-playerScoreMeasure.y , 50, BLACK, customFont);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
@@ -332,24 +379,27 @@ namespace GameLogic
 		}
 		for (int i = 0; i < maxBigAsteroids; i++)
 		{
-			drawAsteroid(bigAsteroid[i]);
+			drawAsteroid(bigAsteroids[i]);
 
 		}
 		for (int i = 0; i < maxMediumAsteroids; ++i)
 		{
-			drawAsteroid(mediumAsteroid[i]);
+			drawAsteroid(mediumAsteroids[i]);
 		}
 		for (int i = 0; i < maxSmallAsteroids; ++i)
 		{
 
-			drawAsteroid(smallAsteroid[i]);
+			drawAsteroid(smallAsteroids[i]);
 		}
 		drawAsteroid(specialAsteroid);
 		drawShip();
 		drawButtonTranslucent(pauseMenuButton);
 		drawUI();
-
-		if (isGamePaused)
+		if (isGameOver)
+		{
+			drawEndMenu();
+		}
+		else if (isGamePaused)
 		{
 			drawPauseMenu();
 		}

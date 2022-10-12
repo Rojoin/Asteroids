@@ -42,7 +42,6 @@ void statesMenu(GameStates& gamestate)
 		{
 			gamestate = GameStates::Game;
 			GameLogic::initGame();
-
 		}
 	}
 	else
