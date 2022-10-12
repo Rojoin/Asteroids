@@ -1,22 +1,29 @@
 #include  "spaceShip.h"
 
+#include <iostream>
 #include <raymath.h>
 
 #include "system/draw.h"
 
-	GameObjects::SpaceShip spaceShip;
+GameObjects::SpaceShip spaceShip;
+Sound deathSound;
+Texture2D shipTexture;
+static float shootTime;
+static float currentTimer = 0.0f;
 namespace GameObjects
 {
 
-	SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale, Sound sound)
+	SpaceShip initSpaceShip(Vector2 position, float rotation, float scale)
 	{
 		SpaceShip ship;
 		ship.score = 0;
-		ship.texture = texture;
+		ship.texture = shipTexture;
 		ship.position = position;
+		ship.bulletType = BulletType::Default;
+		ship.texture = shipTexture;
 		ship.aceleration = { 0,0 };
 		ship.scale = scale;
-		ship.deathSound = sound;
+		ship.deathSound = deathSound;
 		ship.rotation = rotation;
 		ship.lives = 3;
 		ship.isDead = false;
@@ -39,22 +46,32 @@ namespace GameObjects
 		ship.dest = { position.x,position.y,static_cast<float>(ship.texture.width) / 4 * ship.scale,static_cast<float>(ship.texture.height) / 2 * ship.scale };
 	}
 
-	void initBullets(Texture2D bulletTexture, Sound sound)
+	void initBullets()
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < maxBullets; i++)
 		{
 			spaceShip.bullet[i] = GameObjects::createBullet(spaceShip.dest.x, spaceShip.dest.y);
-			spaceShip.bullet[i].texture = bulletTexture;
-			spaceShip.bullet[i].sound = sound;
 			deactivateBullet(spaceShip.bullet[i]);
 		}
+		spaceShip.bulletIndex = 0;
+	}
+
+
+	void activatetBulletPowerUp()
+	{
+		spaceShip.bulletType = BulletType::Piercing;
+
+	}
+	void deActivateBulletPowerUp()
+	{
+		spaceShip.bulletType = BulletType::Default;
 	}
 
 	void drawShipDestruction()
 	{
 		float shipHeight = static_cast<float>(spaceShip.texture.height);
 		float shipWidth = static_cast<float>(spaceShip.texture.width);
-		spaceShip.source = { 0,shipHeight/2,shipWidth / 4.0f,shipHeight / 2 };
+		spaceShip.source = { 0,shipHeight / 2,shipWidth / 4.0f,shipHeight / 2 };
 	}
 
 	void drawShip()
@@ -87,10 +104,27 @@ namespace GameObjects
 
 	void updateBullet()
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < maxBullets; i++)
 		{
 			if (!spaceShip.bullet[i].isActive)
 			{
+
+				if (spaceShip.bullet[i].type != spaceShip.bulletType)
+				{
+					switch (spaceShip.bulletType)
+					{
+					case BulletType::Default:
+						spaceShip.bullet[i] = createBullet(spaceShip.dest.x, spaceShip.dest.y);
+						break;
+					case BulletType::Sniper:
+						spaceShip.bullet[i] = createSniperBullet(spaceShip.dest.x, spaceShip.dest.y);
+						break;
+					case BulletType::Piercing:
+						spaceShip.bullet[i] = createPiercingBullet(spaceShip.dest.x, spaceShip.dest.y);
+						break;
+					default:;
+					}
+				}
 				spaceShip.bullet[i].rotation = spaceShip.rotation;
 				spaceShip.bullet[i].aceleration = { 0,0 };
 				spaceShip.bullet[i].circle.position = { spaceShip.dest.x, spaceShip.dest.y };
@@ -105,19 +139,42 @@ namespace GameObjects
 	{
 		bullet.isActive = false;
 	}
+	void updateShootTimer()
+	{
 
+		switch (spaceShip.bullet[spaceShip.bulletIndex].type)
+		{
+		case BulletType::Default:
+			shootTime = 0.5f;
+			break;
+		case BulletType::Sniper:
+
+			shootTime = 0.1f;
+			break;
+		case BulletType::Piercing:
+			shootTime = 2.0f;
+			break;
+		}
+		currentTimer += GetFrameTime();
+	}
 	void activateBullet()
 	{
-		if (!spaceShip.bullet[spaceShip.bulletIndex].isActive)
+
+		if (!spaceShip.bullet[spaceShip.bulletIndex].isActive && currentTimer >= shootTime)
 		{
-			updateBullet();
+
 			PlaySound(spaceShip.bullet[spaceShip.bulletIndex].sound);
 			spaceShip.bullet[spaceShip.bulletIndex].isActive = true;
 			Vector2 normalizedVector = Vector2Normalize(spaceShip.direction);
 			spaceShip.bullet[spaceShip.bulletIndex].aceleration.x += normalizedVector.x;
 			spaceShip.bullet[spaceShip.bulletIndex].aceleration.y += normalizedVector.y;
 			spaceShip.bulletIndex++;
-			if (spaceShip.bulletIndex > 9)	spaceShip.bulletIndex = 0;
+			std::cout << spaceShip.bulletIndex <<std::endl;
+			if (spaceShip.bulletIndex == maxBullets)
+			{
+				spaceShip.bulletIndex = 0;
+			}
+			currentTimer = 0.0f;
 		}
 	}
 }

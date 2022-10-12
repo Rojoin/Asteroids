@@ -10,6 +10,7 @@ namespace GameObjects
 	{
 		Vector2 position;
 		Bullet bullet[20];
+		BulletType bulletType;
 		int bulletIndex = 0;
 		Vector2 aceleration;
 		Texture2D texture;
@@ -27,16 +28,19 @@ namespace GameObjects
 		Vector2 direction;
 	};
 
-	SpaceShip initSpaceShip(Texture2D texture, Vector2 position, float rotation, float scale, Sound sound);
+	SpaceShip initSpaceShip( Vector2 position, float rotation, float scale);
 
 	void updateShip();
 	void drawShip();
 	void changeShipPosition();
 	void updateBullet();
-	void deactivateBullet(GameObjects::Bullet& bullet);
+	void updateShootTimer();
 	void activateBullet();
+	void deactivateBullet(GameObjects::Bullet& bullet);
 	void resetSpaceShip(SpaceShip& ship, Vector2 position);
-	void initBullets(Texture2D bulletTexture, Sound sound);
+	void activatetBulletPowerUp();
+	void deActivateBulletPowerUp();
+	void initBullets();
 	void drawShipDestruction();
 
 }
