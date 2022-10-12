@@ -17,6 +17,7 @@ namespace GameObjects
 		float speed;
 		float maxSpeed;
 		float points;
+		float currentTimer;
 		bool isActive;
 		Vector2 direction;
 	};

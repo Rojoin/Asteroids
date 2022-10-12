@@ -152,7 +152,7 @@ namespace GameLogic
 		}
 		asteroid.rotation = grades;
 	}
-	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid)
+	void moveAsteroidAcrossScreen(Asteroid& asteroid)
 	{
 		rotateAsteroidTowardSpaceShip(asteroid);
 

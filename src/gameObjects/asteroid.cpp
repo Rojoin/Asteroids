@@ -15,12 +15,14 @@ namespace GameObjects
 		asteroid.aceleration = { 0,	0 };
 		asteroid.scale = 2;
 		asteroid.rotation = 0;
-		asteroid.points = 50;
+		asteroid.points = 200;
 		asteroid.speed = 50;
 		asteroid.maxSpeed = 150.0f;
 		asteroid.isActive = false;
 		asteroid.circle.radius *= asteroid.scale;
 		asteroid.direction = { 0,0 };
+		asteroid.currentTimer = 15.0f;
+
 		return asteroid;
 	}
 
@@ -86,25 +88,27 @@ namespace GameObjects
 	}
 	void resetAsteroid(Asteroid& asteroid)
 	{
+		float width = static_cast<float>(GetScreenWidth());
+		float height= static_cast<float>(GetScreenHeight());
 		switch (GetRandomValue(0, 4))
 		{
 		case 0:
-			asteroid.circle.position = { (float)GetScreenWidth(),(float)GetScreenHeight() };
+			asteroid.circle.position = { width,height };
 			break;
 		case 1:
-			asteroid.circle.position = { (float)GetScreenWidth(),0 };
+			asteroid.circle.position = { width,0 };
 			break;
 		case 2:
-			asteroid.circle.position = { 0,(float)GetScreenHeight() };
+			asteroid.circle.position = { 0,height };
 			break;
 		case 3:
 			asteroid.circle.position = { 0,0 };
 			break;
 		case 4:
-			asteroid.circle.position = { 0,(float)GetScreenHeight() / 2 };
+			asteroid.circle.position = { 0,height / 2 };
 			break;
 		case 5:
-			asteroid.circle.position = { (float)GetScreenWidth() / 2,0 };
+			asteroid.circle.position = { width / 2,0 };
 			break;
 
 		}
@@ -150,7 +154,9 @@ namespace GameObjects
 	}
 	void updateSpecialAsteroid(Asteroid& asteroid,Vector2 shipPos)
 	{
-		
+		if (asteroid.isActive)
+		{
+			
 			Vector2 asteroidPosition = asteroid.circle.position;
 			Vector2 direction = {shipPos.x - asteroidPosition.x ,  shipPos.y - asteroidPosition.y};
 			float grades = (atanf(direction.y / direction.x)) * (180 / PI);
@@ -181,7 +187,16 @@ namespace GameObjects
 			{
 				asteroid.aceleration.y = -asteroid.maxSpeed;
 			}
-
+		}
+		else if (!asteroid.isActive)
+		{
+			asteroid.currentTimer -= GetFrameTime();
+			if (asteroid.currentTimer <= 0)
+			{
+				asteroid.currentTimer = 15.0f;
+				resetAsteroid(asteroid);
+			}
+		}
 	}
 
 

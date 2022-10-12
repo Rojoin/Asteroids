@@ -14,5 +14,5 @@ namespace GameLogic
 	void moveSpaceShip(SpaceShip& ship);
 	void warpOutOfBounds(SpaceShip& ship);
 	void updateCurrentSpaceShipPos(SpaceShip ship);
-	void moveAsteroidAcrossScreen(GameObjects::Asteroid& asteroid);
+	void moveAsteroidAcrossScreen(Asteroid& asteroid);
 }

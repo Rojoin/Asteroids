@@ -37,14 +37,15 @@ static void logicProgram();
 static void drawProgram();
 static void loadResources();
 static void unLoadResources();
+static void loadTextures();
+static void unLoadTextures();
 static void unLoadAudio();
-static void loadAudio();
+static void loadAudios();
 
 void initProgram()
 {
 	setGameState(GameStates::InitialAnimation);
 	SetRandomSeed(static_cast<unsigned int>(time(NULL)));
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(1024, 768, "The Last Slice");
 	InitAudioDevice();
 	loadResources();
@@ -126,25 +127,16 @@ static void drawProgram()
 	EndDrawing();
 }
 
-static void unLoadAudio()
-{
-	UnloadSound(collisionSound);
-	UnloadSound(deathSound);
-	UnloadSound(bulletSound);
-	UnloadMusicStream(mainTheme);
-}
-
-static void loadAudio()
+static void loadAudios()
 {
 	collisionSound = LoadSound("resources/collision.wav");
 	bulletSound = LoadSound("resources/bullet2.wav");
 	deathSound = LoadSound("resources/explosion.wav");
 }
 
-static void loadResources()
+static void loadTextures()
 {
-	customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, nullptr, 0);
-	livesTexture = LoadTexture("resources/lives.png");
+		livesTexture = LoadTexture("resources/lives.png");
 	splashScreen = LoadTexture("resources/splashScreen.png");
 	wallpaper = LoadTexture("resources/pizzaWallpaper.png");
 	shipTexture = LoadTexture("resources/pizzaTiledMap.png");
@@ -162,12 +154,25 @@ static void loadResources()
 	SetTextureFilter(customFont.texture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	GenTextureMipmaps(&creditsTexture);
 	SetTextureFilter(creditsTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
-	loadAudio();
 }
-static void unLoadResources()
+
+static void loadResources()
 {
-	UnloadFont(customFont);
-	unLoadAudio();
+	customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, nullptr, 0);
+	loadTextures();
+	loadAudios();
+}
+
+static void unLoadAudio()
+{
+	UnloadSound(collisionSound);
+	UnloadSound(deathSound);
+	UnloadSound(bulletSound);
+	UnloadMusicStream(mainTheme);
+}
+
+static void unLoadTextures()
+{
 	UnloadTexture(creditsTexture);
 	UnloadTexture(asteroidBigTexture);
 	UnloadTexture(asteroidSmallTexture);
@@ -180,5 +185,12 @@ static void unLoadResources()
 	UnloadTexture(livesTexture);
 	UnloadTexture(titleTexture);
 	UnloadImage(gameIcon);
+}
+
+static void unLoadResources()
+{
+	UnloadFont(customFont);
+	unLoadAudio();
+	unLoadTextures();
 
 }

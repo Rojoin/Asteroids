@@ -48,14 +48,13 @@ namespace GameObjects
 			spaceShip.bullet[i].sound = sound;
 			deactivateBullet(spaceShip.bullet[i]);
 		}
-
 	}
 
 	void drawShipDestruction()
 	{
-		//float shipHeight = static_cast<float>(spaceShip.texture.height);
-		//float shipWidth = static_cast<float>(spaceShip.texture.width);
-		//spaceShip.source = { shipHeight,0,shipWidth / 4.0f,shipHeight / 2 };
+		float shipHeight = static_cast<float>(spaceShip.texture.height);
+		float shipWidth = static_cast<float>(spaceShip.texture.width);
+		spaceShip.source = { 0,shipHeight/2,shipWidth / 4.0f,shipHeight / 2 };
 	}
 
 	void drawShip()
@@ -65,10 +64,9 @@ namespace GameObjects
 		DrawRectangle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), 2, 2, BLUE);
 		DrawCircle(static_cast<int>(spaceShip.circle.position.x), static_cast<int>(spaceShip.circle.position.y), spaceShip.circle.radius, RED);
 #endif
-
-
 		drawTexture(spaceShip.texture, spaceShip.source, spaceShip.dest, { static_cast<float>(spaceShip.texture.width) / 8.0f, static_cast<float>(spaceShip.texture.height) / 4.0f }, spaceShip.rotation, spaceShip.scale, WHITE);
 	}
+
 	void updateShip()
 	{
 		if (spaceShip.source.x > spaceShip.texture.width)
@@ -80,6 +78,7 @@ namespace GameObjects
 		spaceShip.source = { spaceShip.source.x + spaceShip.textureIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
 		spaceShip.dest = { spaceShip.position.x,spaceShip.position.y + spaceShip.texture.height / 32.0f ,spaceShip.dest.width,spaceShip.dest.height };
 	}
+
 	void changeShipPosition()
 	{
 		spaceShip.position = { spaceShip.position.x + spaceShip.aceleration.x * GetFrameTime(),spaceShip.position.y + spaceShip.aceleration.y * GetFrameTime() };
@@ -101,10 +100,12 @@ namespace GameObjects
 
 
 	}
+
 	void deactivateBullet(GameObjects::Bullet& bullet)
 	{
 		bullet.isActive = false;
 	}
+
 	void activateBullet()
 	{
 		if (!spaceShip.bullet[spaceShip.bulletIndex].isActive)

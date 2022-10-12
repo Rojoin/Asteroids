@@ -49,6 +49,7 @@ bool isGameOver = false;
 namespace GameLogic
 {
 
+	
 	void initGame()
 	{
 		float width = static_cast<float>(GetScreenWidth());
@@ -59,6 +60,7 @@ namespace GameLogic
 		exitMenuButton = createButton(width / 3 + width / 8 - buttonWidth, height / 2.0f - buttonHeight, buttonWidth, buttonHeight, "   EXIT", RED);
 		pauseMenuButton = createButton(width / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
 		specialAsteroid = createSpecialAsteroid();
+		resetAsteroid(specialAsteroid);
 		specialAsteroid.texture = asteroidSpecialTexture;
 		specialAsteroid.isActive = true;
 		for (int i = 0; i < maxSmallAsteroids; ++i)
@@ -88,6 +90,7 @@ namespace GameLogic
 	{
 		isGamePaused = false;
 		specialAsteroid = createSpecialAsteroid();
+		resetAsteroid(specialAsteroid);
 		specialAsteroid.texture = asteroidSpecialTexture;
 		specialAsteroid.isActive = true;
 
@@ -190,7 +193,6 @@ namespace GameLogic
 				{
 					resetGame();
 				}
-
 				GameLogic::asteroidBulletCollision(specialAsteroid, spaceShip.bullet[i]);
 
 				for (int j = 0; j < maxBigAsteroids; j++)
