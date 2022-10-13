@@ -48,12 +48,14 @@ namespace GameObjects
 
 	void initBullets()
 	{
+
 		for (int i = 0; i < maxBullets; i++)
 		{
 			spaceShip.bullet[i] = GameObjects::createBullet(spaceShip.dest.x, spaceShip.dest.y);
 			deactivateBullet(spaceShip.bullet[i]);
 		}
 		spaceShip.bulletIndex = 0;
+		spaceShip.bulletType = BulletType::Default;
 	}
 
 
@@ -152,7 +154,7 @@ namespace GameObjects
 			shootTime = 0.1f;
 			break;
 		case BulletType::Piercing:
-			shootTime = 2.0f;
+			shootTime = 1.5f;
 			break;
 		}
 		currentTimer += GetFrameTime();
@@ -162,7 +164,7 @@ namespace GameObjects
 
 		if (!spaceShip.bullet[spaceShip.bulletIndex].isActive && currentTimer >= shootTime)
 		{
-
+			updateBullet();
 			PlaySound(spaceShip.bullet[spaceShip.bulletIndex].sound);
 			spaceShip.bullet[spaceShip.bulletIndex].isActive = true;
 			Vector2 normalizedVector = Vector2Normalize(spaceShip.direction);
