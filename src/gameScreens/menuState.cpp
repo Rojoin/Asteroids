@@ -64,17 +64,7 @@ void statesMenu(GameStates& gamestate)
 		optionsButton.isOverThisButton = true;
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 		{
-			if (!IsWindowFullscreen())
-			{
-				SetWindowSize(1920, 1080);
-				ToggleFullscreen();
-
-			}
-			else
-			{
-				ToggleFullscreen();
-				SetWindowSize(1024, 768);
-			}
+			setGameState(GameStates::Options);
 
 		}
 	}

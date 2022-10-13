@@ -7,6 +7,7 @@
 #include "rulesState.h"
 #include "creditsState.h"
 #include "initialAnimationScreen.h"
+#include "optionsState.h"
 #include "gameObjects/spaceShip.h"
 #include "gameLogic/gameLogic.h"
 #include "system/draw.h"
@@ -28,7 +29,6 @@ extern Texture2D bulletSniperTexture;
 extern Texture2D bulletPiercingTexture;
 extern Texture2D powerUpSniperTexture;
 extern Texture2D powerUpPiercingTexture;
-
 
 extern Texture2D livesTexture;
 extern Texture2D splashScreen;
@@ -107,6 +107,9 @@ void initProgram()
 	case GameStates::Rules:
 		statesRules();
 		break;
+	case GameStates::Options:
+		statesOptions();
+		break;
 	case GameStates::Credits:
 		statesCredits();
 		break;
@@ -136,6 +139,9 @@ void drawProgram()
 	case GameStates::Rules:
 		drawRules();
 		break;
+	case GameStates::Options:
+		drawOptions();
+		break;
 	case GameStates::Credits:
 		drawCredits();
 		break;
@@ -154,6 +160,7 @@ void loadAudios()
 	bulletPiercingSound = LoadSound("resources/shootPiercing.wav");
 	bulletSniperSound = LoadSound("resources/shootSniper.wav");
 	deathScream = LoadSound("resources/deathScream.wav");
+
 }
 
  void loadTextures()

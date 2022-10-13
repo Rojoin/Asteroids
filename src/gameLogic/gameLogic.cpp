@@ -412,20 +412,18 @@ namespace GameLogic
 	}
 	void drawPauseMenu()
 	{
-
-
-		DrawRectangle(GetScreenWidth() / 4 , GetScreenHeight() / 3, GetScreenWidth() / 2 * (GetScreenHeight()) / 728, GetScreenHeight() / 4 * (GetScreenHeight()) / 728, BROWN);
+		
+		
 		drawButton(continueMenuButton);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
 	void drawEndMenu()
 	{
-
-		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2 * (GetScreenHeight()) / 728, (GetScreenHeight() / 4 ), BROWN);
-		playerScore = TextFormat("Score:%0F", spaceShip.score);
+		
+		playerScore = TextFormat("Score:%0.0F",static_cast<double>(spaceShip.score));
 		Vector2 playerScoreMeasure = MeasureTextEx(customFont, playerScore, 50, 0);
-		drawText(playerScore, GetScreenWidth() / 2 - playerScoreMeasure.x * 1.5f , GetScreenHeight() / 2.5f - playerScoreMeasure.y , 50 * static_cast<float>(GetScreenWidth()) / 1024, BLACK, customFont);
+		drawText(playerScore, GetScreenWidth() / 2 - playerScoreMeasure.x * 1.5f * static_cast<float>(GetScreenWidth()) / 1024, GetScreenHeight() / 2.5f - playerScoreMeasure.y , 50 * static_cast<float>(GetScreenWidth()) / 1024, BLACK, customFont);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
