@@ -29,8 +29,6 @@ int mediumAsteroidCount = 0;
 int smallAsteroidCount = 0;
 int bigAsteroidsOnScreen = 4;
 float highScore = 0.0f;
-int mediumAsteroidsOnScreen = 40 / 2;
-int smallAsteroidsOnScreen = 80 / 2;
 Texture2D livesTexture;
 const char* playerScore;
 const char* maxScore;
@@ -42,7 +40,6 @@ Button restartMenuButton   ;
 Button exitMenuButton      ;
 bool isGamePaused = false;
 bool isGameOver = false;
-bool isPlayerDead = false;
 namespace GameLogic
 {
 
@@ -107,6 +104,7 @@ namespace GameLogic
 	void resetGame()
 	{
 		isGamePaused = false;
+		spaceShip.isDead = false;
 		specialAsteroid = createSpecialAsteroid();
 		resetAsteroid(specialAsteroid);
 
@@ -205,7 +203,7 @@ namespace GameLogic
 		if (IsKeyPressed(KEY_P))
 		{
 
-			activatetBulletPowerUp();
+			spaceShip.isDead = true;
 
 		}
 		else if (IsKeyPressed(KEY_O))
@@ -252,7 +250,18 @@ namespace GameLogic
 				restartMenuButton.isOverThisButton = false;
 			}
 		}
+		else if (spaceShip.isDead)
+		{
+			updateShip();
+			static float animTimer = 2;
+			animTimer-= GetFrameTime();
+			if (animTimer <= 0)
+			{
+				resetGame();
+				animTimer = 2;
+			}
 
+		}
 		else if (!isGamePaused)
 		{
 			increaseAsteroidSpawn();
@@ -304,7 +313,7 @@ namespace GameLogic
 				GameLogic::moveAsteroidAcrossScreen(specialAsteroid);
 				if (GameLogic::asteroidSpaceShipCollision(specialAsteroid))
 				{
-					resetGame();
+					spaceShip.isDead = true;
 				}
 				GameLogic::asteroidBulletCollision(specialAsteroid, spaceShip.bullet[i]);
 
@@ -313,7 +322,7 @@ namespace GameLogic
 					GameLogic::moveAsteroidAcrossScreen(bigAsteroids[i]);
 					if (GameLogic::asteroidSpaceShipCollision(bigAsteroids[i]))
 					{
-						resetGame();
+						spaceShip.isDead = true;
 					}
 
 					GameLogic::asteroidBulletCollision(bigAsteroids[j], spaceShip.bullet[i]);
@@ -325,7 +334,7 @@ namespace GameLogic
 					GameLogic::moveAsteroidAcrossScreen(mediumAsteroids[j]);
 					if (GameLogic::asteroidSpaceShipCollision(mediumAsteroids[j]))
 					{
-						resetGame();
+						spaceShip.isDead = true;
 					}
 					GameLogic::asteroidBulletCollision(mediumAsteroids[j], spaceShip.bullet[i]);
 
@@ -336,7 +345,7 @@ namespace GameLogic
 					GameLogic::moveAsteroidAcrossScreen(smallAsteroids[j]);
 					if (GameLogic::asteroidSpaceShipCollision(smallAsteroids[j]))
 					{
-						resetGame();
+						spaceShip.isDead = true;
 					}
 					GameLogic::asteroidBulletCollision(smallAsteroids[j], spaceShip.bullet[i]);
 				}
@@ -474,6 +483,10 @@ namespace GameLogic
 		drawShip();
 		drawButtonTranslucent(pauseMenuButton);
 		drawUI();
+		if (spaceShip.isDead)
+		{
+			drawShip();
+		}
 		if (isGameOver)
 		{
 			drawEndMenu();

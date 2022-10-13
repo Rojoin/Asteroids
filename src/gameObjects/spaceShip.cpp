@@ -10,6 +10,7 @@ Sound deathSound;
 Texture2D shipTexture;
 static float shootTime;
 static float currentTimer = 0.0f;
+static float destructionIndex;
 namespace GameObjects
 {
 
@@ -72,8 +73,9 @@ namespace GameObjects
 	void drawShipDestruction()
 	{
 		float shipHeight = static_cast<float>(spaceShip.texture.height);
-		float shipWidth = static_cast<float>(spaceShip.texture.width);
-		spaceShip.source = { 0,shipHeight / 2,shipWidth / 4.0f,shipHeight / 2 };
+		
+		spaceShip.source.y = shipHeight/2;
+		spaceShip.source.x = 0;
 	}
 
 	void drawShip()
@@ -96,12 +98,37 @@ namespace GameObjects
 
 		spaceShip.source = { spaceShip.source.x + spaceShip.textureIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
 		spaceShip.dest = { spaceShip.position.x,spaceShip.position.y + spaceShip.texture.height / 32.0f ,spaceShip.dest.width,spaceShip.dest.height };
+		if (spaceShip.isDead)
+		{
+			static float animTimer = 0.5f;
+			drawShipDestruction();
+			
+			if (spaceShip.source.x > spaceShip.texture.width)
+			{
+				spaceShip.source.x = 0;
+			}
+			animTimer -= GetFrameTime();
+			if (animTimer <= 0)
+			{
+				destructionIndex += spaceShip.texture.width / 4;
+				if (spaceShip.source.x > spaceShip.texture.width)
+				{
+					spaceShip.source.x = 0;
+					spaceShip.isDead = false;
+				}
+				animTimer = 0.5f;
+			}
+			spaceShip.circle = { spaceShip.position.x,spaceShip.position.y,spaceShip.circle.radius };
+
+			spaceShip.source = { spaceShip.source.x + destructionIndex,spaceShip.source.y ,spaceShip.source.width,spaceShip.source.height };
+			spaceShip.dest = { spaceShip.position.x,spaceShip.position.y + spaceShip.texture.height / 32.0f ,spaceShip.dest.width,spaceShip.dest.height };
+			
+		}
 	}
 
 	void changeShipPosition()
 	{
 		spaceShip.position = { spaceShip.position.x + spaceShip.aceleration.x * GetFrameTime()*  static_cast<float>(GetScreenWidth()) / 1024 ,spaceShip.position.y + spaceShip.aceleration.y * GetFrameTime()*static_cast<float>(GetScreenHeight()) / 768 };
-
 	}
 
 	void updateBullet()
@@ -132,8 +159,6 @@ namespace GameObjects
 				spaceShip.bullet[i].circle.position = { spaceShip.dest.x, spaceShip.dest.y };
 			}
 		}
-
-
 
 	}
 
