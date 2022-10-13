@@ -1,12 +1,13 @@
 #pragma once
-#include "gameObjects/Asteroid.h"
-#include "gameObjects/spaceShip.h"
-#include "gameObjects/Bullets.h"
+#include "gameObjects/asteroid.h"
+#include "gameObjects/bullets.h"
+#include "gameObjects/powerUp.h"
 
 
 using namespace GameObjects;
 namespace GameLogic
 {
 	void asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet);
-	bool asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship);
+	bool powerUpSpaceShipCollision(PowerUp& powerUp);
+	bool asteroidSpaceShipCollision(Asteroid& asteroid);
 }

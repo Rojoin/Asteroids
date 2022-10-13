@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "gameObjects/powerUp.h"
 #include "system/collisionFunctions.h"
 #include "gameObjects/spaceShip.h"
 
@@ -13,15 +14,16 @@ extern Asteroid smallAsteroids[80];
 extern int mediumAsteroidCount;
 extern int smallAsteroidCount;
 Sound collisionSound;
+
 void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 {
 
-	if (isCircleCircleColliding(asteroid.circle, bullet.circle) && bullet.isActive && asteroid.isActive )
+	if (isCircleCircleColliding(asteroid.circle, bullet.circle) && bullet.isActive && asteroid.isActive)
 	{
 		deactivateAsteroid(asteroid);
 		if (bullet.type != BulletType::Piercing)
 		{
-		deactivateBullet(bullet);
+			deactivateBullet(bullet);
 		}
 		spaceShip.score += asteroid.points;
 		PlaySound(collisionSound);
@@ -58,10 +60,20 @@ void GameLogic::asteroidBulletCollision(Asteroid& asteroid, Bullet& bullet)
 	}
 
 }
-
-bool GameLogic::asteroidSpaceShipCollision(Asteroid& asteroid, SpaceShip& ship)
+bool GameLogic::powerUpSpaceShipCollision(PowerUp& powerUp)
 {
-	if (isCircleCircleColliding(asteroid.circle, ship.circle) && asteroid.isActive)
+	if (isCircleCircleColliding(powerUp.circle, spaceShip.circle))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool GameLogic::asteroidSpaceShipCollision(Asteroid& asteroid)
+{
+	if (isCircleCircleColliding(asteroid.circle, spaceShip.circle) && asteroid.isActive)
 	{
 		return true;
 	}
