@@ -15,14 +15,14 @@ namespace GameObjects
 
 	SpaceShip initSpaceShip(Vector2 position, float rotation, float scale)
 	{
+		scale *= static_cast<float>(GetScreenHeight()) / 768;
 		SpaceShip ship;
 		ship.score = 0;
-		ship.texture = shipTexture;
 		ship.position = position;
 		ship.bulletType = BulletType::Default;
 		ship.texture = shipTexture;
 		ship.aceleration = { 0,0 };
-		ship.scale = scale;
+		ship.scale = scale ;
 		ship.deathSound = deathSound;
 		ship.rotation = rotation;
 		ship.lives = 3;
@@ -100,7 +100,7 @@ namespace GameObjects
 
 	void changeShipPosition()
 	{
-		spaceShip.position = { spaceShip.position.x + spaceShip.aceleration.x * GetFrameTime(),spaceShip.position.y + spaceShip.aceleration.y * GetFrameTime() };
+		spaceShip.position = { spaceShip.position.x + spaceShip.aceleration.x * GetFrameTime()*  static_cast<float>(GetScreenWidth()) / 1024 ,spaceShip.position.y + spaceShip.aceleration.y * GetFrameTime()*static_cast<float>(GetScreenHeight()) / 768 };
 
 	}
 

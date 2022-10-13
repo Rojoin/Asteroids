@@ -30,7 +30,7 @@ void drawCredits()
 
 	float width = static_cast<float>(GetScreenWidth());
 	ClearBackground(BLACK);
-	float scale = 0.12f;
+	float scale = 0.12f* GetScreenHeight()/768;
 
 	drawTexture(creditsTexture, { width / 2.0f -(creditsTexture.width/2.0f)* scale, 0}, 0, scale, WHITE);
 	drawButton(escapeButton);

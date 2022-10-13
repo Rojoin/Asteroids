@@ -38,6 +38,6 @@ void drawInitialAnimation()
 	ClearBackground(BLACK);
 	float fontSize = 3 * width / 190;
 	const std::string GamePresentTittle = "Rojoin presents:";
-	drawText(GamePresentTittle, width / 2.0f - static_cast<float>(GamePresentTittle.length()) * 1.5f * fontSize, height / 40, fontSize * 8.0f, DARKBROWN, customFont);
+	drawText(GamePresentTittle.c_str(), width / 2.0f - static_cast<float>(GamePresentTittle.length()) * 1.5f * fontSize, height / 40, fontSize * 8.0f, DARKBROWN, customFont);
 	drawTexture(splashScreen, { 0,0 }, 0, 0.5f, transparency);
 }

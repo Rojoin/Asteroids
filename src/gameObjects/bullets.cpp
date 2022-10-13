@@ -19,7 +19,7 @@ namespace GameObjects
 		bullet.circle = { {x,y},  10 };
 		bullet.rotation = 0;
 		bullet.speed = 300;
-		bullet.scale = 1.0f;
+		bullet.scale = 1.0f * static_cast<float>(GetScreenHeight()) / 768;
 		bullet.sound = bulletDefaultSound;
 		bullet.texture = bulletTexture;
 		bullet.circle.radius *= bullet.scale;
@@ -34,7 +34,7 @@ namespace GameObjects
 		bullet.circle = {{ x,y },10};
 		bullet.rotation = 0;
 		bullet.speed = 500;
-		bullet.scale = 2.0f;
+		bullet.scale = 2.0f * static_cast<float>(GetScreenHeight()) / 768;
 		bullet.sound = bulletSniperSound;
 		bullet.texture = bulletSniperTexture;
 		bullet.circle.radius *= bullet.scale;
@@ -49,7 +49,7 @@ namespace GameObjects
 		bullet.circle = {{ x,y },10};
 		bullet.rotation = 0;
 		bullet.speed = 100;
-		bullet.scale = 5.0f;
+		bullet.scale = 5.0f * static_cast<float>(GetScreenHeight()) / 768;
 		bullet.sound = bulletPiercingSound;
 		bullet.texture = bulletPiercingTexture;
 		bullet.circle.radius *= bullet.scale;
@@ -57,8 +57,8 @@ namespace GameObjects
 	}
 	void changeBulletPosition(GameObjects::Bullet& bullet)
 	{
-		bullet.circle.position.x += bullet.aceleration.x * bullet.speed * GetFrameTime();
-		bullet.circle.position.y += bullet.aceleration.y * bullet.speed * GetFrameTime();
+		bullet.circle.position.x += bullet.aceleration.x * bullet.speed * GetFrameTime() * static_cast<float>(GetScreenWidth()) / 1024;
+		bullet.circle.position.y += bullet.aceleration.y * bullet.speed * GetFrameTime() * static_cast<float>(GetScreenHeight()) / 768;
 
 	}
 

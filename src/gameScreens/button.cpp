@@ -38,7 +38,7 @@ void drawButtonTranslucent(Button button)
 		DrawRectangleRoundedLines(button.rec, roundness, segments, 5, BLACK);
 	}
 }
-Button createButton(std::string buttonTitle, Color color)
+Button createButton(const char* buttonTitle, Color color)
 {
 	Button button;
 
@@ -50,11 +50,11 @@ Button createButton(std::string buttonTitle, Color color)
 
 	return button;
 }
-Button createButton(float x, float y, std::string buttonTitle, Color color)
+Button createButton(float x, float y, const char* buttonTitle, Color color)
 {
 	Button button;
 
-	button.rec = { x,y, buttonWidth, buttonHeight };
+	button.rec = { x,y, buttonWidth * static_cast<float>(GetScreenWidth()) / 1024, buttonHeight * static_cast<float>(GetScreenHeight()) / 768 };
 	button.buttonTittle = buttonTitle;
 	button.isSelected = false;
 	button.isOverThisButton = false;
@@ -62,11 +62,11 @@ Button createButton(float x, float y, std::string buttonTitle, Color color)
 
 	return button;
 }
-Button createButton(float x, float y, float width, float height, std::string buttonTitle, Color color)
+Button createButton(float x, float y, float width, float height, const char* buttonTitle, Color color)
 {
 	Button button;
 
-	button.rec = { x,y, width, height };
+	button.rec = { x,y, width * static_cast<float>(GetScreenWidth()) / 1024, height * static_cast<float>(GetScreenHeight()) / 768 };
 	button.buttonTittle = buttonTitle;
 	button.isSelected = false;
 	button.isOverThisButton = false;

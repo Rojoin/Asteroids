@@ -19,7 +19,7 @@ namespace GameObjects
 		asteroid.texture = asteroidSpecialTexture;
 		asteroid.circle = { {200,200}, 15 };
 		asteroid.aceleration = { 0,	0 };
-		asteroid.scale = 2;
+		asteroid.scale = 2 * static_cast<float>(GetScreenHeight()) / 768;
 		asteroid.rotation = 0;
 		asteroid.points = 200;
 		asteroid.speed = 50;
@@ -39,7 +39,7 @@ namespace GameObjects
 		asteroid.type = AsteroidType::Default;
 		asteroid.circle = { {200,200}, 10 };
 		asteroid.aceleration = { 0,	0 };
-		asteroid.scale = 2;
+		asteroid.scale = 2 * static_cast<float>(GetScreenHeight()) / 768;
 		asteroid.rotation = 0;
 		asteroid.points = 50;
 		asteroid.speed = 75;
@@ -57,7 +57,7 @@ namespace GameObjects
 		asteroid.type = AsteroidType::Medium;
 		asteroid.circle = { {200,200}, 10 };
 		asteroid.aceleration = { 0,	0 };
-		asteroid.scale = 1.5f;
+		asteroid.scale = 1.5f * static_cast<float>(GetScreenHeight()) / 768;
 		asteroid.rotation = 0;
 		asteroid.points = 100;
 		asteroid.speed = 100;
@@ -75,7 +75,7 @@ namespace GameObjects
 		asteroid.texture = asteroidSmallTexture;
 		asteroid.circle = { {0,0}, 10 };
 		asteroid.aceleration = { 0,	0 };
-		asteroid.scale = 1.0f;
+		asteroid.scale = 1.0f * static_cast<float>(GetScreenHeight()) / 768;
 		asteroid.rotation = 0;
 		asteroid.points = 200;
 		asteroid.maxSpeed = 150.0f;
@@ -91,8 +91,8 @@ namespace GameObjects
 	{
 		if (asteroid.isActive)
 		{
-			asteroid.circle.position.y += asteroid.aceleration.y * GetFrameTime() * asteroid.speed;
-			asteroid.circle.position.x += asteroid.aceleration.x * GetFrameTime() * asteroid.speed;
+			asteroid.circle.position.y += asteroid.aceleration.y * GetFrameTime() * asteroid.speed * static_cast<float>(GetScreenHeight()) / 768;
+			asteroid.circle.position.x += asteroid.aceleration.x * GetFrameTime() * asteroid.speed * static_cast<float>(GetScreenWidth()) / 1024;
 		}
 	}
 	void resetAsteroid(Asteroid& asteroid)

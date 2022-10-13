@@ -15,7 +15,7 @@ namespace GameObjects
 		powerUp.circle = { {0,0},20 };
 		powerUp.timer = timer;
 		powerUp.type = BulletType::Piercing;
-		powerUp.scale = 2;
+		powerUp.scale = 2 * static_cast<float>(GetScreenHeight()) / 768;
 		powerUp.timerActive = DEFAULT_TIMER;
 		powerUp.isActive = false;
 		powerUp.isSpawned = false;
@@ -29,7 +29,7 @@ namespace GameObjects
 		powerUp.circle = { {0,0},20 };
 		powerUp.timer = timer;
 		powerUp.type = BulletType::Sniper;
-		powerUp.scale = 2;
+		powerUp.scale = 2 * static_cast<float>(GetScreenHeight()) / 768;
 		powerUp.timerActive = DEFAULT_TIMER;
 		powerUp.isActive = false;
 		powerUp.isSpawned = false;

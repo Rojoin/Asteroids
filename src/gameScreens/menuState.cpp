@@ -13,7 +13,6 @@ Vector2 middleScreen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
 extern Font customFont;
 
 Vector2 Screen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
-std::string creator = "                      Game made by Ignacio 'Rojoin' Arrastua";
 Button playButton = createButton("     PLAY", DARKGREEN);
 Button howToPlayButton = createButton("   RULES", YELLOW);
 Button optionsButton = createButton("  OPTIONS ", YELLOW);
@@ -74,7 +73,7 @@ void statesMenu(GameStates& gamestate)
 			else
 			{
 				ToggleFullscreen();
-				SetWindowSize(1280, 720);
+				SetWindowSize(1024, 768);
 			}
 
 		}
@@ -121,9 +120,8 @@ void drawMenu()
 	drawButton(exitButton);
 	float fontSize = 3.0f * width / 190.0f;
 	fontSize = 16;
-	drawText(creator.c_str(), width / 2.0f + static_cast<float>(creator.length()), height - fontSize, fontSize, RED, customFont);
 	std::string titleScreen = "The Last Slice";
-	drawText(titleScreen, width / 2.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f, (height / 8.0f), fontSize * 8.0f, BLACK, customFont);
+	drawText(titleScreen.c_str(), width / 2.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f, (height / 8.0f), fontSize * 8.0f, BLACK, customFont);
 	drawTexture(titleTexture, { width / 3.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f,height / 16.0f }, 0, 0.17f, WHITE);
 
 }

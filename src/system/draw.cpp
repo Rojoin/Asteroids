@@ -1,7 +1,14 @@
 #include "draw.h"
 #include "raylib.h"
-#include <string>
 
+static int width;
+static int height;
+
+void updateScale()
+{
+	width=	GetScreenWidth() * 1 / 1024	 ;
+	height =GetScreenHeight() * 1 / 768	 ;
+}
 void drawTexture(Texture2D texture,Vector2 position,float rotation,float scale,Color tint)
 {
 
@@ -16,8 +23,16 @@ void drawTexture(Texture2D texture,Rectangle source,Rectangle dest, Vector2 posi
 
 }
 
-void drawText(std::string text,float posX,float posY, float fontSize,Color color,Font font)
+void drawText(const char* text,float posX,float posY, float fontSize,Color color,Font font)
 {
 
-	DrawTextEx(font, text.c_str(), { posX, posY }, fontSize,10, color);
+	DrawTextEx(font, text, { posX, posY }, fontSize,10, color);
+}
+ int getScaleWidth()
+{
+	return width;
+}
+ int getScaleHeight()
+{
+	return height;
 }

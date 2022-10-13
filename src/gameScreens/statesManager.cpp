@@ -46,14 +46,14 @@ bool isProgramRunning = true;
 
 int mousePosX;
 int mousePosY;
-static void logicProgram();
-static void drawProgram();
-static void loadResources();
-static void unLoadResources();
-static void loadTextures();
-static void unLoadTextures();
-static void unLoadAudio();
-static void loadAudios();
+ void logicProgram();
+ void drawProgram();
+ void loadResources();
+ void unLoadResources();
+ void loadTextures();
+ void unLoadTextures();
+ void unLoadAudio();
+ void loadAudios();
 
 void initProgram()
 {
@@ -71,7 +71,7 @@ void initProgram()
 	isProgramRunning = true;
 	mainTheme = LoadMusicStream("resources/theLastSlice.mp3");
 
-
+	
 	SetMusicVolume(mainTheme, 0.5);
 	PlayMusicStream(mainTheme);
 	while (!WindowShouldClose() && isProgramRunning)
@@ -87,11 +87,11 @@ void initProgram()
 	CloseAudioDevice();
 }
 
-static void logicProgram()
+ void logicProgram()
 {
 	mousePosX = GetMouseX() - mouseCursor.width / 2;
 	mousePosY = GetMouseY() - mouseCursor.height / 2;
-
+	updateScale();
 	switch (gameStates)
 	{
 	case GameStates::InitialAnimation:
@@ -116,7 +116,7 @@ static void logicProgram()
 	}
 }
 
-static void drawProgram()
+void drawProgram()
 {
 	BeginDrawing();
 	ClearBackground(BLACK);
@@ -145,7 +145,7 @@ static void drawProgram()
 	EndDrawing();
 }
 
-static void loadAudios()
+void loadAudios()
 {
 	collisionSound = LoadSound("resources/collision.wav");
 	bulletDefaultSound = LoadSound("resources/bullet2.wav");
@@ -155,7 +155,7 @@ static void loadAudios()
 	deathScream = LoadSound("resources/deathScream.wav");
 }
 
-static void loadTextures()
+ void loadTextures()
 {
 	livesTexture = LoadTexture("resources/lives.png");
 	splashScreen = LoadTexture("resources/splashScreen.png");
@@ -176,31 +176,30 @@ static void loadTextures()
 	powerUpSniperTexture = LoadTexture("resources/powerUpSniper.png");
 	GenTextureMipmaps(&titleTexture);
 	SetTextureFilter(titleTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
-	GenTextureMipmaps(&customFont.texture);
-	SetTextureFilter(customFont.texture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	GenTextureMipmaps(&creditsTexture);
 	SetTextureFilter(creditsTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
 }
 
-static void loadResources()
+ void loadResources()
 {
 	customFont = LoadFontEx("resources/LoftygoalsRegular-9Y5Xy.otf", 96, nullptr, 0);
+	GenTextureMipmaps(&customFont.texture);
+	SetTextureFilter(customFont.texture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	loadTextures();
 	loadAudios();
 }
 
-static void unLoadAudio()
+void unLoadAudio()
 {
 	UnloadSound(collisionSound);
 	UnloadSound(deathSound);
 	UnloadSound(bulletDefaultSound);
-	UnloadSound(bulletSniperSound);
 	UnloadSound(bulletPiercingSound);
 	UnloadSound(deathScream);
+	//UnloadSound(bulletSniperSound);
 	UnloadMusicStream(mainTheme);
 }
-
-static void unLoadTextures()
+ void unLoadTextures()
 {
 	UnloadTexture(creditsTexture);
 	UnloadTexture(asteroidBigTexture);
@@ -219,9 +218,9 @@ static void unLoadTextures()
 	UnloadTexture(mouseCursor);
 }
 
-static void unLoadResources()
+void unLoadResources()
 {
-	UnloadFont(customFont);
+	//UnloadFont(customFont);
 	unLoadAudio();
 	unLoadTextures();
 
