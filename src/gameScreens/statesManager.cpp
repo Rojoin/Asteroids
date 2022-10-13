@@ -17,6 +17,7 @@ Image gameIcon;
 Texture2D wallpaper;
 extern Texture2D creditsTexture;
 extern Texture2D titleTexture;
+extern Texture2D rulesTexture;
 extern Texture2D shipTexture;
 extern Texture2D bulletTexture;
 extern Texture2D asteroidSpecialTexture;
@@ -169,6 +170,7 @@ void loadAudios()
 	asteroidMediumTexture = LoadTexture("resources/mediumHand.png");
 	asteroidSmallTexture = LoadTexture("resources/smallHand.png");
 	creditsTexture = LoadTexture("resources/credits.png");
+	rulesTexture = LoadTexture("resources/rules.png");
 	titleTexture = LoadTexture("resources/titleLogo.png");
 	gameIcon = LoadImage("resources/titleLogo.png");
 	mouseCursor = LoadTexture("resources/mousePointer.png");
@@ -178,6 +180,8 @@ void loadAudios()
 	SetTextureFilter(titleTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
 	GenTextureMipmaps(&creditsTexture);
 	SetTextureFilter(creditsTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
+	GenTextureMipmaps(&rulesTexture);
+	SetTextureFilter(rulesTexture, TEXTURE_FILTER_ANISOTROPIC_16X);
 }
 
  void loadResources()
@@ -196,7 +200,7 @@ void unLoadAudio()
 	UnloadSound(bulletDefaultSound);
 	UnloadSound(bulletPiercingSound);
 	UnloadSound(deathScream);
-	//UnloadSound(bulletSniperSound);
+	UnloadSound(bulletSniperSound);
 	UnloadMusicStream(mainTheme);
 }
  void unLoadTextures()
@@ -214,6 +218,7 @@ void unLoadAudio()
 	UnloadTexture(splashScreen);
 	UnloadTexture(livesTexture);
 	UnloadTexture(titleTexture);
+	UnloadTexture(rulesTexture);
 	UnloadImage(gameIcon);
 	UnloadTexture(mouseCursor);
 }

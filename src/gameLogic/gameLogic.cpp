@@ -55,10 +55,10 @@ namespace GameLogic
 		float width = static_cast<float>(GetScreenWidth());
 		float height = static_cast<float>(GetScreenHeight());
 		isGamePaused = false;
-		continueMenuButton = createButton(width / 2 - buttonWidth / 2, height / 2 - height / 8, buttonWidth, buttonHeight, " CONTINUE", DARKGREEN);
-		restartMenuButton = createButton(width / 3 + width / 4 - buttonWidth / 2, height / 2.0f - buttonHeight, buttonWidth, buttonHeight, " RESTART", DARKPURPLE);
-		exitMenuButton = createButton(width / 3 + width / 8 - buttonWidth, height / 2.0f - buttonHeight, buttonWidth, buttonHeight, "   EXIT", RED);
-		pauseMenuButton = createButton(width / 2 - buttonWidth / 2, 0 + buttonHeight / 2, buttonWidth, buttonHeight, "  PAUSE", DARKGREEN);
+		continueMenuButton = createButton(width / 2 - buttonWidth / 2 * static_cast<float>(GetScreenWidth()) / 1024, height / 2 - height / 8 * static_cast<float>(GetScreenHeight()) / 768, buttonWidth, buttonHeight, " CONTINUE", DARKGREEN);
+		restartMenuButton = createButton(width / 3 + width / 4 - buttonWidth / 2 * static_cast<float>(GetScreenWidth()) / 1024, height / 2.0f - buttonHeight * static_cast<float>(GetScreenHeight()) / 768, buttonWidth, buttonHeight, " RESTART", DARKPURPLE);
+		exitMenuButton = createButton(width / 3 + width / 8 - buttonWidth * static_cast<float>(GetScreenWidth()) / 1024, height / 2.0f - buttonHeight * static_cast<float>(GetScreenHeight()) / 768, buttonWidth, buttonHeight, "   EXIT", RED);
+		pauseMenuButton = createButton(width / 2 - buttonWidth / 2 * static_cast<float>(GetScreenWidth()) / 1024, 0 + buttonHeight / 2 * static_cast<float>(GetScreenHeight()) / 768, buttonWidth , buttonHeight , "  PAUSE", DARKGREEN);
 		specialAsteroid = createSpecialAsteroid();
 		resetAsteroid(specialAsteroid);
 
@@ -414,24 +414,25 @@ namespace GameLogic
 	{
 
 
-		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
+		DrawRectangle(GetScreenWidth() / 4 , GetScreenHeight() / 3, GetScreenWidth() / 2 * (GetScreenHeight()) / 728, GetScreenHeight() / 4 * (GetScreenHeight()) / 728, BROWN);
 		drawButton(continueMenuButton);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
 	void drawEndMenu()
 	{
-		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
+
+		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2 * (GetScreenHeight()) / 728, (GetScreenHeight() / 4 ), BROWN);
 		playerScore = TextFormat("Score:%0F", spaceShip.score);
 		Vector2 playerScoreMeasure = MeasureTextEx(customFont, playerScore, 50, 0);
-		drawText(playerScore, GetScreenWidth() / 2 - playerScoreMeasure.x * 1.5f, GetScreenHeight() / 2.5f - playerScoreMeasure.y, 50, BLACK, customFont);
+		drawText(playerScore, GetScreenWidth() / 2 - playerScoreMeasure.x * 1.5f , GetScreenHeight() / 2.5f - playerScoreMeasure.y , 50 * static_cast<float>(GetScreenWidth()) / 1024, BLACK, customFont);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
 	void drawUI()
 	{
 		playerScore = TextFormat("Score:%0.0F", static_cast<double>(spaceShip.score));
-		maxScore    = TextFormat("Max:%0.0F", highScore);
+		maxScore    = TextFormat("Max:%0.0F", static_cast<double>(highScore));
 		Vector2 scoreMeasure = MeasureTextEx(customFont, playerScore, 50, 0);
 		Vector2 maxScoreMeasure = MeasureTextEx(customFont, maxScore, 50, 0);
 		drawText(playerScore, 0, 0, 50 * static_cast<float>(GetScreenWidth()) / 1024, BLACK, customFont);

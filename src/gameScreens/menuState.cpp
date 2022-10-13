@@ -118,10 +118,10 @@ void drawMenu()
 	drawButton(optionsButton);
 	drawButton(creditsButton);
 	drawButton(exitButton);
-	float fontSize = 3.0f * width / 190.0f;
-	fontSize = 16;
+	float fontSize ;
+	fontSize = 16.0f * static_cast<float>(GetScreenHeight()) / 728.0f;
 	std::string titleScreen = "The Last Slice";
 	drawText(titleScreen.c_str(), width / 2.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f, (height / 8.0f), fontSize * 8.0f, BLACK, customFont);
-	drawTexture(titleTexture, { width / 3.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f,height / 16.0f }, 0, 0.17f, WHITE);
+	drawTexture(titleTexture, { width / 3.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f,height / 16.0f }, 0, 0.17f * (GetScreenHeight()) / 728, WHITE);
 
 }

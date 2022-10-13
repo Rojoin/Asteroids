@@ -29,12 +29,12 @@ void drawButtonTranslucent(Button button)
 	int segments = 8;
 
 	DrawRectangleRounded(button.rec, roundness, segments, translucentButton);
-	drawText(button.buttonTittle, button.rec.x, button.rec.y + button.rec.height / 3, 25, translucentFont, customFont);
+	drawText(button.buttonTittle, button.rec.x , button.rec.y + button.rec.height / 3 , 25 *static_cast<float>(GetScreenHeight()) / 768, translucentFont, customFont);
 
 	if (button.isOverThisButton)
 	{
 		DrawRectangleRounded(button.rec, roundness, segments, button.color);
-		drawText(button.buttonTittle, button.rec.x, button.rec.y + button.rec.height / 3, 25, BLACK, customFont);
+		drawText(button.buttonTittle, button.rec.x , button.rec.y + button.rec.height / 3 , 25 *static_cast<float>(GetScreenHeight()) / 768, BLACK, customFont);
 		DrawRectangleRoundedLines(button.rec, roundness, segments, 5, BLACK);
 	}
 }
@@ -42,7 +42,7 @@ Button createButton(const char* buttonTitle, Color color)
 {
 	Button button;
 
-	button.rec = { static_cast<float>(GetScreenWidth() / 2 - buttonWidth / 2),  static_cast<float>(GetScreenHeight() / 3), buttonWidth, buttonHeight };
+	button.rec = { static_cast<float>(GetScreenWidth() / 2 - buttonWidth / 2),  static_cast<float>(GetScreenHeight() / 3), buttonWidth * static_cast<float>(GetScreenWidth()) / 102, buttonHeight * static_cast<float>(GetScreenHeight()) / 768 };
 	button.buttonTittle = buttonTitle;
 	button.isSelected = false;
 	button.isOverThisButton = false;
