@@ -31,10 +31,14 @@ extern Texture2D powerUpPiercingTexture;
 
 extern Texture2D livesTexture;
 extern Texture2D splashScreen;
+extern Sound deathScream;
+extern Sound bulletSniperSound;
+
+extern Sound bulletPiercingSound;
+extern Sound bulletDefaultSound;
 extern Sound deathSound;
 extern Sound collisionSound;
 extern Font customFont;
-extern Sound bulletSound;
 Texture2D mouseCursor;
 extern GameObjects::SpaceShip spaceShip;
 Music mainTheme;
@@ -144,8 +148,11 @@ static void drawProgram()
 static void loadAudios()
 {
 	collisionSound = LoadSound("resources/collision.wav");
-	bulletSound = LoadSound("resources/bullet2.wav");
+	bulletDefaultSound = LoadSound("resources/bullet2.wav");
 	deathSound = LoadSound("resources/explosion.wav");
+	bulletPiercingSound = LoadSound("resources/shootPiercing.wav");
+	bulletSniperSound = LoadSound("resources/shootSniper.wav");
+	deathScream = LoadSound("resources/deathScream.wav");
 }
 
 static void loadTextures()
@@ -186,7 +193,10 @@ static void unLoadAudio()
 {
 	UnloadSound(collisionSound);
 	UnloadSound(deathSound);
-	UnloadSound(bulletSound);
+	UnloadSound(bulletDefaultSound);
+	UnloadSound(bulletSniperSound);
+	UnloadSound(bulletPiercingSound);
+	UnloadSound(deathScream);
 	UnloadMusicStream(mainTheme);
 }
 
