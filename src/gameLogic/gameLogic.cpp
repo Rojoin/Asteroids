@@ -1,6 +1,4 @@
 #include "gameLogic.h"
-
-#include <iostream>
 #include "collisionLogic.h"
 #include "movementLogic.h"
 #include "shootLogic.h"
@@ -30,17 +28,18 @@ Sound deathScream;
 int mediumAsteroidCount = 0;
 int smallAsteroidCount = 0;
 int bigAsteroidsOnScreen = 4;
-float highScore = 0;
+float highScore = 0.0f;
 int mediumAsteroidsOnScreen = 40 / 2;
 int smallAsteroidsOnScreen = 80 / 2;
 Texture2D livesTexture;
+const char* playerScore;
+const char* maxScore;
 
 
-
-Button pauseMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "PAUSE", GREEN);
-Button continueMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "CONTINUE", BROWN);
-Button restartMenuButton = createButton(0, 0, buttonWidth, buttonHeight, "RESTART", GREEN);
-Button exitMenuButton = createButton(0, 0, " EXIT", GREEN);
+Button pauseMenuButton     ;
+Button continueMenuButton  ;
+Button restartMenuButton   ;
+Button exitMenuButton      ;
 bool isGamePaused = false;
 bool isGameOver = false;
 bool isPlayerDead = false;
@@ -145,7 +144,6 @@ namespace GameLogic
 				highScore = spaceShip.score;
 				if (SaveStorageValue(0, static_cast<int>(highScore)))
 				{
-					std::cout << "Se guardo Correctamente";
 				}
 			}
 			isGameOver = true;
@@ -157,7 +155,6 @@ namespace GameLogic
 		if (!sniperPowerUp.isActive && !sniperPowerUp.isSpawned)
 		{
 			sniperPowerUp.timer -= GetFrameTime();
-			std::cout << sniperPowerUp.timer << std::endl;
 			if (sniperPowerUp.timer <= 0)
 			{
 				randomSpawn(sniperPowerUp);
@@ -171,7 +168,6 @@ namespace GameLogic
 		else if (sniperPowerUp.isActive)
 		{
 			sniperPowerUp.timerActive -= GetFrameTime();
-			std::cout << sniperPowerUp.timerActive << std::endl;
 			if (sniperPowerUp.timerActive <= 0)
 			{
 				spaceShip.bulletType = BulletType::Default;
@@ -195,7 +191,6 @@ namespace GameLogic
 		else if (piercingPowerUp.isActive)
 		{
 			piercingPowerUp.timerActive -= GetFrameTime();
-			std::cout << piercingPowerUp.timerActive << std::endl;
 			if (piercingPowerUp.timerActive <= 0)
 			{
 				spaceShip.bulletType = BulletType::Default;
@@ -427,26 +422,24 @@ namespace GameLogic
 	void drawEndMenu()
 	{
 		DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 3, GetScreenWidth() / 2, GetScreenHeight() / 4, BROWN);
-		std::string playerScore = TextFormat("Score:%0.0F", spaceShip.score);
-		Vector2 playerScoreMeasure = MeasureTextEx(customFont, playerScore.c_str(), 50, 0);
+		playerScore = TextFormat("Score:%0F", spaceShip.score);
+		Vector2 playerScoreMeasure = MeasureTextEx(customFont, playerScore, 50, 0);
 		drawText(playerScore, GetScreenWidth() / 2 - playerScoreMeasure.x * 1.5f, GetScreenHeight() / 2.5f - playerScoreMeasure.y, 50, BLACK, customFont);
 		drawButton(restartMenuButton);
 		drawButton(exitMenuButton);
 	}
 	void drawUI()
 	{
-
-		std::string playerScore = TextFormat("Score:%0.0F", spaceShip.score);
-		std::string maxScore = TextFormat("Max:%0.0F", highScore);
-		Vector2 scoreMeasure = MeasureTextEx(customFont, playerScore.c_str(), 50, 0);
-		Vector2 maxScoreMeasure = MeasureTextEx(customFont, maxScore.c_str(), 50, 0);
-		drawText(playerScore, 0, 0, 50, BLACK, customFont);
+		playerScore = TextFormat("Score:%0.0F", static_cast<double>(spaceShip.score));
+		maxScore    = TextFormat("Max:%0.0F", highScore);
+		Vector2 scoreMeasure = MeasureTextEx(customFont, playerScore, 50, 0);
+		Vector2 maxScoreMeasure = MeasureTextEx(customFont, maxScore, 50, 0);
+		drawText(playerScore, 0, 0, 50 * static_cast<float>(GetScreenWidth()) / 1024, BLACK, customFont);
 		for (int i = 0; i < spaceShip.lives; i++)
 		{
-			drawTexture(livesTexture, { livesTexture.width * (i + 1.0f),scoreMeasure.y }, 0, 1, WHITE);
+			drawTexture(livesTexture, { livesTexture.width * static_cast<float>(GetScreenWidth()) / 1024 * (i + 1.0f),scoreMeasure.y * static_cast<float>(GetScreenHeight()) / 768 }, 0, 1 * static_cast<float>(GetScreenWidth()) / 1024, WHITE);
 		}
-		//Implementar MaxScore
-		drawText(maxScore, GetScreenWidth() - maxScoreMeasure.x * 1.5f, 0, 50, BLACK, customFont);
+		drawText(maxScore, GetScreenWidth() - maxScoreMeasure.x * 1.5f * static_cast<float>(GetScreenWidth()) / 1024, 0, 50 * static_cast<float>(GetScreenHeight()) / 768, BLACK, customFont);
 	}
 	void drawGame()
 	{
