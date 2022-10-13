@@ -2,7 +2,9 @@
 #include "gameLogic/movementLogic.h"
 #include "system/draw.h"
 
-Sound bulletSound;
+Sound bulletDefaultSound;
+Sound bulletSniperSound;
+Sound bulletPiercingSound;
  Texture2D bulletTexture;
  Texture2D bulletPiercingTexture;
  Texture2D bulletSniperTexture;
@@ -18,7 +20,7 @@ namespace GameObjects
 		bullet.rotation = 0;
 		bullet.speed = 300;
 		bullet.scale = 1.0f;
-		bullet.sound = bulletSound;
+		bullet.sound = bulletDefaultSound;
 		bullet.texture = bulletTexture;
 		bullet.circle.radius *= bullet.scale;
 		return bullet;
@@ -33,7 +35,7 @@ namespace GameObjects
 		bullet.rotation = 0;
 		bullet.speed = 500;
 		bullet.scale = 2.0f;
-		bullet.sound = bulletSound;
+		bullet.sound = bulletSniperSound;
 		bullet.texture = bulletSniperTexture;
 		bullet.circle.radius *= bullet.scale;
 		return bullet;
@@ -48,7 +50,7 @@ namespace GameObjects
 		bullet.rotation = 0;
 		bullet.speed = 100;
 		bullet.scale = 5.0f;
-		bullet.sound = bulletSound;
+		bullet.sound = bulletPiercingSound;
 		bullet.texture = bulletPiercingTexture;
 		bullet.circle.radius *= bullet.scale;
 		return bullet;
@@ -57,6 +59,7 @@ namespace GameObjects
 	{
 		bullet.circle.position.x += bullet.aceleration.x * bullet.speed * GetFrameTime();
 		bullet.circle.position.y += bullet.aceleration.y * bullet.speed * GetFrameTime();
+
 	}
 
 
