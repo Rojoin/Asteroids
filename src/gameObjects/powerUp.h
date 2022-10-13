@@ -19,9 +19,11 @@ namespace GameObjects
 		bool isSpawned;
 	};
 
-	PowerUp createPowerUpPiercing(float timer, float timerActive)	 ;
-	PowerUp createPowerUpSniper(float timer, float timerActive)	 ;
-	void randomSpawn(PowerUp& powerUp, float timer, float timerActive);
-	void setPowerUpTimer(PowerUp& powerUp, float timer);
+	PowerUp createPowerUpPiercing(float timer);
+	PowerUp createPowerUpSniper(float timer);
+	BulletType activatePowerUp(PowerUp& powerUp);
+	void deactivatePowerUp(PowerUp& powerUp);
+	void randomSpawn(PowerUp& powerUp);
 	void drawPowerUp(PowerUp powerUp);
+	const float DEFAULT_TIMER = 7.0f;
 }

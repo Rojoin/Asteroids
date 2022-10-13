@@ -1,11 +1,11 @@
 #include "gameLogic.h"
 
 #include <iostream>
-
 #include "collisionLogic.h"
 #include "movementLogic.h"
 #include "shootLogic.h"
 #include "mouseInputs.h"
+#include "gameObjects/powerUp.h"
 #include "gameScreens/button.h"
 #include "gameScreens/GameStates.h"
 #include "system/collisionFunctions.h"
@@ -23,10 +23,13 @@ Asteroid specialAsteroid;
 Asteroid bigAsteroids[maxBigAsteroids];
 Asteroid mediumAsteroids[maxMediumAsteroids];
 Asteroid smallAsteroids[maxSmallAsteroids];
+PowerUp piercingPowerUp;
+PowerUp sniperPowerUp;
 
+Sound deathScream;
 int mediumAsteroidCount = 0;
 int smallAsteroidCount = 0;
-
+int bigAsteroidsOnScreen = 4;
 float highScore = 0;
 int mediumAsteroidsOnScreen = 40 / 2;
 int smallAsteroidsOnScreen = 80 / 2;
@@ -48,6 +51,7 @@ namespace GameLogic
 	void initGame()
 	{
 		isGameOver = false;
+		bigAsteroidsOnScreen = 4;
 		isGamePaused = false;
 		float width = static_cast<float>(GetScreenWidth());
 		float height = static_cast<float>(GetScreenHeight());
@@ -77,11 +81,29 @@ namespace GameLogic
 			smallAsteroids[i] = createSmallAsteroid();
 
 		}
-
+		float timer = static_cast<float>(GetRandomValue(20, 40));
+		sniperPowerUp = createPowerUpSniper(timer);
+		timer = static_cast<float>(GetRandomValue(20, 40));
+		piercingPowerUp = createPowerUpPiercing(timer);
 		Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
 		spaceShip = initSpaceShip(spacePosition, 0, 1);
 		initBullets();
 		highScore = static_cast<float>(LoadStorageValue(0));
+	}
+	void increaseAsteroidSpawn()
+	{
+		if (spaceShip.score >=5000)
+		{
+			bigAsteroidsOnScreen = 10;
+		}
+		if (spaceShip.score>2500)
+		{
+			bigAsteroidsOnScreen = 8;
+		}
+		if (spaceShip.score>2000)
+		{
+			bigAsteroidsOnScreen = 6;
+		}
 	}
 	void resetGame()
 	{
@@ -110,9 +132,14 @@ namespace GameLogic
 
 		Vector2 spacePosition = { (float)GetScreenWidth() / 2,(float)GetScreenHeight() / 2 };
 		resetSpaceShip(spaceShip, spacePosition);
+		float timer = static_cast<float>(GetRandomValue(20, 40));
+		sniperPowerUp = createPowerUpSniper(timer);
+		 timer = static_cast<float>(GetRandomValue(20, 40));
+		piercingPowerUp = createPowerUpPiercing(timer);
 		initBullets();
 		if (spaceShip.lives <= 0)
 		{
+			PlaySound(deathScream);
 			if (spaceShip.score > highScore)
 			{
 				highScore = spaceShip.score;
@@ -122,7 +149,60 @@ namespace GameLogic
 				}
 			}
 			isGameOver = true;
+			
 		}
+	}
+	void powerUpLogic()
+	{
+		if (!sniperPowerUp.isActive && !sniperPowerUp.isSpawned)
+		{
+			sniperPowerUp.timer -= GetFrameTime();
+			std::cout << sniperPowerUp.timer << std::endl;
+			if (sniperPowerUp.timer <= 0)
+			{
+				randomSpawn(sniperPowerUp);
+			}
+		}
+		if (sniperPowerUp.isSpawned && powerUpSpaceShipCollision(sniperPowerUp))
+		{
+			spaceShip.bulletType = activatePowerUp(sniperPowerUp);
+			sniperPowerUp.isSpawned = false;
+		}
+		else if (sniperPowerUp.isActive)
+		{
+			sniperPowerUp.timerActive -= GetFrameTime();
+			std::cout << sniperPowerUp.timerActive << std::endl;
+			if (sniperPowerUp.timerActive <= 0)
+			{
+				spaceShip.bulletType = BulletType::Default;
+				deactivatePowerUp(sniperPowerUp);
+			}
+		}
+
+		if (!piercingPowerUp.isActive && !piercingPowerUp.isSpawned)
+		{
+			piercingPowerUp.timer -= GetFrameTime();
+			if (piercingPowerUp.timer <= 0)
+			{
+				randomSpawn(piercingPowerUp);
+			}
+		}
+		if (piercingPowerUp.isSpawned && powerUpSpaceShipCollision(piercingPowerUp))
+		{
+			piercingPowerUp.isSpawned = false;
+			spaceShip.bulletType = activatePowerUp(piercingPowerUp);
+		}
+		else if (piercingPowerUp.isActive)
+		{
+			piercingPowerUp.timerActive -= GetFrameTime();
+			std::cout << piercingPowerUp.timerActive << std::endl;
+			if (piercingPowerUp.timerActive <= 0)
+			{
+				spaceShip.bulletType = BulletType::Default;
+				deactivatePowerUp(piercingPowerUp);
+			}
+		}
+
 	}
 	void playGame()
 	{
@@ -180,6 +260,7 @@ namespace GameLogic
 
 		else if (!isGamePaused)
 		{
+			increaseAsteroidSpawn();
 			updateShootTimer();
 			if (isPointRecColliding(Inputs::getMouseInput(), pauseMenuButton.rec))
 			{
@@ -219,14 +300,14 @@ namespace GameLogic
 
 			GameLogic::updateCurrentSpaceShipPos(spaceShip);
 			updateShip();
+			powerUpLogic();
 			updateBullet();
 			shootBullets();
-
 			changeShipPosition();
 			for (int i = 0; i < maxBullets; i++)
 			{
 				GameLogic::moveAsteroidAcrossScreen(specialAsteroid);
-				if (GameLogic::asteroidSpaceShipCollision(specialAsteroid, spaceShip))
+				if (GameLogic::asteroidSpaceShipCollision(specialAsteroid))
 				{
 					resetGame();
 				}
@@ -235,7 +316,7 @@ namespace GameLogic
 				for (int j = 0; j < maxBigAsteroids; j++)
 				{
 					GameLogic::moveAsteroidAcrossScreen(bigAsteroids[i]);
-					if (GameLogic::asteroidSpaceShipCollision(bigAsteroids[i], spaceShip))
+					if (GameLogic::asteroidSpaceShipCollision(bigAsteroids[i]))
 					{
 						resetGame();
 					}
@@ -247,7 +328,7 @@ namespace GameLogic
 				for (int j = 0; j < maxMediumAsteroids; j++)
 				{
 					GameLogic::moveAsteroidAcrossScreen(mediumAsteroids[j]);
-					if (GameLogic::asteroidSpaceShipCollision(mediumAsteroids[j], spaceShip))
+					if (GameLogic::asteroidSpaceShipCollision(mediumAsteroids[j]))
 					{
 						resetGame();
 					}
@@ -258,7 +339,7 @@ namespace GameLogic
 				for (int j = 0; j < maxSmallAsteroids; j++)
 				{
 					GameLogic::moveAsteroidAcrossScreen(smallAsteroids[j]);
-					if (GameLogic::asteroidSpaceShipCollision(smallAsteroids[j], spaceShip))
+					if (GameLogic::asteroidSpaceShipCollision(smallAsteroids[j]))
 					{
 						resetGame();
 					}
@@ -266,7 +347,7 @@ namespace GameLogic
 				}
 
 			}
-			for (int j = 0; j < maxBigAsteroids; ++j)
+			for (int j = 0; j < bigAsteroidsOnScreen ; ++j)
 			{
 
 				if (!bigAsteroids[j].isActive)
@@ -372,10 +453,7 @@ namespace GameLogic
 
 		for (int i = 0; i < maxBullets; ++i)
 		{
-			
-
-				drawBullet(spaceShip.bullet[i]);
-			
+			drawBullet(spaceShip.bullet[i]);
 		}
 
 		for (int i = 0; i < maxBigAsteroids; i++)
@@ -393,6 +471,14 @@ namespace GameLogic
 			drawAsteroid(smallAsteroids[i]);
 		}
 		drawAsteroid(specialAsteroid);
+		if (sniperPowerUp.isSpawned)
+		{
+			drawPowerUp(sniperPowerUp);
+		}
+		if (piercingPowerUp.isSpawned)
+		{
+			drawPowerUp(piercingPowerUp);
+		}
 		drawShip();
 		drawButtonTranslucent(pauseMenuButton);
 		drawUI();
