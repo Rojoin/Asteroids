@@ -3,6 +3,7 @@
 #include <iostream>
 #include <raymath.h>
 
+#include "gameLogic/movementLogic.h"
 #include "system/draw.h"
 
 GameObjects::SpaceShip spaceShip;
@@ -192,7 +193,7 @@ namespace GameObjects
 			updateBullet();
 			PlaySound(spaceShip.bullet[spaceShip.bulletIndex].sound);
 			spaceShip.bullet[spaceShip.bulletIndex].isActive = true;
-			Vector2 normalizedVector = Vector2Normalize(spaceShip.direction);
+			Vector2 normalizedVector = Vector2Normalize(GameLogic::getSpaceShipDirection(spaceShip));
 			spaceShip.bullet[spaceShip.bulletIndex].aceleration.x += normalizedVector.x;
 			spaceShip.bullet[spaceShip.bulletIndex].aceleration.y += normalizedVector.y;
 			spaceShip.bulletIndex++;
