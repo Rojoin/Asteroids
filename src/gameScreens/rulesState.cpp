@@ -5,7 +5,7 @@
 #include "button.h"
 
 extern Font customFont;
-Button escapeButton = createButton(" GO BACK", RED);
+Button escapeButton = createButton("  Volver", RED);
 Texture2D rulesTexture;
 void statesRules()
 {
