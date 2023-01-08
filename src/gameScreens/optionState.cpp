@@ -5,7 +5,7 @@
 #include "optionsState.h"
 
 
-Button backButton = createButton(" GO BACK", RED);
+Button backButton = createButton(" Volver", RED);
 Button fullScreen;
 Button changeScreen;
 static int resolutionIndex = 1;
@@ -17,8 +17,8 @@ void statesOptions()
 {
 
 	backButton = createButton(0, (float)screenSize.y - backButton.rec.height * 2, backButton.buttonTittle, backButton.color);
-	fullScreen = createButton(static_cast<float>(screenSize.x / 2), static_cast<float>(screenSize.y / 2), 200 , 60.0f * static_cast<float>(screenSize.y / 768), "FullScreen", RED);
-	changeScreen = createButton(static_cast<float>(screenSize.x / 4), static_cast<float>(screenSize.y / 2), 200 , 60.0f * static_cast<float>(screenSize.y / 768), "Change Res", WHITE);
+	fullScreen = createButton(static_cast<float>(screenSize.x / 2), static_cast<float>(screenSize.y / 2), 200 , 60.0f * static_cast<float>(screenSize.y / 768), "Maximizar", RED);
+	changeScreen = createButton(static_cast<float>(screenSize.x / 4), static_cast<float>(screenSize.y / 2), 200 , 60.0f * static_cast<float>(screenSize.y / 768), "Cambiar Res", WHITE);
 	Vector2 mousePoint = GetMousePosition();
 
 	if (CheckCollisionPointRec(mousePoint, backButton.rec))

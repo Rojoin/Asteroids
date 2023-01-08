@@ -13,11 +13,11 @@ Vector2 middleScreen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
 extern Font customFont;
 
 Vector2 Screen = { GetScreenWidth() / 2.0f,GetScreenHeight() / 2.0f };
-Button playButton = createButton("     PLAY", DARKGREEN);
-Button howToPlayButton = createButton("   RULES", YELLOW);
-Button optionsButton = createButton("  OPTIONS ", YELLOW);
-Button creditsButton = createButton("  CREDITS ", YELLOW);
-Button exitButton = createButton("   EXIT", RED);
+Button playButton = createButton("     JUGAR", DARKGREEN);
+Button howToPlayButton = createButton("   REGLAS", YELLOW);
+Button optionsButton = createButton("  OPCIONES", YELLOW);
+Button creditsButton = createButton("  CREDITOS", YELLOW);
+Button exitButton = createButton("   SALIR", RED);
 
 Texture2D titleTexture;
 
@@ -25,7 +25,7 @@ void statesMenu(GameStates& gamestate)
 {
 
 	middleScreen = { static_cast<float> (GetScreenWidth()) / 2.0f,static_cast<float>(GetScreenHeight()) / 2.0f };
-	playButton = createButton(middleScreen.x - playButton.rec.width / 2, middleScreen.y - playButton.rec.height / 2, "   PLAY", DARKGREEN);
+	playButton = createButton(middleScreen.x - playButton.rec.width / 2, middleScreen.y - playButton.rec.height / 2, "   JUGAR", DARKGREEN);
 	howToPlayButton = createButton(middleScreen.x - howToPlayButton.rec.width / 2, playButton.rec.y + howToPlayButton.rec.height * 2, howToPlayButton.buttonTittle, howToPlayButton.color);
 	optionsButton = createButton(middleScreen.x - optionsButton.rec.width / 2, howToPlayButton.rec.y + optionsButton.rec.height * 2, optionsButton.buttonTittle, optionsButton.color);
 	creditsButton = createButton(middleScreen.x - creditsButton.rec.width / 2, optionsButton.rec.y + creditsButton.rec.height * 2, creditsButton.buttonTittle, creditsButton.color);
@@ -108,9 +108,9 @@ void drawMenu()
 	drawButton(optionsButton);
 	drawButton(creditsButton);
 	drawButton(exitButton);
-	float fontSize ;
-	fontSize = 16.0f * static_cast<float>(GetScreenHeight()) / 728.0f;
-	std::string titleScreen = "The Last Slice";
+	float fontSize;
+	fontSize = 12.0f * static_cast<float>(GetScreenHeight()) / 728.0f;
+	std::string titleScreen = "La Ultima Rebanada";
 	drawText(titleScreen.c_str(), width / 2.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f, (height / 8.0f), fontSize * 8.0f, BLACK, customFont);
 	drawTexture(titleTexture, { width / 3.0f - static_cast<float>(titleScreen.length())* fontSize * 1.5f,height / 16.0f }, 0, 0.17f * (GetScreenHeight()) / 728, WHITE);
 

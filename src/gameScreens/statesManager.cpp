@@ -60,7 +60,7 @@ void initProgram()
 {
 	setGameState(GameStates::InitialAnimation);
 	SetRandomSeed(static_cast<unsigned int>(time(NULL)));
-	InitWindow(1024, 768, "The Last Slice");
+	InitWindow(1024, 768, "La Ultima Rebanada");
 	HideCursor();
 	InitAudioDevice();
 	loadResources();
